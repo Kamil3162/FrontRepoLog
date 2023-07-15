@@ -1,9 +1,12 @@
 import axios from "axios";
 import React, { useState } from 'react';
 
+<<<<<<< HEAD
 const client = axios.create({
     baseURL: 'http://127.0.0.1:8000'
 })
+=======
+>>>>>>> 12fd0c2 (Add login and logout component)
 const Register = () => {
     const [firstName, setFirstName] = useState(null);
     const [lastName, setLastName] = useState('');
@@ -17,6 +20,7 @@ const Register = () => {
     const [phoneNumber, setPhoneNumber] = useState('');
     const handleSubmit = (event) =>{
         event.preventDefault();
+<<<<<<< HEAD
         client.post('/api/register/token', {
             first_name: firstName,
             last_name: lastName,
@@ -29,6 +33,9 @@ const Register = () => {
             city: city,
             street: street
         })
+=======
+        axios.post('/api/register', )
+>>>>>>> 12fd0c2 (Add login and logout component)
     }
 
     return (

@@ -9,7 +9,11 @@
     "axios": "^1.4.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+<<<<<<< HEAD
     "react-router-dom": "^6.14.2",
+=======
+    "react-router-dom": "^6.14.1",
+>>>>>>> 12fd0c2 (Add login and logout component)
     "react-scripts": "5.0.1",
     "styled-components": "^6.0.4",
     "web-vitals": "^2.1.4"

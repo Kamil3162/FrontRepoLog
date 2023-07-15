@@ -1,4 +1,5 @@
 import axios from "axios";
+<<<<<<< HEAD
 import {useEffect, useState} from "react";
 import {useNavigate} from "react-router-dom";
 
@@ -24,6 +25,10 @@ function Home(){
             })
     });
 
+=======
+
+function Home(){
+>>>>>>> 12fd0c2 (Add login and logout component)
     return (
         <h1>Hello world nice to see you</h1>
     )
