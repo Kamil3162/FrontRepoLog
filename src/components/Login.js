@@ -1,17 +1,27 @@
 import axios from "axios";
 import {useState} from "react";
+
+axios.defaults.xsrfCookieName = 'csrftoken';
+axios.defaults.xsrfHeaderName = 'X-CSRFToken';
+axios.defaults.withCredentials = true;
+
+const client = axios.create({
+    baseURL: 'http://127.0.0.1:8000'
+})
 function Login(){
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('')
 
     const handleSubmit = (event) =>{
         event.preventDefault();
-        axios.post("/api/login",{
+        client.post("/api/login/token",{
             email,
             password
         })
             .then(response => {
-                console.log(response);
+                localStorage.setItem('access', response.data.access);
+                localStorage.setItem('refresh', response.data.refresh);
+                
             })
             .catch(error =>{
                 console.log(error);
