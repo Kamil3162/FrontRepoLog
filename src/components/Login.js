@@ -1,5 +1,6 @@
 import axios from "axios";
 import {useState} from "react";
+import {useHistory, useNavigate} from "react-router-dom";
 
 axios.defaults.xsrfCookieName = 'csrftoken';
 axios.defaults.xsrfHeaderName = 'X-CSRFToken';
@@ -11,6 +12,7 @@ const client = axios.create({
 function Login(){
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('')
+    const navigate = useNavigate();
 
     const handleSubmit = (event) =>{
         event.preventDefault();
@@ -21,7 +23,7 @@ function Login(){
             .then(response => {
                 localStorage.setItem('access', response.data.access);
                 localStorage.setItem('refresh', response.data.refresh);
-                
+                navigate('/home');
             })
             .catch(error =>{
                 console.log(error);
