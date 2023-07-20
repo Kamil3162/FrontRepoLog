@@ -1,6 +1,9 @@
 import axios from "axios";
 import React, { useState } from 'react';
 
+const client = axios.create({
+    baseURL: 'http://127.0.0.1:8000'
+})
 const Register = () => {
     const [firstName, setFirstName] = useState(null);
     const [lastName, setLastName] = useState('');
@@ -14,7 +17,18 @@ const Register = () => {
     const [phoneNumber, setPhoneNumber] = useState('');
     const handleSubmit = (event) =>{
         event.preventDefault();
-        axios.post('/api/register', )
+        client.post('/api/register/token', {
+            first_name: firstName,
+            last_name: lastName,
+            email: email,
+            password: password,
+            zip_code: zipCode,
+            house_number: houseNumber,
+            phone_number: phoneNumber,
+            apartment_number: apartmentNumber,
+            city: city,
+            street: street
+        })
     }
 
     return (
