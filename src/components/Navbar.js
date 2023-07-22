@@ -1,12 +1,14 @@
 
 import axios from "axios";
-import NavbarStyle from "../layouts/NavbarStyled.js";
+import {NavbarContainer, NavbarStyle, NavItem, Logo} from "../layouts/navbar_styled.js";
 import {useState, useEffect} from "react";
 import { useNavigate } from "react-router-dom";
+import styled from "styled-components";
 
 const client = axios.create({
     baseURL: 'http://127.0.0.1:8000'
-})
+});
+
 
 function Navbar(){
     const [isValidSession, setIsValidSession] = useState(false);
@@ -58,13 +60,19 @@ function Navbar(){
     };
 
     return (
-        <NavbarStyle>
-            { isValidSession ? (
-                <button onClick={handleLogout}>Logout</button>
-            ): (
-                <p>Error something wrong</p>
-            )}
-        </NavbarStyle>
+        <NavbarContainer>
+            <Logo src="/path/to/logo.png" alt="Logo" />
+            <NavItem href="/">Home</NavItem>
+            <NavItem href="/login">Login</NavItem>
+            <NavItem href="/contact">Contact</NavItem>
+            <NavbarStyle>
+                { isValidSession ? (
+                    <button onClick={handleLogout}>Logout</button>
+                ): (
+                    <p>Error something wrong</p>
+                )}
+            </NavbarStyle>
+        </NavbarContainer>
     )
 }
 

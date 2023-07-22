@@ -1,7 +1,8 @@
 import axios from "axios";
 import {useEffect, useState} from "react";
 import {useNavigate} from "react-router-dom";
-
+import {PageContainer, LeftPanel, PageWrapper ,LeftPanelItem, ContentContainer} from "../layouts/home_styled.js";
+import Navbar from "./Navbar";
 const client = axios.create({
     baseURL: 'http://127.0.0.1:8000'
 })
@@ -25,7 +26,14 @@ function Home(){
     });
 
     return (
-        <h1>Hello world nice to see you</h1>
+        <PageContainer>
+            <LeftPanel>
+                dsa
+            </LeftPanel>
+            <ContentContainer>
+                dsa
+            </ContentContainer>
+        </PageContainer>
     )
 }
 
