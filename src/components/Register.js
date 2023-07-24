@@ -15,6 +15,7 @@ const Register = () => {
     const [street, setStreet] = useState('');
     const [zipCode, setZipCode] = useState('');
     const [phoneNumber, setPhoneNumber] = useState('');
+
     const handleSubmit = (event) =>{
         event.preventDefault();
         client.post('/api/register/token', {
