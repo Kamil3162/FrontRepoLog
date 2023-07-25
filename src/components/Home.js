@@ -1,8 +1,19 @@
 import axios from "axios";
 import {useEffect, useState} from "react";
 import {useNavigate} from "react-router-dom";
-import {PageContainer, LeftPanel, PageWrapper ,LeftPanelItem, ContentContainer} from "../layouts/home_styled.js";
+import {
+    PageContainer,
+    LeftPanel,
+    PageWrapper,
+    LeftPanelItem,
+    ContentContainer,
+    LeftPanelLogo
+} from "../layouts/home_styled.js";
+
 import Navbar from "./Navbar";
+import {GlobalStyle} from "../fonts/fontStyles.js";
+
+
 const client = axios.create({
     baseURL: 'http://127.0.0.1:8000'
 })
@@ -28,7 +39,9 @@ function Home(){
     return (
         <PageContainer>
             <LeftPanel>
-                dsa
+                <LeftPanelLogo>
+                    KamilDev
+                </LeftPanelLogo>
             </LeftPanel>
             <ContentContainer>
                 dsa
