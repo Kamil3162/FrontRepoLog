@@ -1,10 +1,18 @@
 import axios from "axios";
 import {useState} from "react";
 import {useHistory, useNavigate} from "react-router-dom";
-
-axios.defaults.xsrfCookieName = 'csrftoken';
-axios.defaults.xsrfHeaderName = 'X-CSRFToken';
-axios.defaults.withCredentials = true;
+import cargophoto from '../layouts/icons/truck-login.jpg';
+import {
+    LoginForm,
+    LoginDisplay,
+    LoginPageContainer,
+    LoginLabel,
+    LoginInput,
+    LoginButton,
+    LoginDisplayPhoto,
+    LoginPart,
+    LoginEntry, HorizontalLine, LoginDisplayPhotoContainer
+} from '../layouts/login_styled.js';
 
 const client = axios.create({
     baseURL: 'http://127.0.0.1:8000'
@@ -30,27 +38,43 @@ function Login(){
             })
     }
     return (
-        <div>
-            <h1>Hello world nice to see you</h1>
-            <form onSubmit={handleSubmit}>
-                <input
-                    type="text"
-                    name="email"
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                    placeholder="email"
-                />
-                <br/>
-                <input
-                    type="password"
-                    name="password"
-                    value={password}
-                    onChange={(e) => setPassword(e.target.value)}
-                    placeholder="password"
-                />
-                <button type="submit">Zatwierdz</button>
-            </form>
-        </div>
+        <LoginPageContainer>
+            <LoginPart>
+                <LoginEntry>Log In</LoginEntry>
+                <LoginForm onSubmit={handleSubmit}>
+                    <LoginLabel>
+                        Email
+                    </LoginLabel>
+                    <LoginInput
+                        type="text"
+                        name="email"
+                        value={email}
+                        onChange={(e) => setEmail(e.target.value)}
+                        required
+                    />
+                    <br/>
+                    <LoginLabel>
+                        Password
+                    </LoginLabel>
+                    <LoginInput
+                        type="password"
+                        name="password"
+                        value={password}
+                        onChange={(e) => setPassword(e.target.value)}
+                        required
+
+                    />
+                    <LoginButton type="submit">Zatwierdz</LoginButton>
+                </LoginForm>
+
+            </LoginPart>
+            <LoginDisplay>
+                <LoginDisplayPhotoContainer>
+                    <LoginDisplayPhoto src={cargophoto}/>
+                </LoginDisplayPhotoContainer>
+            </LoginDisplay>
+
+        </LoginPageContainer>
     )
 }
 export default Login;
