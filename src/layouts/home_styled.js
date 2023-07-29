@@ -9,7 +9,7 @@ export const PageContainer = styled.div`
 
 export const ContentContainer = styled.div`
   flex: 1;
-  flex-grow: 6;
+  flex-grow: 100;
   flex-shrink: 0;
   flex-basis: auto;
   background-color: aliceblue;
@@ -17,7 +17,7 @@ export const ContentContainer = styled.div`
 
 export const LeftPanel = styled.div`
   flex: 1;
-  flex-grow: 2;
+  flex-grow: 1;
   flex-basis: auto;
   background-color: #ffffff;
   font-family: 'REM', sans-serif;
@@ -39,13 +39,14 @@ export const LeftPanelItem = styled.div`
   align-items: center;
   margin-left: 50px;
   margin-bottom: 20px;
-  padding: 5px;
+  padding: 8px;
 
   &:hover {
     transition: background-color 0.3s ease, transition-delay 0.2s;
-    background-color: #828484;
+    background-color: #889b7f;
     border-radius: 15px;
     color: white;
+    width: 70%;
   }
 `;
 export const PanelItemText = styled.div`
