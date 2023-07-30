@@ -25,7 +25,7 @@ export const LeftPanel = styled.div`
 `;
 
 export const LeftPanelLogo = styled.div`
-  font-family: 'Raleway';
+  font-family: 'Raleway', sans-serif;
   font-weight: 600 ;
   font-size: 32px;
   color: #070707;

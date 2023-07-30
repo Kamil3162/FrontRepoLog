@@ -7,6 +7,7 @@ import Home from "./components/Home";
 import Login from "./components/Login";
 import Register from "./components/Register";
 import User from "./components/User";
+import HomeGuest from "./components/HomeGuest";
 
 const rootElement = document.getElementById('root');
 const root = createRoot(rootElement);
@@ -20,6 +21,7 @@ root.render(
                 <Route path="/login" element={<Login/>}/>
                 <Route path="/logout" element={<Register/>}/>
                 <Route path="/user" element={<User/>}/>
+                <Route path="/home-guest" element={<HomeGuest/>}/>
             </Routes>
         </React.StrictMode>
     </BrowserRouter>
