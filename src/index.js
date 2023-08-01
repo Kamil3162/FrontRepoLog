@@ -8,7 +8,8 @@ import Login from "./components/Login";
 import Register from "./components/Register";
 import User from "./components/User";
 import HomeGuest from "./components/HomeGuest";
-
+import SemiTrailerForm from "./components/SemiTrailerCreate";
+import TruckCreate from "./components/TruckCreate";
 const rootElement = document.getElementById('root');
 const root = createRoot(rootElement);
 
@@ -22,6 +23,8 @@ root.render(
                 <Route path="/logout" element={<Register/>}/>
                 <Route path="/user" element={<User/>}/>
                 <Route path="/home-guest" element={<HomeGuest/>}/>
+                <Route path="/semitrailer-create" element={<SemiTrailerForm/>}/>
+                <Route path="/truck-create" element={<TruckCreate/>}/>
             </Routes>
         </React.StrictMode>
     </BrowserRouter>
