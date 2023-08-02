@@ -40,6 +40,7 @@ export const LeftPanelItem = styled.div`
   margin-left: 50px;
   margin-bottom: 20px;
   padding: 8px;
+  text-decoration: none;
 
   &:hover {
     transition: background-color 0.3s ease, transition-delay 0.2s;

@@ -1,35 +1,17 @@
 import React from 'react';
-import { createRoot } from "react-dom/client";
+import ReactDOM, {render} from 'react-dom';
 import './index.css';
 import reportWebVitals from './reportWebVitals';
-import {BrowserRouter, Route, Routes} from "react-router-dom";
-import Home from "./components/Home";
-import Login from "./components/Login";
-import Register from "./components/Register";
-import User from "./components/User";
-import HomeGuest from "./components/HomeGuest";
-import SemiTrailerForm from "./components/SemiTrailerCreate";
-import TruckCreate from "./components/TruckCreate";
-const rootElement = document.getElementById('root');
-const root = createRoot(rootElement);
+import App from "./App";
+import { BrowserRouter } from 'react-router-dom'
 
-root.render(
+
+render(
     <BrowserRouter>
-        <React.StrictMode>
-            <Routes>
-                <Route path="/home" element={<Home/>}/>
-                <Route path="/register" element={<Register/>}/>
-                <Route path="/login" element={<Login/>}/>
-                <Route path="/logout" element={<Register/>}/>
-                <Route path="/user" element={<User/>}/>
-                <Route path="/home-guest" element={<HomeGuest/>}/>
-                <Route path="/semitrailer-create" element={<SemiTrailerForm/>}/>
-                <Route path="/truck-create" element={<TruckCreate/>}/>
-            </Routes>
-        </React.StrictMode>
-    </BrowserRouter>
-);
-
+        <App />
+    </BrowserRouter>,
+    document.getElementById('root')
+)
 reportWebVitals();
 /*
 {

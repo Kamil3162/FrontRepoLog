@@ -71,7 +71,6 @@ function User() {
 
     return (
         <div>
-            <Navbar></Navbar>
             {data ? (
                 <>
                 <div>

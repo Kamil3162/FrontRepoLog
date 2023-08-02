@@ -17,6 +17,9 @@ class SemiTrailerForm extends React.Component {
             image: null
         };
     }
+
+
+
     handleInputChange = (e) => {
         const name = e.target.name;
         let value = e.target.type === 'checkbox' ? e.target.checked : e.target.value;
@@ -30,8 +33,31 @@ class SemiTrailerForm extends React.Component {
 
     submitForm = (e) => {
         e.preventDefault();
+        let access_token = localStorage.getItem('access');
         alert('Form submitted: ' + JSON.stringify(this.state));
-        // You can send the data to the server here.
+        client
+            .post(
+                '/api/semitrailer-create/',
+            {
+                brand: this.state.brand,
+                model: this.state.model,
+                power: this.state.power,
+                registration_number: this.state.registration_number,
+                production_year: this.state.production_year,
+                semi_note: this.state.semi_note,
+                photo: this.state.image
+            },
+            {
+
+            headers:{
+                Authorization: `Bearer ${access_token}`
+            },
+        }
+        ).then(response =>{
+            console.log(response);
+        }).catch(error =>{
+            console.log(error);
+        })
     };
 
     render() {

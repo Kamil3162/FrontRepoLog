@@ -33,7 +33,6 @@ const client = axios.create({
 
 function Home(){
     const access_token = localStorage.getItem('access');
-    const refresh_token = localStorage.getItem('refresh');
 
     useEffect(() =>{
         client.get('/api/home/token',{
@@ -51,59 +50,6 @@ function Home(){
 
     return (
         <PageContainer>
-            <LeftPanel>
-                <LeftPanelLogo>
-                    KamilDev
-                </LeftPanelLogo>
-                <LeftPanelItem>
-                    <LogoPanelItem src={icon1}/>
-                    <PanelItemText>
-                        Dashboard
-                    </PanelItemText>
-                </LeftPanelItem>
-                <LeftPanelItem>
-                    <LogoPanelItem src={icon9}/>
-                    <PanelItemText>
-                        Truck
-                    </PanelItemText>
-                </LeftPanelItem>
-                <LeftPanelItem>
-                    <LogoPanelItem src={icon3}/>
-                    <PanelItemText>
-                        Settings
-                    </PanelItemText>
-                </LeftPanelItem>
-                <LeftPanelItem>
-                    <LogoPanelItem src={icon4}/>
-                    <PanelItemText>
-                        Logout
-                    </PanelItemText>
-                </LeftPanelItem>
-                <LeftPanelItem>
-                    <LogoPanelItem src={icon5}/>
-                    <PanelItemText>
-                        SemiTruck
-                    </PanelItemText>
-                </LeftPanelItem>
-                <LeftPanelItem>
-                    <LogoPanelItem src={icon6}/>
-                    <PanelItemText>
-                        User
-                    </PanelItemText>
-                </LeftPanelItem>
-                <LeftPanelItem>
-                    <LogoPanelItem src={icon7}/>
-                    <PanelItemText>
-                        Converstaion
-                    </PanelItemText>
-                </LeftPanelItem>
-                <LeftPanelItem>
-                    <LogoPanelItem src={icon8}/>
-                    <PanelItemText>
-                        Receivment
-                    </PanelItemText>
-                </LeftPanelItem>
-            </LeftPanel>
             <ContentContainer>
                 dsa
             </ContentContainer>
