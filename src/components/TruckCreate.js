@@ -34,7 +34,7 @@ const YourComponent = () => {
             formData.append('photo', image, image.name);
         }
 
-        client.post('/api/truck-create/', formData, {
+        client.post('/api/trucks/', formData, {
             headers: {
                 Authorization: `Bearer ${access_token}`,
                 'Content-Type': 'multipart/form-data',

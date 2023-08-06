@@ -39,6 +39,7 @@ function App(){
                 <Route path="/truck-create" element={<TruckCreate/>}/>
                 <Route path="/truck/:pk" element={<Truck/>}/>
                 <Route path="/truck-create" element={<SemiTrailer/>}/>
+                <Route path="/semitrailer/:pk" element={<SemiTrailer/>}/>
             </Routes>
         </ContentContainer>
     </PageContainer>

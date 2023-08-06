@@ -1,10 +1,8 @@
 import React, {useState, useEffect} from "react";
 import axios from "axios";
 import {useParams} from "react-router-dom";
-
-const client = axios.create({
-    baseURL: 'http://127.0.0.1/3000'
-});
+import {access_token} from "../utils/Sender";
+import client from "../utils/Sender";
 
 function TruckDisplay(){
     const [brand, setBrand] = useState("");
@@ -14,12 +12,13 @@ function TruckDisplay(){
     const [driven_lenght, setDriven_lenght] = useState("");
     const [production_data, setProduction_data] = useState("");
     const [aviable, setAviable] = useState("");
+    const [photo, setPhoto] = useState("");
 
     const { pk } = useParams();
     const access_token = localStorage.getItem('access');
 
     useEffect(() =>{
-        client.get(`/api/truck/${pk}`,{
+        client.get(`/api/trucks/${pk}/`,{
             headers:{
                 Authorization: `Bearer ${access_token}`
             }
@@ -33,15 +32,17 @@ function TruckDisplay(){
                 setDriven_lenght(data.driven_length)
                 setProduction_data(data.production_data)
                 setAviable(data.aviable)
+                setPhoto(data.photo);
             })
             .catch(error =>{
                 console.log(error);
             })
-    });
+    }, []);
+
     const handleSubmit = (e) =>{
         e.preventDefault();
 
-        client.post(`/api/truck/${pk}}`,{
+        client.post(`/api/trucks/${pk}/`,{
             headers:{
                 Authorization: `Bearer ${access_token}`
             },
@@ -93,6 +94,7 @@ function TruckDisplay(){
                 Aviable:
                 <input type="text" value={aviable} />
             </label>
+            {photo && <img src={photo} alt="SemiTrailer" />}
         </div>
     )
 }

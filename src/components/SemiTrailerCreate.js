@@ -37,7 +37,7 @@ class SemiTrailerForm extends React.Component {
         alert('Form submitted: ' + JSON.stringify(this.state));
         client
             .post(
-                '/api/semitrailer-create/',
+                '/api/semitrailers/',
             {
                 brand: this.state.brand,
                 model: this.state.model,
@@ -50,7 +50,9 @@ class SemiTrailerForm extends React.Component {
             {
 
             headers:{
-                Authorization: `Bearer ${access_token}`
+                Authorization: `Bearer ${access_token}`,
+                'Content-Type': 'multipart/form-data',
+
             },
         }
         ).then(response =>{

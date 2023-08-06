@@ -18,49 +18,41 @@ function LeftPanelComponent(){
             <LeftPanelItem>
                 <LogoPanelItem src={icon1}/>
                 <PanelItemText>
-                    Dashboard
                 </PanelItemText>
             </LeftPanelItem>
             <LeftPanelItem>
                 <LogoPanelItem src={icon9}/>
                 <PanelItemText>
-                    Truck
                 </PanelItemText>
             </LeftPanelItem>
             <LeftPanelItem>
                 <LogoPanelItem src={icon3}/>
                 <PanelItemText>
-                    Settings
                 </PanelItemText>
             </LeftPanelItem>
             <LeftPanelItem>
                 <LogoPanelItem src={icon4}/>
                 <PanelItemText>
-                    Logout
                 </PanelItemText>
             </LeftPanelItem>
             <LeftPanelItem>
                 <LogoPanelItem src={icon5}/>
                 <PanelItemText>
-                    SemiTruck
                 </PanelItemText>
             </LeftPanelItem>
             <LeftPanelItem as={Link} to="/user">
                 <LogoPanelItem src={icon6}/>
                 <PanelItemText>
-                    User
                 </PanelItemText>
             </LeftPanelItem>
             <LeftPanelItem>
                 <LogoPanelItem src={icon7}/>
                 <PanelItemText>
-                    Converstaion
                 </PanelItemText>
             </LeftPanelItem>
             <LeftPanelItem>
                 <LogoPanelItem src={icon8}/>
                 <PanelItemText>
-                    Receivment
                 </PanelItemText>
             </LeftPanelItem>
         </LeftPanel>
