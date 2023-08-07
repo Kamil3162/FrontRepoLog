@@ -10,10 +10,8 @@ import {
     LoginPart
 } from "../layouts/login_styled";
 import cargophoto from "../layouts/icons/truck-login.jpg";
+import client from "../utils/Sender";
 
-const client = axios.create({
-    baseURL: 'http://127.0.0.1:8000'
-})
 const Register = () => {
     const [firstName, setFirstName] = useState(null);
     const [lastName, setLastName] = useState('');

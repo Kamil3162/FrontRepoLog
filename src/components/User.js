@@ -1,10 +1,7 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import Navbar from "./Navbar";
-
-const client = axios.create({
-    baseURL: 'http://127.0.0.1:8000'
-});
+import client from "../utils/Sender";
 
 function User() {
     const access_token = localStorage.getItem('access');

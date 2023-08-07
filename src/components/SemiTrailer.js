@@ -20,11 +20,12 @@ function SemiTrailer(){
             }
         }).then(response => {
             let received_data = response.data;
+            console.log(received_data);
             setBrand(received_data.brand);
             setModel(received_data.model);
-            setProduction_data(received_data.production_data);
+            setProduction_data(received_data.production_year);
             setRegistration_number(received_data.registration_number);
-            setAviable(received_data.aviable);
+            setAviable(received_data.available);
             setSemiNote(received_data.semi_note);
             setPhoto(received_data.photo);
         }).catch(error => {
@@ -41,7 +42,7 @@ function SemiTrailer(){
                 <p>Production Data: {production_data}</p>
                 <p>Registration Number: {registration_number}</p>
                 <p>Available: {aviable}</p>
-                <p>Semi Note: {semi_note}</p>
+                <p>Seminote: {semi_note && <p>Obecny!</p>}</p>
                 {/* Display the photo if available */}
                 {photo && <img src={photo} alt="SemiTrailer" />}
             </div>

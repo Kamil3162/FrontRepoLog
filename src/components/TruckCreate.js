@@ -2,10 +2,7 @@ import React, { useState } from 'react';
 import axios from "axios";
 import {Form} from "react-router-dom";
 import {type} from "@testing-library/user-event/dist/type";
-
-const client = axios.create({
-    baseURL:'http://127.0.0.1:8000'
-})
+import client from "../utils/Sender";
 const YourComponent = () => {
     const [brand, setBrand] = useState('');
     const [model, setModel] = useState('');

@@ -4,10 +4,7 @@ import {NavbarContainer, NavbarStyle, NavItem, Logo} from "../layouts/navbar_sty
 import {useState, useEffect} from "react";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
-
-const client = axios.create({
-    baseURL: 'http://127.0.0.1:8000'
-});
+import client from "../utils/Sender";
 
 
 function Navbar(){

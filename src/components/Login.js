@@ -13,10 +13,8 @@ import {
     LoginPart,
     LoginEntry, HorizontalLine, LoginDisplayPhotoContainer
 } from '../layouts/login_styled.js';
+import client from "../utils/Sender";
 
-const client = axios.create({
-    baseURL: 'http://127.0.0.1:8000'
-})
 function Login(){
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('')
