@@ -77,10 +77,11 @@ export const GlobalStyle = createGlobalStyle`
     font-weight: normal;
     font-style: normal;
   }
-  
+
   body {
     margin: 0;
     padding: 0;
+    font-family: 'REM', 'Raleway', 'Rubik', 'Work Sans', 'Quicksand', sans-serif;
     /* Add other global styles if needed */
   }
 `;

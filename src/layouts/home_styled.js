@@ -4,7 +4,7 @@ import GlobalStyle from "../fonts/fontStyles";
 export const PageContainer = styled.div`
   display: flex;
   flex-direction: row;
-  height: 1200px;
+  min-height: 950px;
 `;
 
 export const ContentContainer = styled.div`
@@ -12,16 +12,17 @@ export const ContentContainer = styled.div`
   flex-grow: 100;
   flex-shrink: 0;
   flex-basis: auto;
-  background-color: #f6f2f2;
+  background-color: #828484;
 `;
 
 export const LeftPanel = styled.div`
+  flex-direction: column;
   flex: 1;
   flex-grow: 1;
   flex-basis: auto;
-  background-color: rgba(42, 168, 168, 0.5);
+  background-color: rgb(101, 196, 62);
   font-family: 'REM', sans-serif;
-
+  justify-items: center;
 `;
 
 export const LeftPanelLogo = styled.div`
@@ -37,24 +38,23 @@ export const LeftPanelLogo = styled.div`
 export const LeftPanelItem = styled.div`
   display: flex;
   align-items: center;
-  margin-left: 50px;
+  justify-items: center;
   margin-bottom: 20px;
   padding: 8px;
   text-decoration: none;
+  width: calc(100% - 50px); /* Set width minus the margin */
+  margin-left: 50px;
 
   &:hover {
     transition: background-color 0.3s ease, transition-delay 0.2s;
-    background-color: #889b7f;
     border-radius: 15px;
-    color: white;
-    width: 70%;
+    background-color: white;
+    width: 100%;
   }
 `;
 export const PanelItemText = styled.div`
     margin-left: 15px;
     font-size: 20px;
-  
-  
 `
 export const LogoPanelItem = styled.img`
     width: 30px;
