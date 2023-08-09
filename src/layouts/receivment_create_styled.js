@@ -111,9 +111,9 @@ export const ReceivmentInfoContainer = styled.div`
   margin-bottom: 50px;
 `;
 export const ReceivmentTitle = styled.div`
-    font-size: 40px;
-    font-weight: 600;
-  color: white;
+  font-size: 40px;
+  font-weight: 600;
+  color: #070707;
   font-family: 'Raleway', sans-serif;
 
 `;
@@ -151,10 +151,13 @@ export const SemiTrailerChoice = styled.div`
 export const TruckViewContainer = styled.div`
   display: flex;
   max-height: 300px;
-  background-color: rgba(255, 255, 255, 0.53);
+  background-color: rgb(255, 255, 255);
   margin-bottom: 5px;
   border-radius: 10px;
   justify-items: center;
+  //-webkit-box-shadow: 4px 2px 28px 6px rgb(5, 5, 5);
+  //-moz-box-shadow: 4px 2px 28px 6px rgb(5, 5, 5);
+  //box-shadow: 4px 2px 28px 6px rgb(5, 5, 5);
 `;
 
 export const TruckPhoto = styled.img`
@@ -181,6 +184,7 @@ export const TruckDetail = styled.div`
   flex-direction: column;
   padding: 10px;
   margin-right: 5px;
+  
 `;
 export const TruckInfo = styled.a`
     background-color: white;

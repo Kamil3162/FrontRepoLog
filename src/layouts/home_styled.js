@@ -12,7 +12,7 @@ export const ContentContainer = styled.div`
   flex-grow: 100;
   flex-shrink: 0;
   flex-basis: auto;
-  background-color: #828484;
+  background-color: rgb(255, 255, 255);
 `;
 
 export const LeftPanel = styled.div`

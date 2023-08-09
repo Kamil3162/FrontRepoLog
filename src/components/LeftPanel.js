@@ -15,7 +15,7 @@ function LeftPanelComponent(){
             <LeftPanelLogo>
                 KamilDev
             </LeftPanelLogo>
-            <LeftPanelItem>
+            <LeftPanelItem as={Link} to="/home-guest">
                 <LogoPanelItem src={icon1}/>
                 <PanelItemText>
                 </PanelItemText>
@@ -50,7 +50,7 @@ function LeftPanelComponent(){
                 <PanelItemText>
                 </PanelItemText>
             </LeftPanelItem>
-            <LeftPanelItem>
+            <LeftPanelItem as={Link} to="/receivment-create/">
                 <LogoPanelItem src={icon8}/>
                 <PanelItemText>
                 </PanelItemText>
