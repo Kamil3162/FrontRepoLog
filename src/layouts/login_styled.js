@@ -14,7 +14,7 @@ export const LoginPart = styled.div`
 
 export const LoginEntry = styled.p`
     font-size: 30px;
-    margin-top: 200px;
+    margin-top: 100px;
     font-family: 'Rubik', sans-serif;
     margin-left: 20%;
     text-shadow: -26px 4px 9px rgba(66, 68, 90, 1);
@@ -27,7 +27,6 @@ export const LoginForm = styled.form`
     margin-left: 20%;
     margin-top: 100px;
     height: 5vh;
-    border-bottom: 1px solid black;
 `;
 
 export const LoginLabel = styled.label`
@@ -50,10 +49,11 @@ export const LoginButton = styled.button`
   padding: 10px;
   border-radius: 15px;
   border: none;
-  color: white;
+  color: black;
   font-family: 'Work Sans', sans-serif;
   font-weight: 600;
-  background-color: #b2a13f;
+  background-color: rgb(101, 196, 62);
+
 `;
 
 

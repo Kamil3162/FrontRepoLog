@@ -20,7 +20,7 @@ export const LeftPanel = styled.div`
   flex: 1;
   flex-grow: 1;
   flex-basis: auto;
-  background-color: rgb(101, 196, 62);
+  background-color: rgb(62, 196, 104);
   font-family: 'REM', sans-serif;
   justify-items: center;
 `;

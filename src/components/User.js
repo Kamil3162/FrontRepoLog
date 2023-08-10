@@ -3,13 +3,13 @@ import React, { useEffect, useState } from "react";
 import Navbar from "./Navbar";
 import client from "../utils/Sender";
 import {
-    DeleteAccountText,
+    DeleteAccountText, InputField, LabelFields, PersonalDataContainer,
     SettingDetailContainer,
     SettingDetails,
     SettingElementsContainer, SettingLeftPanelItem,
     SettingsContainer,
     SettingsLeftPanel, SettingsNavTitle,
-    SettingTitle
+    SettingTitle, UpdateButton
 } from "../layouts/user_display";
 
 function User() {
@@ -81,87 +81,96 @@ function User() {
             <SettingElementsContainer>
                 <SettingsLeftPanel>
                     <SettingLeftPanelItem>My Profile</SettingLeftPanelItem>
+                    <SettingLeftPanelItem>Teams</SettingLeftPanelItem>
+                    <SettingLeftPanelItem>Notifications</SettingLeftPanelItem>
                     <DeleteAccountText>Delete Account</DeleteAccountText>
                 </SettingsLeftPanel>
                 <SettingDetails>
                     <SettingsNavTitle>Profile Detail</SettingsNavTitle>
                     <SettingDetailContainer>
-
                     {data ? (
                         <>
-                            <div>
-                                <h2>User Update Form</h2>
-                                <label>First Name:</label>
-                                <input
-                                    type="text"
-                                    value={firstName}
-                                    onChange={(e) => setFirstName(e.target.value)}
-                                />
-                                <br/>
-                                <label>Last Name:</label>
-                                <input
-                                    type="text"
-                                    value={lastName}
-                                    onChange={(e) => setLastName(e.target.value)}
-                                />
-                                <br/>
-                                <label>Email:</label>
-                                <input
+                            <PersonalDataContainer>
+                                <LabelFields>Email Address</LabelFields>
+                                <InputField
                                     type="text"
                                     value={email}
                                     onChange={(e) => setEmail(e.target.value)}
                                 />
-                                <br/>
-                                <label>HopuseNum</label>
-                                <input
+                            </PersonalDataContainer>
+                            <PersonalDataContainer>
+
+                                <LabelFields>Full name</LabelFields>
+                                <InputField
+                                    type="text"
+                                    value={firstName}
+                                    onChange={(e) => setFirstName(e.target.value)}
+                                />
+                                <InputField
+                                    type="text"
+                                    value={lastName}
+                                    onChange={(e) => setLastName(e.target.value)}
+                                />
+                            </PersonalDataContainer>
+
+                            <PersonalDataContainer>
+                                <LabelFields>HopuseNum</LabelFields>
+                                <InputField
                                     type="text"
                                     value={houseNumber}
                                     onChange={(e) => setHouseNumber(e.target.value)}
                                 />
                                 <br/>
-                                <label>Aparment</label>
-                                <input
+                                <LabelFields>Aparment</LabelFields>
+                                <InputField
                                     type="text"
                                     value={apartmentNumber}
                                     onChange={(e) => setApartmentNumber(e.target.value)}
                                 />
                                 <br/>
-                                <label>City</label>
-                                <input
+                                <LabelFields>City</LabelFields>
+                                <InputField
                                     type="text"
                                     value={city}
                                     onChange={(e) => setCity(e.target.value)}
                                 />
                                 <br/>
-                                <label>Street</label>
-                                <input
+                                <LabelFields>Street</LabelFields>
+                                <InputField
                                     type="text"
                                     value={street}
                                     onChange={(e) => setStreet(e.target.value)}
                                 />
                                 <br/>
-                                <label>Zip code</label>
-                                <input
+                                <LabelFields>Zip code</LabelFields>
+                                <InputField
                                     type="text"
                                     value={zipCode}
                                     onChange={(e) => setZipCode(e.target.value)}
                                 />
+                            </PersonalDataContainer>
+
+                        <PersonalDataContainer>
+
                                 <br/>
-                                <label>Phone:</label>
-                                <input
+                                <LabelFields>Phone:</LabelFields>
+                                <InputField
                                     type="number"
                                     value={phoneNumber}
                                     onChange={(e) => setPhoneNumber(e.target.value)}
                                 />
                                 <br/>
-                                <label>Password</label>
-                                <input
+                        </PersonalDataContainer>
+                            <PersonalDataContainer>
+                                <LabelFields>Password</LabelFields>
+                                <InputField
                                     type="password"
                                     value={password}
                                     onChange={(e) => setPassword(e.target.value)}
                                 />
-                                <button onClick={handleUpdate}>Update</button>
-                            </div>
+                                <UpdateButton onClick={handleUpdate}>Update</UpdateButton>
+                            </PersonalDataContainer>
+
                         </>
                     ) : (
                         <p>Loading...</p>
