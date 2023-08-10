@@ -38,19 +38,20 @@ export const SettingDetails = styled.div`
   flex-grow: 7;
   padding: 20px;
   border-radius: 15px;
-  border-left: 1px solid rgba(130, 132, 132, 0.27);
+  //border-left: 1px solid rgba(130, 132, 132, 0.27);
 `;
 export const SettingLeftPanelItem = styled.div`
-  font-family: 'Nunito', sans-serif;
   font-weight: 600;
   border-radius: 10px;
   font-size: 20px;
   padding: 5px;
   color: rgba(7, 6, 6, 0.46);
   margin-top: 10px;
+  font-family: "Raleway", sans-serif;
+
   &:hover {
     border-radius: 0px;
-    border-bottom: 1px solid #a93939;
+    border-bottom: 1px solid rgba(64, 169, 57, 0.66);
 
   }
 `;
@@ -68,7 +69,7 @@ export const DeleteAccountText = styled.span`
 `;
 export const SettingDetailContainer = styled.div`
     padding: 10px;
-  border: 1px solid rgba(0, 0, 0, 0.25);
+  //border: 1px solid rgba(0, 0, 0, 0.25);
   border-radius: 15px;
 `;
 
@@ -94,22 +95,27 @@ export const PersonalDataFields = styled.div`
 `;
 
 export const AddressContainer = styled.div`
-    
+  display: flex;
+  align-items: center;
 `;
 
 
 export const InputField = styled.input`
-  border-radius: 10px;
-  padding: 8px;
+  border-radius: 5px;
   font-family: 'Varela Round', sans-serif;
-  border: 1px solid rgba(0, 0, 0, 0.25);
+  border: 1px solid #676666;
   margin-left: 5px;
   margin-right: 5px;
   margin-bottom: 5px;
+  width: 150px;
+  padding: 10px;
+
+
   &:focus {
     //background-color: rgb(101, 196, 62);
     border-color: rgb(101, 196, 62); /* Set border style and color */
     transition: border-color 0.3s ease;
+
   }
 `;
 

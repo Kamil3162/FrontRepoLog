@@ -13,7 +13,7 @@ function LeftPanelComponent(){
     return (
         <LeftPanel>
             <LeftPanelLogo>
-                KamilDev
+                KD
             </LeftPanelLogo>
             <LeftPanelItem as={Link} to="/home-guest">
                 <LogoPanelItem src={icon1}/>

@@ -6,8 +6,8 @@ export const HomeContainer = styled.div`
     display: flex;
     background-color: white;
   flex-direction: column;
-  width: 100%;
-  height: 100%;
+  width: 80%;
+  height: 80%;
 `;
 
 export const HomeNavbar = styled.div`
@@ -38,7 +38,6 @@ export const InformPostContentContainer = styled.div`
 `;
 
 export const InformPostPhoto = styled.img`
-    flex: 1;
   object-fit: contain;
   max-width: 500px;
   max-height: 500px;

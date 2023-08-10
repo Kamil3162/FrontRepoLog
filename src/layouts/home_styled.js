@@ -23,6 +23,7 @@ export const LeftPanel = styled.div`
   background-color: rgb(62, 196, 104);
   font-family: 'REM', sans-serif;
   justify-items: center;
+  width: 100px;
 `;
 
 export const LeftPanelLogo = styled.div`
@@ -38,12 +39,13 @@ export const LeftPanelLogo = styled.div`
 export const LeftPanelItem = styled.div`
   display: flex;
   align-items: center;
+  text-align: center;
   justify-items: center;
   margin-bottom: 20px;
   padding: 8px;
   text-decoration: none;
   width: calc(100% - 50px); /* Set width minus the margin */
-  margin-left: 50px;
+  margin-left: 25px;
 
   &:hover {
     transition: background-color 0.3s ease, transition-delay 0.2s;

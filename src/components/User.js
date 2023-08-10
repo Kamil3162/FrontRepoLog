@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import Navbar from "./Navbar";
 import client from "../utils/Sender";
 import {
+    AddressContainer,
     DeleteAccountText, InputField, LabelFields, PersonalDataContainer,
     SettingDetailContainer,
     SettingDetails,
@@ -98,7 +99,7 @@ function User() {
                                     onChange={(e) => setEmail(e.target.value)}
                                 />
                             </PersonalDataContainer>
-                            <PersonalDataContainer>
+                            <AddressContainer>
 
                                 <LabelFields>Full name</LabelFields>
                                 <InputField
@@ -111,9 +112,9 @@ function User() {
                                     value={lastName}
                                     onChange={(e) => setLastName(e.target.value)}
                                 />
-                            </PersonalDataContainer>
+                            </AddressContainer>
 
-                            <PersonalDataContainer>
+                            <AddressContainer>
                                 <LabelFields>HopuseNum</LabelFields>
                                 <InputField
                                     type="text"
@@ -148,7 +149,7 @@ function User() {
                                     value={zipCode}
                                     onChange={(e) => setZipCode(e.target.value)}
                                 />
-                            </PersonalDataContainer>
+                            </AddressContainer>
 
                         <PersonalDataContainer>
 

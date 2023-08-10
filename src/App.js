@@ -13,6 +13,7 @@ import SemiTrailer from "./components/SemiTrailer";
 import LeftPanelComponent from "./components/LeftPanel";
 import ReceivmentsList from "./components/ReceivmentsList.js";
 import ReceivmentFromCreate from "./components/ReceivmentsFormCreate.js";
+import Trucks from "./components/Trucks";
 import {
     PageContainer,
     LeftPanel,
@@ -44,6 +45,7 @@ function App(){
                 <Route path="/receivments/" element={<ReceivmentsList/>}/>
                 <Route path="/receivment-create/" element={<ReceivmentFromCreate/>}/>
                 <Route path="/home-guest" element={<HomeGuest/>}/>
+                <Route path="/trucks" element={<Trucks/>}/>
             </Routes>
         </ContentContainer>
     </PageContainer>
