@@ -20,7 +20,7 @@ function LeftPanelComponent(){
                 <PanelItemText>
                 </PanelItemText>
             </LeftPanelItem>
-            <LeftPanelItem>
+            <LeftPanelItem as={Link} to="/trucks">
                 <LogoPanelItem src={icon9}/>
                 <PanelItemText>
                 </PanelItemText>
@@ -35,7 +35,7 @@ function LeftPanelComponent(){
                 <PanelItemText>
                 </PanelItemText>
             </LeftPanelItem>
-            <LeftPanelItem>
+            <LeftPanelItem as={Link} to="/semi-trailers">
                 <LogoPanelItem src={icon5}/>
                 <PanelItemText>
                 </PanelItemText>

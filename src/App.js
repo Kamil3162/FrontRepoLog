@@ -23,6 +23,7 @@ import {
     PanelItemText,
     LogoPanelItem
 } from "./layouts/home_styled.js";
+import SemiTrailers from "./components/SemiTrailers";
 
 
 
@@ -46,6 +47,7 @@ function App(){
                 <Route path="/receivment-create/" element={<ReceivmentFromCreate/>}/>
                 <Route path="/home-guest" element={<HomeGuest/>}/>
                 <Route path="/trucks" element={<Trucks/>}/>
+                <Route path="/semi-trailers" element={<SemiTrailers/>}/>
             </Routes>
         </ContentContainer>
     </PageContainer>

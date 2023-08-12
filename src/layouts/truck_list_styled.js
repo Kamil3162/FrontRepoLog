@@ -25,14 +25,14 @@ export const TruckList = styled.div`
 
 export const RowListContainer = styled.div`
   display: flex;
-  width: 80%;
+  width: 90%;
   height: 80px;
   border-left: 1px solid rgba(0, 0, 0, 0.3);
   border-bottom: 1px solid rgba(0, 0, 0, 0.3);
   border-right: 1px solid rgba(0, 0, 0, 0.3);
 
   &:hover {
-    background-color: rgba(16, 15, 15, 0.62);
+    background-color: rgba(16, 15, 15, 0.38);
 
     .style-text {
       color: white;
@@ -68,6 +68,26 @@ export const StyleText = styled.a`
   width: 100px;
   border-radius: 10px;
 `;
+export const StyleAvailable = styled.a`
+  font-family: 'Work Sans', sans-serif;
+  font-weight: 600;
+  font-size: 20px;
+  background-color: green;
+  color: white;
+  padding: 5px;
+  width: 60px;
+  border-radius: 20px;
+`;
+export const StyleAvailableFalse = styled.a`
+  font-family: 'Work Sans', sans-serif;
+  font-weight: 600;
+  font-size: 20px;
+  background-color: red;
+  color: white;
+  padding: 5px;
+  width: 60px;
+  border-radius: 20px;
+`;
 export const MachineInfo = styled.div`
   flex-grow: 1;
 `;
@@ -100,7 +120,7 @@ export const MachinePhoto = styled.img`
 
 export const HeaderTablesName = styled.div`
   display: flex;
-  width: 80%;
+  width: 90%;
   border: 1px solid rgba(0, 0, 0, 0.3);
   height: 50px;
 

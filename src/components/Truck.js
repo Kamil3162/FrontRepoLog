@@ -16,7 +16,10 @@ function TruckDisplay(){
 
     const { pk } = useParams();
     const access_token = localStorage.getItem('access');
-
+    /*
+        ✔
+        X✔
+     */
     useEffect(() =>{
         client.get(`/api/trucks/${pk}/`,{
             headers:{
