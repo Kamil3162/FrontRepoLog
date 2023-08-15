@@ -34,6 +34,7 @@ export const InformPostContentContainer = styled.div`
     display: flex;
     flex-grow: 2;
   flex-direction: column;
+  max-width: 1200px;
     
 `;
 
@@ -117,4 +118,5 @@ export const PhotoBigTitle = styled.p`
 `;
 export const PostStory = styled.p`
   color: rgba(91, 88, 88, 0.5);
+  width: 50%;
 `;

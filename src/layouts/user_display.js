@@ -8,9 +8,7 @@ export const SettingsContainer = styled.div`
   max-height: 950px;
   padding: 20px;
   margin-left: 50px;
-  margin-top: 100px;
   border-radius: 15px;
-  background-color: rgba(125, 128, 128, 0.42);
 `;
 
 export const SettingTitle = styled.a`
@@ -21,7 +19,6 @@ export const SettingTitle = styled.a`
 
 export const SettingElementsContainer = styled.div`
   display: flex;  
-    background-color: white;
     height: 100%;
     border-radius: 15px;
   flex-direction: row;
@@ -109,6 +106,7 @@ export const InputField = styled.input`
   margin-bottom: 5px;
   width: 150px;
   padding: 10px;
+  background-color: rgba(7, 6, 6, 0.25);
 
 
   &:focus {

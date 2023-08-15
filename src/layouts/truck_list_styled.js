@@ -6,7 +6,7 @@ export const TruckListContainer = styled.div`
     display: flex;
     flex-direction: column;
     margin-left: 50px;
-    margin-top: 100px;
+    margin-top: 50px;
 `;
 export const TruckListTitle = styled.a`
     font-size: 35px;
@@ -20,6 +20,8 @@ export const TruckListTitle = styled.a`
 export const TruckList = styled.div`
     display: flex;
     flex-direction: column;
+  border-top: 1px solid rgba(0, 0, 0, 0.3);;
+  
 `;
 
 
@@ -63,10 +65,10 @@ export const MachineContainer = styled.div`
 export const StyleText = styled.a`
   font-family: 'Work Sans', sans-serif;
   font-weight: 600;
-  background-color: rgba(7, 6, 6, 0.16);
   padding: 5px;
   width: 100px;
   border-radius: 10px;
+  font-size: 17px;
 `;
 export const StyleAvailable = styled.a`
   font-family: 'Work Sans', sans-serif;
@@ -113,7 +115,7 @@ export const MachineInput = styled.div`
     margin-bottom: 5px;
     width: 250px;
     padding: 10px;
-  background-color: white;
+    background-color: white;
 `;
 export const MachinePhoto = styled.img`
 `;
@@ -121,20 +123,17 @@ export const MachinePhoto = styled.img`
 export const HeaderTablesName = styled.div`
   display: flex;
   width: 90%;
-  border: 1px solid rgba(0, 0, 0, 0.3);
   height: 50px;
 
 `;
 
 export const HeaderName = styled.div`
     flex: 1;
-  border-right:1px solid rgba(0, 0, 0, 0.3);
-  font-family: 'Varela Round', sans-serif;
-  font-weight: 600;
-  padding: 10px; /* Adding some padding for better readability */
-  align-items: center;
-  justify-content: center; /* Center horizontally */
-
+    font-family: 'Varela Round', sans-serif;
+    font-weight: 600;
+    padding: 10px; /* Adding some padding for better readability */
+    align-items: center;
+    justify-content: center; /* Center horizontally */
 
 `
 export const MachinePhotoBtn = styled.div`

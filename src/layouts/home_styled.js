@@ -18,12 +18,11 @@ export const ContentContainer = styled.div`
 export const LeftPanel = styled.div`
   flex-direction: column;
   flex: 1;
-  flex-grow: 1;
   flex-basis: auto;
   background-color: rgb(62, 196, 104);
   font-family: 'REM', sans-serif;
   justify-items: center;
-  width: 100px;
+  width: 150px;
 `;
 
 export const LeftPanelLogo = styled.div`

@@ -16,16 +16,6 @@ function HomeGuest(){
 
     return (
         <HomeContainer>
-            <HomeNavbar>
-
-                <HomeLoginBtn>
-                    Login
-                </HomeLoginBtn>
-                <HomeLoginBtn>
-                    Create Account
-                </HomeLoginBtn>
-
-            </HomeNavbar>
             <ContentContainerHome>
                 <InformPostContainer>
                     <InformPostContentContainer>

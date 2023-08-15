@@ -2,10 +2,9 @@ import styled from "styled-components";
 import GlobalStyle from "../fonts/fontStyles";
 
 export const ReceivmentContainer = styled.div`
-    padding: 10px;
     display: flex;
     flex-direction: column;
-    max-width: 1200px;
+    max-width: 1000px;
 `;
 
 export const SemiTrailerList = styled.div`
@@ -128,7 +127,7 @@ export const ReceivmentStory = styled.a`
 `;
 
 export const ChoiceContainer = styled.div`
-    margin-left: 50px;
+    margin-left: 10px;
   display: flex;
   flex-direction: row;
   width: 100%;
@@ -150,8 +149,7 @@ export const SemiTrailerChoice = styled.div`
 
 export const TruckViewContainer = styled.div`
   display: flex;
-  max-height: 300px;
-  background-color: rgb(255, 255, 255);
+  flex-direction: column;
   margin-bottom: 5px;
   border-radius: 10px;
   justify-items: center;
@@ -204,7 +202,7 @@ export const SemiTrailerViewContainer = styled.div`
 `;
 export const ButtonPick = styled.button`
   align-items: center; /* This will center the button vertically */
-  background-color: #540a1d;
+  background-color: green;
   font-family: 'Work Sans', sans-serif;
   padding: 5px;
   font-size: 15px;
@@ -213,10 +211,29 @@ export const ButtonPick = styled.button`
   color: white;
   font-weight: 600;
   width: 100px;
-  margin-left: 80px;
+
   &:hover {
-    background-color: green;
+    background-color: #001a80;
     transition: background-color 0.3s;
     color: white;
   }
+`;
+
+export const RowMachineContainer = styled.div`
+  display: flex;
+  width: 100%;
+  height: 80px;
+
+`;
+
+export const RowMachineRecord = styled.div`
+  flex: 1;
+  font-weight: 600;
+  width: 100px;
+  padding: 10px;
+  border-radius: 10px;
+  font-size: 17px;
+  text-align: center;
+  justify-items: center;
+  font-family: 'Work Sans', sans-serif;
 `;
