@@ -101,12 +101,12 @@ export const InputField = styled.input`
   border-radius: 5px;
   font-family: 'Varela Round', sans-serif;
   border: 1px solid #676666;
+  font-weight: 600;
   margin-left: 5px;
   margin-right: 5px;
   margin-bottom: 5px;
   width: 150px;
   padding: 10px;
-  background-color: rgba(7, 6, 6, 0.25);
 
 
   &:focus {
@@ -121,6 +121,8 @@ export const LabelFields = styled.a`
     font-family: 'Jost', sans-serif;  
     font-weight: 800;
   margin-right: 10px;
+  width: 100px;
+  text-align: center;
 `;
 
 export const UpdateButton = styled.button`

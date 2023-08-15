@@ -6,6 +6,7 @@ import {
     TruckListContainer,
     TruckListTitle
 } from "../layouts/truck_list_styled";
+import {Link} from "react-router-dom";
 import {
     InformPostContainer,
     InformPostContentContainer,
@@ -55,43 +56,46 @@ function SemiTrailers(){
             </HeaderTablesName>
             <TruckList>
                 {semitrailers.map((semitrailer, index) => (
-                    <RowListContainer>
-                        <RowListElements>
-                            <StyleText className="style-text">{semitrailer.brand}</StyleText>
-                        </RowListElements>
-                        <RowListElements>
-                            <StyleText className="style-text">{semitrailer.model}</StyleText>
-                        </RowListElements>
-                        {
-                            semitrailer.semi_note === true ? (
-                                <RowListElements>
-                                    <StyleAvailable className="style-text">✔</StyleAvailable>
-                                </RowListElements>
+                    <Link to={`/semitrailer/${semitrailer.id}`} key={semitrailer.id} style={{ textDecoration: 'none', color:"black" }}>
 
-                            ) : (
-                                <RowListElements>
-                                    <StyleAvailableFalse className="style-text">X</StyleAvailableFalse>
-                                </RowListElements>
+                        <RowListContainer>
+                            <RowListElements>
+                                <StyleText className="style-text">{semitrailer.brand}</StyleText>
+                            </RowListElements>
+                            <RowListElements>
+                                <StyleText className="style-text">{semitrailer.model}</StyleText>
+                            </RowListElements>
+                            {
+                                semitrailer.semi_note === true ? (
+                                    <RowListElements>
+                                        <StyleAvailable className="style-text">✔</StyleAvailable>
+                                    </RowListElements>
 
-                            )
-                        }
-                        <RowListElements>
-                            <StyleText className="style-text">{semitrailer.production_year}</StyleText>
-                        </RowListElements>
-                        <RowListElements><StyleText className="style-text">{semitrailer.registration_number}</StyleText>
-                        </RowListElements>
-                        {
-                            semitrailer.available === "Wolny" ? (
-                                <RowListElements>
-                                    <StyleAvailable className="style-text">✔</StyleAvailable>
-                                </RowListElements>
-                            ) : (
-                                <RowListElements>
-                                    <StyleAvailableFalse className="style-text">X</StyleAvailableFalse>
-                                </RowListElements>
-                            )
-                        }
-                    </RowListContainer>
+                                ) : (
+                                    <RowListElements>
+                                        <StyleAvailableFalse className="style-text">X</StyleAvailableFalse>
+                                    </RowListElements>
+
+                                )
+                            }
+                            <RowListElements>
+                                <StyleText className="style-text">{semitrailer.production_year}</StyleText>
+                            </RowListElements>
+                            <RowListElements><StyleText className="style-text">{semitrailer.registration_number}</StyleText>
+                            </RowListElements>
+                            {
+                                semitrailer.available === "Wolny" ? (
+                                    <RowListElements>
+                                        <StyleAvailable className="style-text">✔</StyleAvailable>
+                                    </RowListElements>
+                                ) : (
+                                    <RowListElements>
+                                        <StyleAvailableFalse className="style-text">X</StyleAvailableFalse>
+                                    </RowListElements>
+                                )
+                            }
+                        </RowListContainer>
+                    </Link>
                 ))}
             </TruckList>
         </TruckListContainer>

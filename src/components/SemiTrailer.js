@@ -2,6 +2,21 @@ import React,{ useState, useEffect }from "react";
 import client from "../utils/Sender";
 import {access_token} from "../utils/Sender";
 import {useParams} from "react-router-dom";
+import {
+    HeaderContainer,
+    MachineDetail,
+    MachineDetailContainer, MachineDetailRow,
+    MachineHeaderName, MachineInformation, MachinePhoto, MachinePhotoContainer
+} from "../layouts/machine_detail_styled";
+import {
+    InformPostContainer,
+    InformPostContentContainer,
+    MainTextTitle,
+    PostStory,
+    TextTitle
+} from "../layouts/home_guest_styled";
+import {InputField, LabelFields, UpdateButton} from "../layouts/user_display";
+import {MachinePhotoInput} from "../layouts/truck_list_styled";
 function SemiTrailer(){
     const [brand, setBrand] = useState("");
     const [model, setModel] = useState("");
@@ -33,20 +48,93 @@ function SemiTrailer(){
         })
     }, []);
 
+    const handlePhotoChange = (e) => {
+        const selectedPhoto = e.target.files[0];
+        if (selectedPhoto) {
+            setPhoto(URL.createObjectURL(selectedPhoto));
+        }
+    };
     return (
-        <div>
-            <div>
-                <h1>SemiTrailer Details</h1>
-                <p>Brand: {brand}</p>
-                <p>Model: {model}</p>
-                <p>Production Data: {production_data}</p>
-                <p>Registration Number: {registration_number}</p>
-                <p>Available: {aviable}</p>
-                <p>Seminote: {semi_note && <p>Obecny!</p>}</p>
-                {/* Display the photo if available */}
-                {photo && <img src={photo} alt="SemiTrailer" />}
-            </div>
-        </div>
+        <MachineDetailContainer>
+            <InformPostContainer>
+                <InformPostContentContainer>
+                    <TextTitle>NAURA</TextTitle>
+                    <MainTextTitle>Select your best car, manage user and facilities in your company using complex management system</MainTextTitle>
+                    <PostStory>
+                        Welcome to the future of car management! Say goodbye to worries and inefficiencies with our cutting-edge car management app designed to make your driving experience a breeze.
+                        Discover the power of real-time control as our app offers seamless GPS tracking, allowing you to monitor your vehicle's location at all times, ensuring its safety and security.
+                    </PostStory>
+                </InformPostContentContainer>
+            </InformPostContainer>
+            <HeaderContainer>
+                <MachineHeaderName>
+                    Semi Trailer
+                </MachineHeaderName>
+            </HeaderContainer>
+            <MachineDetail>
+                <MachineInformation>
+                    <MachineDetailRow>
+                        <LabelFields>Brand:</LabelFields>
+                        <InputField
+                            type="text"
+                            value={brand}
+                            onChange={(e) => setBrand(e.target.value)}
+                        />
+                    </MachineDetailRow>
+                    <MachineDetailRow>
+                        <LabelFields>Model:</LabelFields>
+                        <InputField
+                            type="text"
+                            value={model}
+                            onChange={(e) => setModel(e.target.value)}
+                        />
+                    </MachineDetailRow>
+                    <MachineDetailRow>
+                        <LabelFields>Production Data:</LabelFields>
+                        <InputField
+                            type="date"
+                            value={production_data}
+                            onChange={(e) => setProduction_data(e.target.value)}
+                        />
+                    </MachineDetailRow>
+                    <MachineDetailRow>
+                        <LabelFields>Registration Number:</LabelFields>
+                        <InputField
+                            type="date"
+                            value={registration_number}
+                            onChange={(e) => setRegistration_number(e.target.value)}
+                        />
+                    </MachineDetailRow>
+                    <MachineDetailRow>
+                        <LabelFields>Aviable:</LabelFields>
+                        <InputField
+                            type="text"
+                            value={aviable}
+                            onChange={(e) => setAviable(e.target.value)}
+                        />
+                    </MachineDetailRow>
+                    <MachineDetailRow>
+                        <LabelFields>Semi note:</LabelFields>
+                        <InputField
+                            type="text"
+                            value={semi_note}
+                            onChange={(e) => setSemiNote(e.target.value)}
+                        />
+                    </MachineDetailRow>
+                    <UpdateButton>Update</UpdateButton>
+
+                </MachineInformation>
+                <MachinePhotoContainer>
+                    <MachinePhoto src={photo} />
+                    <MachinePhotoInput
+                        type="file"
+                        accept="image/*"
+                        onChange={handlePhotoChange}
+                    />
+                </MachinePhotoContainer>
+            </MachineDetail>
+
+        </MachineDetailContainer>
     );
 }
 export default SemiTrailer;

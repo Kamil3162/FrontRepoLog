@@ -58,11 +58,12 @@ export const MachineDetailInformation = styled.input`
 export const MachineDetailRow = styled.div`
     display: flex;
     margin-bottom: 25px;
+    justify-items: center;
 `;
-// export const MachinePhotoContainer = styled.div`
-//     display: flex;
-//     flex-grow: 2;
-// `;
+export const MachinePhotoContainer = styled.div`
+    display: flex;
+  flex-grow: 2;
+`;
 // export const MachinePhoto = styled.img`
 //     object-fit: contain;
 //     max-width: 500px;
@@ -71,8 +72,8 @@ export const MachineDetailRow = styled.div`
 // `;
 
 export const MachinePhoto = styled.img`
-  object-fit: contain;
+  object-fit: cover; /* this will make sure your image covers the entire container without distorting */
   max-width: 500px;
   max-height: 500px;
-  border-radius: 5px;
+  border-radius: 150px;
 `;

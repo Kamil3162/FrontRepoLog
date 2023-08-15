@@ -141,3 +141,10 @@ export const MachinePhotoBtn = styled.div`
 `;
 export const BtnExplore = styled.button`
 `;
+
+export const MachinePhotoInput = styled.input`
+  position: absolute;
+  order: 2;
+  display: inline-block;
+  float: right;
+`;

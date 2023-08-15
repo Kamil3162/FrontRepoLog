@@ -19,6 +19,7 @@ import {
     StyleAvailable,
     StyleAvailableFalse
 } from "../layouts/truck_list_styled";
+import {Link} from "react-router-dom";
 import {
     InformPostContainer,
     InformPostContentContainer,
@@ -76,36 +77,38 @@ function Trucks(){
             </HeaderTablesName>
             <TruckList>
                 {trucks.map((truck, index) => (
-                <RowListContainer>
-                    <RowListElements>
-                        <StyleText className="style-text">{truck.brand}</StyleText>
-                    </RowListElements>
-                    <RowListElements>
-                        <StyleText className="style-text">{truck.model}</StyleText>
-                    </RowListElements>
-                    <RowListElements><StyleText className="style-text">{truck.power}
-                    </StyleText></RowListElements>
-                    <RowListElements>
-                        <StyleText className="style-text">{truck.driven_length}km</StyleText>
-                    </RowListElements>
-                    <RowListElements>
-                        <StyleText className="style-text">{truck.production_date}</StyleText>
-                    </RowListElements>
-                    <RowListElements>
-                        <StyleText className="style-text">{truck.registration_number}</StyleText>
-                    </RowListElements>
-                    {
-                        truck.available === "Wolny" ? (
+                    <Link to={`/truck/${truck.id}`} key={truck.id} style={{ textDecoration: 'none', color:"black" }}>
+                        <RowListContainer>
                             <RowListElements>
-                                <StyleAvailable className="style-text">✔</StyleAvailable>
+                                <StyleText className="style-text">{truck.brand}</StyleText>
                             </RowListElements>
-                        ) : (
                             <RowListElements>
-                                <StyleAvailableFalse className="style-text">X</StyleAvailableFalse>
+                                <StyleText className="style-text">{truck.model}</StyleText>
                             </RowListElements>
-                        )
-                    }
-                </RowListContainer>
+                            <RowListElements><StyleText className="style-text">{truck.power}
+                            </StyleText></RowListElements>
+                            <RowListElements>
+                                <StyleText className="style-text">{truck.driven_length}km</StyleText>
+                            </RowListElements>
+                            <RowListElements>
+                                <StyleText className="style-text">{truck.production_date}</StyleText>
+                            </RowListElements>
+                            <RowListElements>
+                                <StyleText className="style-text">{truck.registration_number}</StyleText>
+                            </RowListElements>
+                            {
+                                truck.available === "Wolny" ? (
+                                    <RowListElements>
+                                        <StyleAvailable className="style-text">✔</StyleAvailable>
+                                    </RowListElements>
+                                ) : (
+                                    <RowListElements>
+                                        <StyleAvailableFalse className="style-text">X</StyleAvailableFalse>
+                                    </RowListElements>
+                                )
+                            }
+                        </RowListContainer>
+                    </Link>
                 ))}
             </TruckList>
         </TruckListContainer>

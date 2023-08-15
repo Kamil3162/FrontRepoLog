@@ -25,8 +25,9 @@ import {
     PostStory,
     TextTitle
 } from "../layouts/home_guest_styled";
-
+import {AddressContainer, LabelFields, InputField, UpdateButton} from "../layouts/user_display";
 import icon6 from "../layouts/icons/truck-img.jpg";
+import {MachinePhotoInput} from "../layouts/truck_list_styled";
 
 function TruckDisplay(){
     const [brand, setBrand] = useState("");
@@ -86,6 +87,14 @@ function TruckDisplay(){
         })
 
     }
+
+    const handlePhotoChange = (e) => {
+        const selectedPhoto = e.target.files[0];
+        if (selectedPhoto) {
+            setPhoto(URL.createObjectURL(selectedPhoto));
+        }
+    };
+
     return (
         <MachineDetailContainer>
             <InformPostContainer>
@@ -106,48 +115,58 @@ function TruckDisplay(){
             <MachineDetail>
                 <MachineInformation>
                     <MachineDetailRow>
-                        <MachineLabel>Brand:</MachineLabel>
-                        <MachineDetailInformation
+                        <LabelFields>Brand:</LabelFields>
+                        <InputField
                             type="text"
                             value={brand}
                             onChange={(e) => setBrand(e.target.value)}
                         />
                     </MachineDetailRow>
                     <MachineDetailRow>
-                        <MachineLabel>Power:</MachineLabel>
-                        <MachineDetailInformation
+                        <LabelFields>Power:</LabelFields>
+                        <InputField
                             type="text"
                             value={power}
                             onChange={(e) => setPower(e.target.value)}
                         />
                     </MachineDetailRow>
                     <MachineDetailRow>
-                        <MachineLabel>Driven Length:</MachineLabel>
-                        <MachineDetailInformation
+                        <LabelFields>Driven Length:</LabelFields>
+                        <InputField
                             type="text"
                             value={driven_lenght}
                             onChange={(e) => setDriven_lenght(e.target.value)}
                         />
                     </MachineDetailRow>
                     <MachineDetailRow>
-                        <MachineLabel>Production Date:</MachineLabel>
-                        <MachineDetailInformation
+                        <LabelFields>Production Date:</LabelFields>
+                        <InputField
                             type="date"
                             value={production_data}
                             onChange={(e) => setProduction_data(e.target.value)}
                         />
                     </MachineDetailRow>
                     <MachineDetailRow>
-                        <MachineLabel>Registration Number:</MachineLabel>
-                        <MachineDetailInformation
+                        <LabelFields>Registration Number:</LabelFields>
+                        <InputField
                             type="text"
                             value={registration_number}
                             onChange={(e) => setRegistration_number(e.target.value)}
                         />
                     </MachineDetailRow>
+                    <UpdateButton>Update</UpdateButton>
+
                 </MachineInformation>
-                <MachinePhoto img={icon6} />
+                <MachinePhotoContainer>
+                    <MachinePhoto src={photo} />
+                    <MachinePhotoInput
+                        type="file"
+                        accept="image/*"
+                        onChange={handlePhotoChange}
+                    />
+                </MachinePhotoContainer>
             </MachineDetail>
+
         </MachineDetailContainer>
     )
 }

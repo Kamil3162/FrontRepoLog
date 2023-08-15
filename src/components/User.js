@@ -108,14 +108,14 @@ function User() {
                     <SettingDetailContainer>
                     {data ? (
                         <>
-                            <PersonalDataContainer>
+                            <AddressContainer>
                                 <LabelFields>Email Address</LabelFields>
                                 <InputField
                                     type="text"
                                     value={email}
                                     onChange={(e) => setEmail(e.target.value)}
                                 />
-                            </PersonalDataContainer>
+                            </AddressContainer>
                             <AddressContainer>
 
                                 <LabelFields>Full name</LabelFields>
@@ -130,6 +130,33 @@ function User() {
                                     onChange={(e) => setLastName(e.target.value)}
                                 />
                             </AddressContainer>
+                            <AddressContainer>
+                                <LabelFields>Street</LabelFields>
+                                <InputField
+                                    type="text"
+                                    value={street}
+                                    onChange={(e) => setStreet(e.target.value)}
+                                />
+                                <br/>
+                            </AddressContainer>
+                            <AddressContainer>
+                                <LabelFields>City</LabelFields>
+                                <InputField
+                                    type="text"
+                                    value={city}
+                                    onChange={(e) => setCity(e.target.value)}
+                                />
+                                <br/>
+                            </AddressContainer>
+                            <AddressContainer>
+                                <LabelFields>Aparment</LabelFields>
+                                <InputField
+                                    type="text"
+                                    value={apartmentNumber}
+                                    onChange={(e) => setApartmentNumber(e.target.value)}
+                                />
+                                <br/>
+                            </AddressContainer>
 
                             <AddressContainer>
                                 <LabelFields>HopuseNum</LabelFields>
@@ -139,27 +166,9 @@ function User() {
                                     onChange={(e) => setHouseNumber(e.target.value)}
                                 />
                                 <br/>
-                                <LabelFields>Aparment</LabelFields>
-                                <InputField
-                                    type="text"
-                                    value={apartmentNumber}
-                                    onChange={(e) => setApartmentNumber(e.target.value)}
-                                />
-                                <br/>
-                                <LabelFields>City</LabelFields>
-                                <InputField
-                                    type="text"
-                                    value={city}
-                                    onChange={(e) => setCity(e.target.value)}
-                                />
-                                <br/>
-                                <LabelFields>Street</LabelFields>
-                                <InputField
-                                    type="text"
-                                    value={street}
-                                    onChange={(e) => setStreet(e.target.value)}
-                                />
-                                <br/>
+                            </AddressContainer>
+
+                            <AddressContainer>
                                 <LabelFields>Zip code</LabelFields>
                                 <InputField
                                     type="text"
@@ -167,10 +176,8 @@ function User() {
                                     onChange={(e) => setZipCode(e.target.value)}
                                 />
                             </AddressContainer>
-
                         <PersonalDataContainer>
-
-                                <br/>
+                            <AddressContainer>
                                 <LabelFields>Phone:</LabelFields>
                                 <InputField
                                     type="number"
@@ -178,14 +185,18 @@ function User() {
                                     onChange={(e) => setPhoneNumber(e.target.value)}
                                 />
                                 <br/>
+                            </AddressContainer>
+
                         </PersonalDataContainer>
                             <PersonalDataContainer>
-                                <LabelFields>Password</LabelFields>
-                                <InputField
-                                    type="password"
-                                    value={password}
-                                    onChange={(e) => setPassword(e.target.value)}
-                                />
+                                <AddressContainer>
+                                    <LabelFields>Password</LabelFields>
+                                    <InputField
+                                        type="password"
+                                        value={password}
+                                        onChange={(e) => setPassword(e.target.value)}
+                                    />
+                                </AddressContainer>
                                 <UpdateButton onClick={handleUpdate}>Update</UpdateButton>
                             </PersonalDataContainer>
 
