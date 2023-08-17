@@ -7,6 +7,7 @@ import icon5 from "../layouts/icons/trailer.png";
 import icon6 from "../layouts/icons/user.png";
 import icon7 from "../layouts/icons/conversation.png";
 import icon8 from "../layouts/icons/contract.png";
+import icon10 from "../layouts/icons/group.png";
 import {Link} from "react-router-dom";
 
 function LeftPanelComponent(){
@@ -25,13 +26,8 @@ function LeftPanelComponent(){
                 <PanelItemText>
                 </PanelItemText>
             </LeftPanelItem>
-            <LeftPanelItem>
-                <LogoPanelItem src={icon3}/>
-                <PanelItemText>
-                </PanelItemText>
-            </LeftPanelItem>
-            <LeftPanelItem>
-                <LogoPanelItem src={icon4}/>
+            <LeftPanelItem as={Link} to="/receivment-create/">
+                <LogoPanelItem src={icon8}/>
                 <PanelItemText>
                 </PanelItemText>
             </LeftPanelItem>
@@ -46,12 +42,23 @@ function LeftPanelComponent(){
                 </PanelItemText>
             </LeftPanelItem>
             <LeftPanelItem>
+                <LogoPanelItem src={icon3}/>
+                <PanelItemText>
+                </PanelItemText>
+            </LeftPanelItem>
+            <LeftPanelItem>
                 <LogoPanelItem src={icon7}/>
                 <PanelItemText>
                 </PanelItemText>
             </LeftPanelItem>
-            <LeftPanelItem as={Link} to="/receivment-create/">
-                <LogoPanelItem src={icon8}/>
+            <LeftPanelItem>
+                <LogoPanelItem src={icon10}/>
+                <PanelItemText>
+                </PanelItemText>
+            </LeftPanelItem>
+
+            <LeftPanelItem as={Link} to="/logout">
+                <LogoPanelItem src={icon4}/>
                 <PanelItemText>
                 </PanelItemText>
             </LeftPanelItem>

@@ -38,6 +38,13 @@ const Register = () => {
             city: city,
             street: street
         })
+        .then(response =>{
+            console.log(response);
+            alert("Pozytywnie zalozono konto");
+        })
+        .catch(error =>{
+            console.log(error);
+        })
     }
 
     return (

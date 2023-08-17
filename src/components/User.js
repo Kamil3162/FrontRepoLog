@@ -2,6 +2,7 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import Navbar from "./Navbar";
 import client from "../utils/Sender";
+import {access_token} from "../utils/Sender";
 import {
     AddressContainer,
     DeleteAccountText, InputField, LabelFields, PersonalDataContainer,
@@ -21,10 +22,9 @@ import {
 } from "../layouts/home_guest_styled";
 
 function User() {
-    const access_token = localStorage.getItem('access');
 
-    const [data, setData] = useState(null);
-    const [firstName, setFirstName] = useState(null);
+    const [data, setData] = useState('');
+    const [firstName, setFirstName] = useState('');
     const [lastName, setLastName] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
@@ -53,27 +53,35 @@ function User() {
                 setStreet(response.data.street);
                 setZipCode(response.data.zip_code);
                 setPhoneNumber(response.data.phone_number);
+                setPassword(response.data.password);
             })
             .catch(error => {
                 console.log(error);
             });
     }, []);
 
-    const handleUpdate = () => {
-        client.post('/api/detail-user/',{
-            headers:{
-                Authorization: `Bearer ${access_token}`
+    const handleUpdate = (e) => {
+        e.preventDefault();
+        console.log("Handle update user");
+
+        client
+            .post('/api/detail-user/',
+            {
+                first_name:firstName,
+                last_name: lastName,
+                email: email,
+                password: password,
+                house_number: houseNumber,
+                apartment_number: apartmentNumber,
+                city: city,
+                street: street,
+                phone_number: phoneNumber,
+                zip_code: zipCode
             },
-            first_name:firstName,
-            last_name: lastName,
-            email: email,
-            password: password,
-            house_number: houseNumber,
-            apartment_number: apartmentNumber,
-            city: city,
-            street: street,
-            phone_number: phoneNumber,
-            zip_code: zipCode
+            {
+                headers:{
+                    Authorization: `Bearer ${access_token}`
+            },
         })
             .then(response =>{
                 console.log(response);
@@ -81,6 +89,18 @@ function User() {
             .catch(error =>{
                 console.log(error)
             });
+        /*
+            "first_name":"firstName",
+            "last_name":"firstName",
+            "email":"firstName@firs.pl",
+            "password":"firstName",
+            "house_number":123,
+            "apartment_number":0,
+            "city":"firstName",
+            "street": "Jana Pawla",
+            "phone_number":765432098,
+            "zip_code" : "37-200"
+         */
     }
 
     return (
@@ -186,7 +206,6 @@ function User() {
                                 />
                                 <br/>
                             </AddressContainer>
-
                         </PersonalDataContainer>
                             <PersonalDataContainer>
                                 <AddressContainer>

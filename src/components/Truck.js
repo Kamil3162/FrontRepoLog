@@ -30,6 +30,7 @@ import icon6 from "../layouts/icons/truck-img.jpg";
 import {MachinePhotoInput} from "../layouts/truck_list_styled";
 
 function TruckDisplay(){
+
     const [brand, setBrand] = useState("");
     const [model, setModel] = useState("");
     const [power, setPower] = useState("");
@@ -68,26 +69,29 @@ function TruckDisplay(){
             })
     }, []);
 
-    const handleSubmit = (e) =>{
+    const handleSubmit = (e) => {
         e.preventDefault();
 
-        client.post(`/api/trucks/${pk}/`,{
-            headers:{
-                Authorization: `Bearer ${access_token}`
-            },
-            data:{
-                brand:brand,
-                model:model,
-                power:power,
-                registration_number:registration_number,
-                production_data:production_data,
-                driven_lenght:driven_lenght,
-                aviable:aviable
-            }
-        })
+        client
+            .post(`/api/trucks/${pk}/`, {
+                    brand: brand,
+                    model: model,
+                    power: power,
+                    registration_number: registration_number,
+                    production_data: production_data,
+                    driven_lenght: driven_lenght,
+                    aviable: aviable,
+                    photo: photo
+                },
+                {
+                    headers: {
+                        Authorization:
+                            `Bearer ${access_token}`,
+                        'Content-Type': 'multipart/form-data'
+                    },
 
+                })
     }
-
     const handlePhotoChange = (e) => {
         const selectedPhoto = e.target.files[0];
         if (selectedPhoto) {
@@ -154,7 +158,7 @@ function TruckDisplay(){
                             onChange={(e) => setRegistration_number(e.target.value)}
                         />
                     </MachineDetailRow>
-                    <UpdateButton>Update</UpdateButton>
+                    <UpdateButton onClick={handleSubmit}>Update</UpdateButton>
 
                 </MachineInformation>
                 <MachinePhotoContainer>
@@ -163,6 +167,7 @@ function TruckDisplay(){
                         type="file"
                         accept="image/*"
                         onChange={handlePhotoChange}
+
                     />
                 </MachinePhotoContainer>
             </MachineDetail>
@@ -170,5 +175,6 @@ function TruckDisplay(){
         </MachineDetailContainer>
     )
 }
+
 
 export default TruckDisplay;

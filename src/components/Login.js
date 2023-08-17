@@ -30,6 +30,7 @@ function Login(){
                 localStorage.setItem('access', response.data.access);
                 localStorage.setItem('refresh', response.data.refresh);
                 navigate('/home');
+                window.location.reload(false);
             })
             .catch(error =>{
                 console.log(error);

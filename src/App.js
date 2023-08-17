@@ -24,6 +24,7 @@ import {
     LogoPanelItem
 } from "./layouts/home_styled.js";
 import SemiTrailers from "./components/SemiTrailers";
+import Logout from "./components/Logout";
 
 
 
@@ -36,7 +37,7 @@ function App(){
                 <Route path="/" element={<Home/>}/>
                 <Route path="/register" element={<Register/>}/>
                 <Route path="/login" element={<Login/>}/>
-                <Route path="/logout" element={<Register/>}/>
+                <Route path="/logout" element={<Logout/>}/>
                 <Route path="/user" element={<User/>}/>
                 <Route path="/semitrailer-create" element={<SemiTrailerForm/>}/>
                 <Route path="/truck-create" element={<TruckCreate/>}/>

@@ -54,6 +54,31 @@ function SemiTrailer(){
             setPhoto(URL.createObjectURL(selectedPhoto));
         }
     };
+
+    const handleSubmit = (e) =>{
+        e.preventDefault();
+
+        client.post(`/api/truck/${pk}`,{
+            headers: {
+                Authorization: `Bearer ${access_token}`,
+                'Content-Type': 'multipart/form-data',
+            },
+            data:{
+                brand:brand,
+                model: model,
+                production_data: production_data,
+                registration_number: registration_number,
+                aviable: aviable,
+                semi_note: semi_note,
+                photo: photo
+            }
+        }).then(response =>{
+            console.log(response);
+        }).then(error =>{
+            console.log(error);
+        })
+    }
+
     return (
         <MachineDetailContainer>
             <InformPostContainer>
