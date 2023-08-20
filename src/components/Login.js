@@ -27,8 +27,11 @@ function Login(){
             password
         })
             .then(response => {
+                // using this i have to use JSON.parse
                 localStorage.setItem('access', response.data.access);
                 localStorage.setItem('refresh', response.data.refresh);
+                localStorage.setItem('user_permissions', JSON.stringify(response.data.permissions));
+                localStorage.setItem('permission_group', JSON.parse(response.data.permission_group)[0].fields.name)
                 navigate('/home');
                 window.location.reload(false);
             })

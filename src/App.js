@@ -42,7 +42,7 @@ function App(){
                 <Route path="/semitrailer-create" element={<SemiTrailerForm/>}/>
                 <Route path="/truck-create" element={<TruckCreate/>}/>
                 <Route path="/truck/:pk" element={<Truck/>}/>
-                <Route path="/truck-create" element={<SemiTrailer/>}/>
+                <Route path="/semitrailer-create" element={<SemiTrailer/>}/>
                 <Route path="/semitrailer/:pk" element={<SemiTrailer/>}/>
                 <Route path="/receivments/" element={<ReceivmentsList/>}/>
                 <Route path="/receivment-create/" element={<ReceivmentFromCreate/>}/>

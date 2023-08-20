@@ -8,3 +8,7 @@ export default client;
 
 export const access_token = localStorage.getItem('access');
 
+export const user_permissions = JSON.parse(
+    localStorage.getItem('user_permissions')
+);
+export const user_permission_group = localStorage.getItem('permission_group');
