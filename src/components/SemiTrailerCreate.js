@@ -1,5 +1,4 @@
 import React from 'react';
-import axios from "axios";
 import client from "../utils/Sender";
 import {
     InformPostContainer,
@@ -12,78 +11,56 @@ import {MachineContainer} from "../layouts/mechine_create_styled";
 import {AddressContainer, InputField, LabelFields} from "../layouts/user_display";
 import {LoginButton} from "../layouts/login_styled";
 import {useState} from "react";
+import {access_token} from "../utils/Sender";
 function SemiTrailerForm(){
 
     const [brand, setBrand] = useState('');
     const [model, setModel] = useState('');
-    const [power, setPower] = useState('');
     const [productionYear, setProductionYear] = useState('');
     const [registrationNumber, setRegistrationNumber] = useState('');
+    const [available, setAvailable] = useState('Wolny');
     const [semiNote, setSemiNote] = useState(true);
     const [image, setImage] = useState(null);
 
-    const handleInputChange = (e) => {
-        const name = e.target.name;
-        let value = e.target.type === 'checkbox' ? e.target.checked : e.target.value;
 
-        if (e.target.type === 'image'){
-            value = e.target.files[0];
-            setImage(value);
+    const submitForm = (event) => {
+        event.preventDefault();
+
+        const formData = new FormData();
+
+        formData.append('brand', brand);
+        formData.append('model', model);
+        formData.append('registration_number', registrationNumber);
+        formData.append('production_year', productionYear);
+        formData.append('semi_note', semiNote);
+        formData.append('available', available);
+        if (image) {
+            formData.append('photo', image, image.name);
         }
 
-        switch (name){
-            case 'brand':
-                setBrand(value);
-                break;
-            case 'model':
-                setModel(value);
-                break;
-            case 'production_year':
-                setProductionYear(value);
-                break;
-            case 'registration_number':
-                setRegistrationNumber(value);
-                break;
-            case 'semi_note':
-                setSemiNote(value);
-                break;
-            case 'image':
-                setImage(value);
-                break;
-            default:
-                break;
-        }
-    };
-
-    const submitForm = (e) => {
-        e.preventDefault();
-        let access_token = localStorage.getItem('access');
-        alert('Form submitted: ' + JSON.stringify(this.state));
         client
             .post(
-                '/api/semitrailers/',
-            {
-                brand: brand,
-                model: model,
-                power: power,
-                registration_number: registrationNumber,
-                production_year: productionYear,
-                semi_note: semiNote,
-                photo:image
-            },
-            {
-
-            headers:{
-                Authorization: `Bearer ${access_token}`,
-                'Content-Type': 'multipart/form-data',
-
-            },
+                '/api/semitrailers/',formData, {
+                headers:{
+                    Authorization: `Bearer ${access_token}`,
+                    'Content-Type': 'multipart/form-data',
+                },
         }
         ).then(response =>{
             console.log(response);
         }).catch(error =>{
             console.log(error);
         })
+    };
+
+    const handleSemiNoteStatus = (event) => {
+        const checkbox = event.target;
+        if (checkbox.checked === true){
+            setSemiNote(true);
+        }
+        else {
+            setSemiNote(false);
+        }
     };
 
     return (
@@ -101,28 +78,28 @@ function SemiTrailerForm(){
             <MachineContainer onSubmit={submitForm} encType="multipart/form-data">
                 <AddressContainer>
                     <LabelFields>Brand: </LabelFields>
-                    <InputField name="brand" type="text" onChange={handleInputChange} />
+                    <InputField name="brand" type="text" onChange={(e) => setBrand(e.target.value)} />
                 </AddressContainer>
                 <AddressContainer>
                     <LabelFields>Model: </LabelFields>
-                    <InputField name="model" type="text" onChange={handleInputChange} />
+                    <InputField name="model" type="text" onChange={(e) => setModel(e.target.value)}  />
                 </AddressContainer>
                 <AddressContainer>
                     <LabelFields>Production Year: </LabelFields>
-                    <InputField name="production_year" type="date" onChange={handleInputChange} />
+                    <InputField name="production_year" type="date" onChange={(e) => setProductionYear(e.target.value)} />
                 </AddressContainer>
                 <AddressContainer>
                     <LabelFields>Registration Number: </LabelFields>
-                    <InputField name="registration_number" type="text" onChange={handleInputChange} />
+                    <InputField name="registration_number" type="text" onChange={(e) => setRegistrationNumber(e.target.value)}  />
                 </AddressContainer>
                 <AddressContainer>
                     <LabelFields>Semi Note: </LabelFields>
-                    <InputField name="semi_note" type="checkbox" onChange={handleInputChange} />
+                    <InputField name="semi_note" type="checkbox" onChange={handleSemiNoteStatus}  />
                 </AddressContainer>
                 <AddressContainer>
                     <LabelFields>
                         Image:
-                        <InputField type="file" name="image" onChange={handleInputChange} />
+                        <InputField type="file" name="image" onChange={(e) => setImage(e.target.files[0])}  />
                     </LabelFields>
                 </AddressContainer>
                 <LoginButton type="submit">Create</LoginButton>

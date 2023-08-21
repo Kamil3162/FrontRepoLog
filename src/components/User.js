@@ -22,43 +22,19 @@ import {
 } from "../layouts/home_guest_styled";
 
 function User() {
+    // convert json stringify data to json format data
+    const user_data = JSON.parse(localStorage.getItem('user'));
 
-    const [data, setData] = useState('');
-    const [firstName, setFirstName] = useState('');
-    const [lastName, setLastName] = useState('');
-    const [email, setEmail] = useState('');
+    const [firstName, setFirstName] = useState(user_data.first_name || '');
+    const [lastName, setLastName] = useState(user_data.last_name || '');
+    const [email, setEmail] = useState(user_data.email || '');
     const [password, setPassword] = useState('');
-    const [houseNumber, setHouseNumber] = useState('');
-    const [apartmentNumber, setApartmentNumber] = useState('');
-    const [city, setCity] = useState('');
-    const [street, setStreet] = useState('');
-    const [zipCode, setZipCode] = useState('');
-    const [phoneNumber, setPhoneNumber] = useState('');
-
-
-    useEffect(() => {
-        client.get("/api/detail-user/", {
-            headers: {
-                Authorization: `Bearer ${access_token}`
-            }
-        })
-            .then(response => {
-                setData(response.data);
-                setFirstName(response.data.first_name);
-                setLastName(response.data.last_name);
-                setEmail(response.data.email);
-                setHouseNumber(response.data.house_number);
-                setApartmentNumber(response.data.apartment_number);
-                setCity(response.data.city);
-                setStreet(response.data.street);
-                setZipCode(response.data.zip_code);
-                setPhoneNumber(response.data.phone_number);
-                setPassword(response.data.password);
-            })
-            .catch(error => {
-                console.log(error);
-            });
-    }, []);
+    const [houseNumber, setHouseNumber] = useState(user_data.house_number || '');
+    const [apartmentNumber, setApartmentNumber] = useState(user_data.apartment_number || '');
+    const [city, setCity] = useState(user_data.city || '');
+    const [street, setStreet] = useState(user_data.street || '');
+    const [zipCode, setZipCode] = useState(user_data.zip_code || '');
+    const [phoneNumber, setPhoneNumber] = useState(user_data.phone_number || '');
 
     const handleUpdate = (e) => {
         e.preventDefault();
@@ -126,8 +102,7 @@ function User() {
                 <SettingDetails>
                     <SettingsNavTitle>Profile Detail</SettingsNavTitle>
                     <SettingDetailContainer>
-                    {data ? (
-                        <>
+
                             <AddressContainer>
                                 <LabelFields>Email Address</LabelFields>
                                 <InputField
@@ -218,11 +193,6 @@ function User() {
                                 </AddressContainer>
                                 <UpdateButton onClick={handleUpdate}>Update</UpdateButton>
                             </PersonalDataContainer>
-
-                        </>
-                    ) : (
-                        <p>Loading...</p>
-                    )}
                     </SettingDetailContainer>
                 </SettingDetails>
             </SettingElementsContainer>

@@ -158,7 +158,6 @@ function SemiTrailer(){
                     />
                 </MachinePhotoContainer>
             </MachineDetail>
-
         </MachineDetailContainer>
     );
 }
