@@ -9,10 +9,10 @@ import {
     MainTextTitle,
     PostStory,
     TextTitle
-} from "../layouts/home_guest_styled";
-import {MachineContainer} from "../layouts/mechine_create_styled";
-import {AddressContainer, InputField, LabelFields} from "../layouts/user_display";
-import {LoginButton} from "../layouts/login_styled";
+} from "../assets/styles/home_guest_styled";
+import {MachineContainer} from "../assets/styles/mechine_create_styled";
+import {AddressContainer, InputField, LabelFields} from "../assets/styles/user_display";
+import {LoginButton} from "../assets/styles/login_styled";
 const YourComponent = () => {
     const [brand, setBrand] = useState('');
     const [model, setModel] = useState('');

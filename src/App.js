@@ -22,7 +22,7 @@ import {
     LeftPanelLogo,
     PanelItemText,
     LogoPanelItem
-} from "./layouts/home_styled.js";
+} from "./assets/styles/home_styled.js";
 import SemiTrailers from "./components/SemiTrailers";
 import Logout from "./components/Logout";
 

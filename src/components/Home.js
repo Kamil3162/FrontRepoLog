@@ -2,15 +2,15 @@ import axios from "axios";
 import {useEffect, useState} from "react";
 import {useNavigate} from "react-router-dom";
 
-import icon1 from "../layouts/icons/dashboard.png";
-import icon2 from "../layouts/icons/dashboard.png";
-import icon3 from "../layouts/icons/settings.png";
-import icon4 from "../layouts/icons/logout.png";
-import icon5 from "../layouts/icons/trailer.png";
-import icon6 from "../layouts/icons/user.png";
-import icon7 from "../layouts/icons/conversation.png";
-import icon8 from "../layouts/icons/contract.png";
-import icon9 from "../layouts/icons/cargo-truck.png";
+import icon1 from "../assets/dashboard.png";
+import icon2 from "../assets/dashboard.png";
+import icon3 from "../assets/settings.png";
+import icon4 from "../assets/logout.png";
+import icon5 from "../assets/trailer.png";
+import icon6 from "../assets/user.png";
+import icon7 from "../assets/conversation.png";
+import icon8 from "../assets/contract.png";
+import icon9 from "../assets/cargo-truck.png";
 
 import {
     PageContainer,
@@ -21,7 +21,7 @@ import {
     LeftPanelLogo,
     PanelItemText,
     LogoPanelItem
-} from "../layouts/home_styled.js";
+} from "../assets/styles/home_styled.js";
 
 import Navbar from "./Navbar";
 import {GlobalStyle} from "../fonts/fontStyles.js";

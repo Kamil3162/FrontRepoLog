@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from "react";
 import axios from "axios";
 import {useParams} from "react-router-dom";
-import {access_token} from "../utils/Sender";
+import {access_token, countSessionTime} from "../utils/Sender";
 import client from "../utils/Sender";
 
 import {
@@ -15,7 +15,7 @@ import {
     MachineDetailInformation,
     MachineDetailRow,
     MachinePhotoContainer
-} from "../layouts/machine_detail_styled";
+} from "../assets/styles/machine_detail_styled";
 
 import {
     InformPostContainer,
@@ -24,10 +24,10 @@ import {
     MainTextTitle,
     PostStory,
     TextTitle
-} from "../layouts/home_guest_styled";
-import {AddressContainer, LabelFields, InputField, UpdateButton} from "../layouts/user_display";
-import icon6 from "../layouts/icons/truck-img.jpg";
-import {MachinePhotoInput} from "../layouts/truck_list_styled";
+} from "../assets/styles/home_guest_styled";
+import {AddressContainer, LabelFields, InputField, UpdateButton} from "../assets/styles/user_display";
+import icon6 from "../assets/truck-img.jpg";
+import {MachinePhotoInput} from "../assets/styles/truck_list_styled";
 
 function TruckDisplay(){
 
@@ -42,6 +42,8 @@ function TruckDisplay(){
 
     const { pk } = useParams();
     const access_token = localStorage.getItem('access');
+    console.log("generowanir ruck");
+    countSessionTime();
     /*
         ✔
         X✔

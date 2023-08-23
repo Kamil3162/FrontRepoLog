@@ -12,14 +12,14 @@ import {
     SettingsContainer,
     SettingsLeftPanel, SettingsNavTitle,
     SettingTitle, UpdateButton
-} from "../layouts/user_display";
+} from "../assets/styles/user_display";
 import {
     InformPostContainer,
     InformPostContentContainer,
     MainTextTitle,
     PostStory,
     TextTitle
-} from "../layouts/home_guest_styled";
+} from "../assets/styles/home_guest_styled";
 
 function User() {
     // convert json stringify data to json format data

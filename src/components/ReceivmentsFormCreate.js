@@ -27,8 +27,8 @@ import {
     TruckImagePick,
     RowMachineContainer,
     RowMachineRecord
-} from "../layouts/receivment_create_styled";
-import icon1 from "../layouts/icons/truck-img.jpg"
+} from "../assets/styles/receivment_create_styled";
+import icon1 from "../assets/truck-img.jpg"
 import {
     HeaderName,
     HeaderTablesName,
@@ -36,19 +36,41 @@ import {
     RowListElements,
     StyleAvailable,
     StyleText
-} from "../layouts/truck_list_styled";
+} from "../assets/styles/truck_list_styled";
 import {
     InformPostContainer,
     InformPostContentContainer,
     MainTextTitle,
     PostStory,
     TextTitle
-} from "../layouts/home_guest_styled";
+} from "../assets/styles/home_guest_styled";
 function ReceivmentFromCreate(){
     const [showDropdown, setShowDropdown] = useState(false);
 
+    const [truck, setTruck] = useState(true);
+    const [semitrailerId, setSemiTrailerId] = useState('');
+
     const [trucks, setTrucks] = useState([]);
     const [semitrailers, setSemiTrailers] = useState([]);
+
+    const handlePickTruck = (event, key) =>{
+        console.log(key);
+        let button = event.target;
+        setSemiTrailerId(key);
+    };
+
+    const handleCheckboxClick = (event) =>{
+        const target_object = event.target;
+        if (target_object.checked === true){
+            setTruck(false);
+            console.log(truck);
+        }
+        else{
+            setTruck(true);
+            console.log(truck);
+        }
+
+    }
 
     useEffect(() => {
         client.get('/api/trucks/',{
@@ -65,6 +87,7 @@ function ReceivmentFromCreate(){
                 console.log(error);
             })
     },[]);
+
     useEffect(() => {
         client.get('/api/semitrailers/',{
             headers:{
@@ -103,48 +126,10 @@ function ReceivmentFromCreate(){
                     SemiTrailers
                     <HeaderTablesName>
                         <HeaderName>BRAND</HeaderName>
-                        <HeaderName>MODEL</HeaderName>
-                        <HeaderName>POWER</HeaderName>
-                        <HeaderName>DRIVEN LENGTH</HeaderName>
-                        <HeaderName>PRODUCTION DATE</HeaderName>
-                        <HeaderName>REGISTRATION NUMBER</HeaderName>
-                    </HeaderTablesName>
-                    <TruckViewContainer>
-                        {trucks.map((truck, index) => (
-                            <RowMachineContainer key={index}>
-                                <RowMachineRecord>
-                                    {truck.brand}
-                                </RowMachineRecord>
-                                <RowMachineRecord>
-                                    {truck.model}
-                                </RowMachineRecord>
-                                <RowMachineRecord>
-                                    {truck.power}
-                                </RowMachineRecord>
-                                <RowMachineRecord>
-                                    {truck.driven_length}km
-                                </RowMachineRecord>
-                                <RowMachineRecord>
-                                    {truck.production_date}
-                                </RowMachineRecord>
-                                <RowMachineRecord>
-                                    {truck.registration_number}
-                                </RowMachineRecord>
-                                <RowMachineRecord>
-                                    <ButtonPick>Pick</ButtonPick>
-                                </RowMachineRecord>
-                            </RowMachineContainer>
-                        ))}
-                    </TruckViewContainer>
-                </TruckChoice>
-                <TruckChoice>
-                    Trucks
-                    <HeaderTablesName>
-                        <HeaderName>BRAND</HeaderName>
-                        <HeaderName>MODEL</HeaderName>
-                        <HeaderName>PRODUCTION DATE</HeaderName>
-                        <HeaderName>SEMI NOTE</HeaderName>
-                        <HeaderName>REGISTRATION NUMBER</HeaderName>
+                            <HeaderName>MODEL</HeaderName>
+                            <HeaderName>PRODUCTION DATE</HeaderName>
+                            <HeaderName>SEMI NOTE</HeaderName>
+                            <HeaderName>REGISTRATION NUMBER</HeaderName>
                     </HeaderTablesName>
                     <TruckViewContainer>
                         {semitrailers.map((semitrailer, index) => (
@@ -165,11 +150,46 @@ function ReceivmentFromCreate(){
                                     {semitrailer.registration_number}
                                 </RowMachineRecord>
                                 <RowMachineRecord>
-                                    <ButtonPick>Pick</ButtonPick>
+                                    <ButtonPick onClick={(e) => handlePickTruck(e, semitrailer.id)}>Pick</ButtonPick>
                                 </RowMachineRecord>
                             </RowMachineContainer>
                         ))}
                     </TruckViewContainer>
+                </TruckChoice>
+                <TruckChoice>
+                    <input type="checkbox" onClick={handleCheckboxClick}/>
+                    {/*Trucks*/}
+                    {/*<HeaderTablesName>*/}
+                    {/*    <HeaderName>BRAND</HeaderName>*/}
+                    {/*    <HeaderName>MODEL</HeaderName>*/}
+                    {/*    <HeaderName>PRODUCTION DATE</HeaderName>*/}
+                    {/*    <HeaderName>SEMI NOTE</HeaderName>*/}
+                    {/*    <HeaderName>REGISTRATION NUMBER</HeaderName>*/}
+                    {/*</HeaderTablesName>*/}
+                    {/*<TruckViewContainer>*/}
+                    {/*    {semitrailers.map((semitrailer, index) => (*/}
+                    {/*        <RowMachineContainer key={index}>*/}
+                    {/*            <RowMachineRecord>*/}
+                    {/*                {semitrailer.brand}*/}
+                    {/*            </RowMachineRecord>*/}
+                    {/*            <RowMachineRecord>*/}
+                    {/*                {semitrailer.model}*/}
+                    {/*            </RowMachineRecord>*/}
+                    {/*            <RowMachineRecord>*/}
+                    {/*                {semitrailer.production_year}*/}
+                    {/*            </RowMachineRecord>*/}
+                    {/*            <RowMachineRecord>*/}
+                    {/*                {semitrailer.semi_note}*/}
+                    {/*            </RowMachineRecord>*/}
+                    {/*            <RowMachineRecord>*/}
+                    {/*                {semitrailer.registration_number}*/}
+                    {/*            </RowMachineRecord>*/}
+                    {/*            <RowMachineRecord>*/}
+                    {/*                <ButtonPick>Pick</ButtonPick>*/}
+                    {/*            </RowMachineRecord>*/}
+                    {/*        </RowMachineContainer>*/}
+                    {/*    ))}*/}
+                    {/*</TruckViewContainer>*/}
                 </TruckChoice>
             </ChoiceContainer>
         </ReceivmentContainer>

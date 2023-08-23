@@ -8,8 +8,8 @@ import {
     LoginInput,
     LoginLabel, LoginPageContainer,
     LoginPart
-} from "../layouts/login_styled";
-import cargophoto from "../layouts/icons/truck-login.jpg";
+} from "../assets/styles/login_styled";
+import cargophoto from "../assets/truck-login.jpg";
 import client from "../utils/Sender";
 
 const Register = () => {

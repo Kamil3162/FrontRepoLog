@@ -1,6 +1,6 @@
 
 import axios from "axios";
-import {NavbarContainer, NavbarStyle, NavItem, Logo} from "../layouts/navbar_styled.js";
+import {NavbarContainer, NavbarStyle, NavItem, Logo} from "../assets/styles/navbar_styled.js";
 import {useState, useEffect} from "react";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";

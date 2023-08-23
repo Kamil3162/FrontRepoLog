@@ -7,16 +7,16 @@ import {
     MachineDetail,
     MachineDetailContainer, MachineDetailRow,
     MachineHeaderName, MachineInformation, MachinePhoto, MachinePhotoContainer
-} from "../layouts/machine_detail_styled";
+} from "../assets/styles/machine_detail_styled";
 import {
     InformPostContainer,
     InformPostContentContainer,
     MainTextTitle,
     PostStory,
     TextTitle
-} from "../layouts/home_guest_styled";
-import {InputField, LabelFields, UpdateButton} from "../layouts/user_display";
-import {MachinePhotoInput} from "../layouts/truck_list_styled";
+} from "../assets/styles/home_guest_styled";
+import {InputField, LabelFields, UpdateButton} from "../assets/styles/user_display";
+import {MachinePhotoInput} from "../assets/styles/truck_list_styled";
 function SemiTrailer(){
     const [brand, setBrand] = useState("");
     const [model, setModel] = useState("");

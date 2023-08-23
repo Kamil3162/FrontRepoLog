@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import GlobalStyle from "../fonts/fontStyles";
+import GlobalStyle from "../../fonts/fontStyles";
 
 export const PageContainer = styled.div`
   display: flex;

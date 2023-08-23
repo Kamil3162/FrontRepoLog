@@ -5,7 +5,7 @@ import {
     TruckList,
     TruckListContainer,
     TruckListTitle
-} from "../layouts/truck_list_styled";
+} from "../assets/styles/truck_list_styled";
 import {Link} from "react-router-dom";
 import {
     InformPostContainer,
@@ -13,7 +13,7 @@ import {
     MainTextTitle,
     PostStory,
     TextTitle
-} from "../layouts/home_guest_styled";
+} from "../assets/styles/home_guest_styled";
 
 import {access_token} from "../utils/Sender";
 import client from "../utils/Sender";

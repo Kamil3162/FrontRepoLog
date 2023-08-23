@@ -8,8 +8,8 @@ import {
     InformPostContainer,
     InformPostContentContainer,
     InformPostPhoto, MainTextTitle, PostStory, TextTitle,
-} from "../layouts/home_guest_styled.js";
-import icon6 from "../layouts/icons/truck-img.jpg";
+} from "../assets/styles/home_guest_styled.js";
+import icon6 from "../assets/truck-img.jpg";
 
 
 function HomeGuest(){
