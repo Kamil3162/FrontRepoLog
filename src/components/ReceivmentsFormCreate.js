@@ -34,7 +34,7 @@ import {
     HeaderTablesName,
     RowListContainer,
     RowListElements,
-    StyleAvailable,
+    StyleAvailable, StyleAvailableFalse,
     StyleText
 } from "../assets/styles/truck_list_styled";
 import {
@@ -45,32 +45,28 @@ import {
     TextTitle
 } from "../assets/styles/home_guest_styled";
 function ReceivmentFromCreate(){
-    const [showDropdown, setShowDropdown] = useState(false);
-
     const [truck, setTruck] = useState(true);
     const [semitrailerId, setSemiTrailerId] = useState('');
-
+    const [truckId, setTruckId] = useState('');
     const [trucks, setTrucks] = useState([]);
     const [semitrailers, setSemiTrailers] = useState([]);
-
+    const [choseSemiTrailer, setChoseSemiTrailer] = useState(null);
+    const [choseTruck, setChoseTruck] = useState(null);
+    const [approve, setApprove] = useState(false);
     const handlePickTruck = (event, key) =>{
-        console.log(key);
-        let button = event.target;
         setSemiTrailerId(key);
+        setChoseSemiTrailer(key);
     };
 
-    const handleCheckboxClick = (event) =>{
-        const target_object = event.target;
-        if (target_object.checked === true){
-            setTruck(false);
-            console.log(truck);
-        }
-        else{
-            setTruck(true);
-            console.log(truck);
-        }
+    const handlePickSemiTrailer = (event, key) =>{
+        setTruckId(key);
+        setChoseTruck(key);
+    };
 
-    }
+    const approveChoice = () => {
+        console.log(approve);
+        setApprove(true);
+    };
 
     useEffect(() => {
         client.get('/api/trucks/',{
@@ -123,75 +119,104 @@ function ReceivmentFromCreate(){
             </ReceivmentInfoContainer>
             <ChoiceContainer>
                 <TruckChoice>
-                    SemiTrailers
-                    <HeaderTablesName>
-                        <HeaderName>BRAND</HeaderName>
-                            <HeaderName>MODEL</HeaderName>
-                            <HeaderName>PRODUCTION DATE</HeaderName>
-                            <HeaderName>SEMI NOTE</HeaderName>
-                            <HeaderName>REGISTRATION NUMBER</HeaderName>
-                    </HeaderTablesName>
-                    <TruckViewContainer>
-                        {semitrailers.map((semitrailer, index) => (
-                            <RowMachineContainer key={index}>
-                                <RowMachineRecord>
-                                    {semitrailer.brand}
-                                </RowMachineRecord>
-                                <RowMachineRecord>
-                                    {semitrailer.model}
-                                </RowMachineRecord>
-                                <RowMachineRecord>
-                                    {semitrailer.production_year}
-                                </RowMachineRecord>
-                                <RowMachineRecord>
-                                    {semitrailer.semi_note}
-                                </RowMachineRecord>
-                                <RowMachineRecord>
-                                    {semitrailer.registration_number}
-                                </RowMachineRecord>
-                                <RowMachineRecord>
-                                    <ButtonPick onClick={(e) => handlePickTruck(e, semitrailer.id)}>Pick</ButtonPick>
-                                </RowMachineRecord>
-                            </RowMachineContainer>
-                        ))}
-                    </TruckViewContainer>
+                    {!approve && (
+                        <>
+                            <p>SemiTrailers</p>
+                            <HeaderTablesName>
+                                <HeaderName>BRAND</HeaderName>
+                                    <HeaderName>MODEL</HeaderName>
+                                    <HeaderName>PRODUCTION DATE</HeaderName>
+                                    <HeaderName>SEMI NOTE</HeaderName>
+                                    <HeaderName>REGISTRATION NUMBER</HeaderName>
+                            </HeaderTablesName>
+                            <TruckViewContainer>
+                                {trucks.map((truck, index) => (
+                                    <RowMachineContainer key={index}>
+                                    <RowMachineRecord>{truck.brand}</RowMachineRecord>
+                                    <RowMachineRecord>{truck.model}</RowMachineRecord>
+                                    <RowMachineRecord>{truck.production_date}</RowMachineRecord>
+                                    <RowMachineRecord>
+                                        {truck.available === "Wolny" ? (
+                                            <StyleAvailable className="style-text">✔</StyleAvailable>
+                                        ) : (
+                                            <StyleAvailableFalse className="style-text">X</StyleAvailableFalse>
+                                        )}
+                                    </RowMachineRecord>
+                                    <RowMachineRecord>{truck.registration_number}</RowMachineRecord>
+                                    <RowMachineRecord>
+                                        <ButtonPick onClick={
+                                            (e) => handlePickSemiTrailer(e, truck.id)
+                                        }
+                                                    style={{
+                                                        backgroundColor: choseTruck === truck.id ? "green" : 'red'
+                                                    }}
+                                        >
+                                            Pick
+                                        </ButtonPick>
+                                    </RowMachineRecord>
+                                </RowMachineContainer>
+                            ))}
+                            </TruckViewContainer>
+                        </>
+                    )}
                 </TruckChoice>
                 <TruckChoice>
-                    <input type="checkbox" onClick={handleCheckboxClick}/>
-                    {/*Trucks*/}
-                    {/*<HeaderTablesName>*/}
-                    {/*    <HeaderName>BRAND</HeaderName>*/}
-                    {/*    <HeaderName>MODEL</HeaderName>*/}
-                    {/*    <HeaderName>PRODUCTION DATE</HeaderName>*/}
-                    {/*    <HeaderName>SEMI NOTE</HeaderName>*/}
-                    {/*    <HeaderName>REGISTRATION NUMBER</HeaderName>*/}
-                    {/*</HeaderTablesName>*/}
-                    {/*<TruckViewContainer>*/}
-                    {/*    {semitrailers.map((semitrailer, index) => (*/}
-                    {/*        <RowMachineContainer key={index}>*/}
-                    {/*            <RowMachineRecord>*/}
-                    {/*                {semitrailer.brand}*/}
-                    {/*            </RowMachineRecord>*/}
-                    {/*            <RowMachineRecord>*/}
-                    {/*                {semitrailer.model}*/}
-                    {/*            </RowMachineRecord>*/}
-                    {/*            <RowMachineRecord>*/}
-                    {/*                {semitrailer.production_year}*/}
-                    {/*            </RowMachineRecord>*/}
-                    {/*            <RowMachineRecord>*/}
-                    {/*                {semitrailer.semi_note}*/}
-                    {/*            </RowMachineRecord>*/}
-                    {/*            <RowMachineRecord>*/}
-                    {/*                {semitrailer.registration_number}*/}
-                    {/*            </RowMachineRecord>*/}
-                    {/*            <RowMachineRecord>*/}
-                    {/*                <ButtonPick>Pick</ButtonPick>*/}
-                    {/*            </RowMachineRecord>*/}
-                    {/*        </RowMachineContainer>*/}
-                    {/*    ))}*/}
-                    {/*</TruckViewContainer>*/}
+                    {!approve && (
+                        <>
+                            <p>Trucks</p>
+                            <HeaderTablesName>
+                                <HeaderName>BRAND</HeaderName>
+                                <HeaderName>MODEL</HeaderName>
+                                <HeaderName>PRODUCTION DATE</HeaderName>
+                                <HeaderName>SEMI NOTE</HeaderName>
+                                <HeaderName>REGISTRATION NUMBER</HeaderName>
+                            </HeaderTablesName>
+                            <TruckViewContainer>
+                                {semitrailers.map(semitrailer => (
+                                    <RowMachineContainer key={semitrailer.id}>
+                                        <RowMachineRecord>
+                                            {semitrailer.brand}
+                                        </RowMachineRecord>
+                                        <RowMachineRecord>
+                                            {semitrailer.model}
+                                        </RowMachineRecord>
+                                        <RowMachineRecord>
+                                            {semitrailer.production_year}
+                                        </RowMachineRecord>
+                                        <RowMachineRecord>
+                                            {semitrailer.semi_note ? (
+                                                <StyleAvailable className="style-text">✔</StyleAvailable>
+                                            ) : (
+                                                <StyleAvailableFalse className="style-text">X</StyleAvailableFalse>
+                                            )}
+                                        </RowMachineRecord>
+                                        <RowMachineRecord>
+                                            {semitrailer.registration_number}
+                                        </RowMachineRecord>
+                                        <RowMachineRecord>
+                                            <ButtonPick
+                                                onClick={(e) => handlePickTruck(e, semitrailer.id)}
+                                                style={{
+                                                    backgroundColor: choseSemiTrailer === semitrailer.id ? 'green' : 'red'
+                                                }}
+                                            >
+                                                Pick
+                                            </ButtonPick>
+                                        </RowMachineRecord>
+                                    </RowMachineContainer>
+                                ))}
+                            </TruckViewContainer>
+                        </>
+                    )}
                 </TruckChoice>
             </ChoiceContainer>
+            <button
+                onClick={approveChoice}
+                style={{
+                    display : approve ? "none" : "normal",
+                }}
+            >
+                Approve</button>
         </ReceivmentContainer>
     )
 }
