@@ -25,6 +25,7 @@ import {
 } from "./assets/styles/home_styled.js";
 import SemiTrailers from "./components/SemiTrailers";
 import Logout from "./components/Logout";
+import SemiTrailerEquipmentCreate from "./components/SemiTrailerEquipmentCreate";
 
 
 
@@ -49,6 +50,7 @@ function App(){
                 <Route path="/home-guest" element={<HomeGuest/>}/>
                 <Route path="/trucks" element={<Trucks/>}/>
                 <Route path="/semi-trailers" element={<SemiTrailers/>}/>
+                <Route path="/semi-trailers-equipment-create" element={<SemiTrailerEquipmentCreate/>}/>
             </Routes>
         </ContentContainer>
     </PageContainer>

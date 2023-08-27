@@ -44,8 +44,13 @@ import {
     PostStory,
     TextTitle
 } from "../assets/styles/home_guest_styled";
+
+import {user_data} from "../utils/Sender.js";
+import user from "./User";
+import {UpdateButton} from "../assets/styles/user_display";
 function ReceivmentFromCreate(){
     const [truck, setTruck] = useState(true);
+
     const [semitrailerId, setSemiTrailerId] = useState('');
     const [truckId, setTruckId] = useState('');
     const [trucks, setTrucks] = useState([]);
@@ -53,6 +58,7 @@ function ReceivmentFromCreate(){
     const [choseSemiTrailer, setChoseSemiTrailer] = useState(null);
     const [choseTruck, setChoseTruck] = useState(null);
     const [approve, setApprove] = useState(false);
+
     const handlePickTruck = (event, key) =>{
         setSemiTrailerId(key);
         setChoseSemiTrailer(key);
@@ -64,8 +70,24 @@ function ReceivmentFromCreate(){
     };
 
     const approveChoice = () => {
-        console.log(approve);
-        setApprove(true);
+
+        console.log(user_data.id);
+
+        client.post('/api/receivment-create/',{
+            truck : truckId,
+            semi_trailer: semitrailerId,
+            sender: user_data.id
+        }, {
+            headers: {
+                Authorization: `Bearer ${access_token}`
+            }
+        }).then(response => {
+            console.log(response);
+            setApprove(true);
+        }).catch(error => {
+            alert("Something is bad with you data");
+            console.log(error);
+        })
     };
 
     useEffect(() => {
@@ -184,7 +206,7 @@ function ReceivmentFromCreate(){
                                             {semitrailer.production_year}
                                         </RowMachineRecord>
                                         <RowMachineRecord>
-                                            {semitrailer.semi_note ? (
+                                            {semitrailer.semi_note === 'Wolny' ? (
                                                 <StyleAvailable className="style-text">✔</StyleAvailable>
                                             ) : (
                                                 <StyleAvailableFalse className="style-text">X</StyleAvailableFalse>
@@ -206,17 +228,17 @@ function ReceivmentFromCreate(){
                                     </RowMachineContainer>
                                 ))}
                             </TruckViewContainer>
+                            <UpdateButton
+                                onClick={approveChoice}
+                                style={{
+                                    display : approve ? "none": "normal",
+                                }}
+                            >
+                                Approve</UpdateButton>
                         </>
                     )}
                 </TruckChoice>
             </ChoiceContainer>
-            <button
-                onClick={approveChoice}
-                style={{
-                    display : approve ? "none" : "normal",
-                }}
-            >
-                Approve</button>
         </ReceivmentContainer>
     )
 }

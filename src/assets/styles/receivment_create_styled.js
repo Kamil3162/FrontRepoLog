@@ -5,6 +5,8 @@ export const ReceivmentContainer = styled.div`
     display: flex;
     flex-direction: column;
     max-width: 1000px;
+  padding: 20px;
+  margin-left: 50px;
 `;
 
 export const SemiTrailerList = styled.div`
