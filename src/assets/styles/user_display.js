@@ -121,7 +121,7 @@ export const LabelFields = styled.a`
     font-family: 'Jost', sans-serif;  
     font-weight: 800;
   margin-right: 10px;
-  width: 100px;
+  width: 150px;
   text-align: center;
 `;
 

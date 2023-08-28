@@ -26,6 +26,7 @@ import {
 import SemiTrailers from "./components/SemiTrailers";
 import Logout from "./components/Logout";
 import SemiTrailerEquipmentCreate from "./components/SemiTrailerEquipmentCreate";
+import TruckEquipmentCreate from "./components/TruckEquipmentCreate";
 
 
 
@@ -50,6 +51,7 @@ function App(){
                 <Route path="/home-guest" element={<HomeGuest/>}/>
                 <Route path="/trucks" element={<Trucks/>}/>
                 <Route path="/semi-trailers" element={<SemiTrailers/>}/>
+                <Route path="/truck-equipment-create" element={<TruckEquipmentCreate/>}/>
                 <Route path="/semi-trailers-equipment-create" element={<SemiTrailerEquipmentCreate/>}/>
             </Routes>
         </ContentContainer>

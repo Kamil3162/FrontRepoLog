@@ -32,12 +32,20 @@ export const InformPostContainer = styled.div`
 
 export const InformPostContentContainer = styled.div`
     display: flex;
-    flex-grow: 2;
-  flex-direction: column;
   max-width: 1200px;
-    
 `;
 
+
+export const TextPostContainer = styled.div`
+    display: flex;
+    flex-direction: column;
+    flex-grow: 2;
+`;
+
+export const CreateButtonPostContainer = styled.div`
+    display: flex;
+    align-items: center;
+`;
 export const InformPostPhoto = styled.img`
   object-fit: contain;
   max-width: 500px;
