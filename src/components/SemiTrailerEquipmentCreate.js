@@ -3,7 +3,7 @@ import {
     CreateButtonPostContainer,
     InformPostContainer,
     InformPostContentContainer,
-    MainTextTitle, PostStory, TextPostContainer,
+    MainTextTitle, PostStory, PostStoryButtonContainer, TextPostContainer,
     TextTitle
 } from "../assets/styles/home_guest_styled";
 import {MachineContainer} from "../assets/styles/mechine_create_styled";
@@ -59,13 +59,15 @@ function SemiTrailerEquipmentCreate(){
                     <TextPostContainer>
                         <TextTitle>NAURA</TextTitle>
                         <MainTextTitle>Create Semitailer Equipment</MainTextTitle>
-                        <PostStory>
-                            Welcome to the future of car management! Say goodbye to worries and inefficiencies with our cutting-edge car management app designed to make your driving experience a breeze.
-                        </PostStory>
+                        <PostStoryButtonContainer>
+                            <PostStory>
+                                Welcome to the future of car management! Say goodbye to worries and inefficiencies with our cutting-edge car management app designed to make your driving experience a breeze.
+                            </PostStory>
+                            <CreateButtonPostContainer>
+                                fdfdsfdsfds
+                            </CreateButtonPostContainer>
+                        </PostStoryButtonContainer>
                     </TextPostContainer>
-                    <CreateButtonPostContainer>
-                        fdfdsfdsfds
-                    </CreateButtonPostContainer>
                 </InformPostContentContainer>
             </InformPostContainer>
             <MachineContainer onSubmit={submitForm} encType="multipart/form-data">

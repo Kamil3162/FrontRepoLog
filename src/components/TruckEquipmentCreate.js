@@ -3,7 +3,7 @@ import {
     CreateButtonPostContainer,
     InformPostContainer,
     InformPostContentContainer,
-    MainTextTitle, PostStory, TextPostContainer,
+    MainTextTitle, PostStory, PostStoryButtonContainer, TextPostContainer,
     TextTitle
 } from "../assets/styles/home_guest_styled";
 import {MachineContainer} from "../assets/styles/mechine_create_styled";
@@ -15,23 +15,20 @@ import {access_token} from "../utils/Sender";
 import {InfoCreateMachineContainer, SelectContainer, SelectOption} from "../assets/styles/truck_styled";
 
 function TruckEquipmentCreate(){
-
-    const [semiTrailer, setSemiTrailer] = useState('');
-    const [belts, setBelts] = useState('');
-    const [corners, setCorners] = useState('');
-    const [aluminiumStick, setAluminiumStick] = useState('');
-    const [wideStick, setWideStick] = useState('');
-    const [ladder, setLadder] = useState(true);
-    const [roofStick, setRoofStick] = useState(true);
-    const [dimensionBoard, setDimensionBoard] = useState(true);
-    const [status, setStatus] = useState('Wolny');
+    const [chest, setChest] = useState(true);
+    const [chains, setChains] = useState(true);
+    const [jackHitch, setJackHitch] = useState(true);
+    const [planetarKey, setPlanetarKey] = useState(true);
+    const [manometer, setManometer] = useState(true);
+    const [tirePumpingWire, setTirePumpingWire] = useState(true);
+    const [photo, setPhoto] = useState(null); // For image upload, you might need additional logic
 
     const submitForm = (e) =>{
         e.preventDefault();
         client.
-        post('/api/semitrailereqipment-create/',{
+            post('/api/semitrailereqipment-create/',{
 
-            },
+                },
         )
     }
 
@@ -39,30 +36,29 @@ function TruckEquipmentCreate(){
         let name = event.target.name;
         let value = event.target.value;
 
-        switch (name){
-            case 'ladder':
-                setLadder(value);
+        switch (name) {
+            case 'chest':
+                setChest(value);
                 break;
-            case 'roof-stick':
-                setRoofStick(value);
+            case 'chains':
+                setChains(value);
                 break;
-            case 'dimension-board':
-                setDimensionBoard(value);
+            case 'jack_hitch':
+                setJackHitch(value);
+                break;
+            case 'planetar_key':
+                setPlanetarKey(value);
+                break;
+            case 'manometer':
+                setManometer(value);
+                break;
+            case 'tire_pumping_wire':
+                setTirePumpingWire(value);
+                break;
+            default:
                 break;
         }
     }
-    // truck = models.ForeignKey(Truck,
-    //     on_delete=models.CASCADE,
-    //     blank=False)
-    // chest = models.BooleanField(default=True, blank=False)
-    // chains = models.BooleanField(default=True, blank=False)
-    // jack_hitch = models.BooleanField(default=True, blank=False)
-    // planetar_key = models.BooleanField(default=True, blank=False)
-    // manometer = models.BooleanField(default=True, blank=False)
-    // tire_pumping_wire = models.BooleanField(default=True, blank=False)
-    // complete_status = models.BooleanField(default=True)
-    // photo = models.ImageField(upload_to='media/', blank=True)
-
     return (
         <div>
             <InformPostContainer>
@@ -70,13 +66,15 @@ function TruckEquipmentCreate(){
                     <TextPostContainer>
                         <TextTitle>NAURA</TextTitle>
                         <MainTextTitle>Create Truck Equipment</MainTextTitle>
-                        <PostStory>
-                            Welcome to the future of car management! Say goodbye to worries and inefficiencies with our cutting-edge car management app designed to make your driving experience a breeze.
-                        </PostStory>
+                        <PostStoryButtonContainer>
+                            <PostStory>
+                                Welcome to the future of car management! Say goodbye to worries and inefficiencies with our cutting-edge car management app designed to make your driving experience a breeze.
+                            </PostStory>
+                            <CreateButtonPostContainer>
+                                fdfdsfdsfds
+                            </CreateButtonPostContainer>
+                        </PostStoryButtonContainer>
                     </TextPostContainer>
-                    <CreateButtonPostContainer>
-                        fdfdsfdsfds
-                    </CreateButtonPostContainer>
                 </InformPostContentContainer>
             </InformPostContainer>
             <MachineContainer onSubmit={submitForm} encType="multipart/form-data">

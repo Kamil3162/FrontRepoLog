@@ -7,7 +7,7 @@ import {
     InfoButton,
     InformPostContainer,
     InformPostContentContainer,
-    InformPostPhoto, MainTextTitle, PostStory, TextPostContainer, TextTitle,
+    InformPostPhoto, InfoTestService, MainTextTitle, PostStory, TextPostContainer, TextTitle,
 } from "../assets/styles/home_guest_styled.js";
 import icon6 from "../assets/truck-img.jpg";
 
@@ -33,7 +33,15 @@ function HomeGuest(){
 
                 <InformPostContainer>
                     <InformPostContentContainer>
-                        Post Entire
+                        <InfoTestService>
+                            fds
+                        </InfoTestService>
+                        <InfoTestService>
+                            fds
+                        </InfoTestService>
+                        <InfoTestService>
+                            fds
+                        </InfoTestService>
                     </InformPostContentContainer>
                     <InformPostPhoto/>
                 </InformPostContainer>

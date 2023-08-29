@@ -8,10 +8,11 @@ import {
 } from "../assets/styles/truck_list_styled";
 import {Link} from "react-router-dom";
 import {
+    CreateButtonPostContainer,
     InformPostContainer,
     InformPostContentContainer,
     MainTextTitle,
-    PostStory, TextPostContainer,
+    PostStory, PostStoryButtonContainer, TextPostContainer,
     TextTitle
 } from "../assets/styles/home_guest_styled";
 
@@ -40,14 +41,16 @@ function SemiTrailers(){
                     <TextPostContainer>
                         <TextTitle>NAURA</TextTitle>
                         <MainTextTitle>Select your best car, manage user and facilities in your company using complex management system</MainTextTitle>
-                        <PostStory>
-                            Welcome to the future of car management! Say goodbye to worries and inefficiencies with our cutting-edge car management app designed to make your driving experience a breeze.
-                            Discover the power of real-time control as our app offers seamless GPS tracking, allowing you to monitor your vehicle's location at all times, ensuring its safety and security.
-                        </PostStory>
+                        <PostStoryButtonContainer>
+                            <PostStory>
+                                Welcome to the future of car management! Say goodbye to worries and inefficiencies with our cutting-edge car management app designed to make your driving experience a breeze.
+                                Discover the power of real-time control as our app offers seamless GPS tracking, allowing you to monitor your vehicle's location at all times, ensuring its safety and security.
+                            </PostStory>
+                            <CreateButtonPostContainer>
+                                fdfdsfdsfds
+                            </CreateButtonPostContainer>
+                        </PostStoryButtonContainer>
                     </TextPostContainer>
-                    <div>
-                        fdsfds
-                    </div>
                 </InformPostContentContainer>
             </InformPostContainer>
             <TruckListTitle>Semi Trailers </TruckListTitle>

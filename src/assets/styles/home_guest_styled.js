@@ -32,9 +32,17 @@ export const InformPostContainer = styled.div`
 
 export const InformPostContentContainer = styled.div`
     display: flex;
-  max-width: 1200px;
+    justify-content: space-between;
+    //max-width: 1200px;
 `;
 
+export const InfoTestService = styled.div`
+    display: flex;
+    text-align: center;
+    flex-grow: 1;
+    flex-basis: 0;
+  
+`;
 
 export const TextPostContainer = styled.div`
     display: flex;
@@ -127,4 +135,7 @@ export const PhotoBigTitle = styled.p`
 export const PostStory = styled.p`
   color: rgba(91, 88, 88, 0.5);
   width: 50%;
+`;
+export const PostStoryButtonContainer = styled.div`
+    display: flex;
 `;
