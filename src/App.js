@@ -27,6 +27,7 @@ import SemiTrailers from "./components/SemiTrailers";
 import Logout from "./components/Logout";
 import SemiTrailerEquipmentCreate from "./components/SemiTrailerEquipmentCreate";
 import TruckEquipmentCreate from "./components/TruckEquipmentCreate";
+import Users from "./components/Users";
 
 
 
@@ -41,6 +42,7 @@ function App(){
                 <Route path="/login" element={<Login/>}/>
                 <Route path="/logout" element={<Logout/>}/>
                 <Route path="/user" element={<User/>}/>
+                <Route path="/users" element={<Users/>}/>
                 <Route path="/semitrailer-create" element={<SemiTrailerForm/>}/>
                 <Route path="/truck-create" element={<TruckCreate/>}/>
                 <Route path="/truck/:pk" element={<Truck/>}/>

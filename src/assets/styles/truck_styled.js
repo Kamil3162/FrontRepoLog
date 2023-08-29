@@ -18,3 +18,4 @@ export const InfoCreateMachineContainer = styled.div`
     padding: 10px;
     display: flex;
 `;
+

@@ -4,7 +4,7 @@ import {
     InformPostContainer,
     InformPostContentContainer,
     MainTextTitle,
-    PostStory,
+    PostStory, TextPostContainer,
     TextTitle
 } from "../assets/styles/home_guest_styled";
 import {MachineContainer} from "../assets/styles/mechine_create_styled";
@@ -67,12 +67,17 @@ function SemiTrailerForm(){
         <div>
             <InformPostContainer>
                 <InformPostContentContainer>
-                    <TextTitle>NAURA</TextTitle>
-                    <MainTextTitle>Create Truck</MainTextTitle>
-                    <PostStory>
-                        Welcome to the future of car management! Say goodbye to worries and inefficiencies with our cutting-edge car management app designed to make your driving experience a breeze.
-                        Discover the power of real-time control as our app offers seamless GPS tracking, allowing you to monitor your vehicle's location at all times, ensuring its safety and security.
-                    </PostStory>
+                    <TextPostContainer>
+                        <TextTitle>NAURA</TextTitle>
+                        <MainTextTitle>Create Truck</MainTextTitle>
+                        <PostStory>
+                            Welcome to the future of car management! Say goodbye to worries and inefficiencies with our cutting-edge car management app designed to make your driving experience a breeze.
+                            Discover the power of real-time control as our app offers seamless GPS tracking, allowing you to monitor your vehicle's location at all times, ensuring its safety and security.
+                        </PostStory>
+                    </TextPostContainer>
+                    <div>
+                        fdfdsfdsfds
+                    </div>
                 </InformPostContentContainer>
             </InformPostContainer>
             <MachineContainer onSubmit={submitForm} encType="multipart/form-data">

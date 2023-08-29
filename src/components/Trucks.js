@@ -36,6 +36,8 @@ import {
     RowMachineContainer,
     RowMachineRecord}
 from "../assets/styles/receivment_create_styled";
+import {ButtonLink} from "../assets/styles/link_buttons";
+
 
 function Trucks(){
 
@@ -67,7 +69,9 @@ function Trucks(){
                                 Discover the power of real-time control as our app offers seamless GPS tracking, allowing you to monitor your vehicle's location at all times, ensuring its safety and security.
                             </PostStory>
                             <CreateButtonPostContainer>
-                                fdfdsfdsfds
+                                <ButtonLink as={Link} to="/truck-create">
+                                    Truck Create
+                                </ButtonLink>
                             </CreateButtonPostContainer>
                         </PostStoryButtonContainer>
                     </TextPostContainer>

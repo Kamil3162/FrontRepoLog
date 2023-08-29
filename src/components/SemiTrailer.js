@@ -1,7 +1,7 @@
 import React,{ useState, useEffect }from "react";
 import client from "../utils/Sender";
 import {access_token} from "../utils/Sender";
-import {useParams} from "react-router-dom";
+import {Link, useParams} from "react-router-dom";
 import {
     HeaderContainer,
     MachineDetail,
@@ -9,14 +9,16 @@ import {
     MachineHeaderName, MachineInformation, MachinePhoto, MachinePhotoContainer
 } from "../assets/styles/machine_detail_styled";
 import {
+    CreateButtonPostContainer,
     InformPostContainer,
     InformPostContentContainer,
     MainTextTitle,
-    PostStory,
+    PostStory, PostStoryButtonContainer, TextPostContainer,
     TextTitle
 } from "../assets/styles/home_guest_styled";
 import {InputField, LabelFields, UpdateButton} from "../assets/styles/user_display";
 import {MachinePhotoInput} from "../assets/styles/truck_list_styled";
+import {ButtonLink} from "../assets/styles/link_buttons";
 function SemiTrailer(){
     const [brand, setBrand] = useState("");
     const [model, setModel] = useState("");
@@ -83,12 +85,24 @@ function SemiTrailer(){
         <MachineDetailContainer>
             <InformPostContainer>
                 <InformPostContentContainer>
-                    <TextTitle>NAURA</TextTitle>
-                    <MainTextTitle>Select your best car, manage user and facilities in your company using complex management system</MainTextTitle>
-                    <PostStory>
-                        Welcome to the future of car management! Say goodbye to worries and inefficiencies with our cutting-edge car management app designed to make your driving experience a breeze.
-                        Discover the power of real-time control as our app offers seamless GPS tracking, allowing you to monitor your vehicle's location at all times, ensuring its safety and security.
-                    </PostStory>
+                    <TextPostContainer>
+
+                    </TextPostContainer>
+                    <TextPostContainer>
+                        <TextTitle>NAURA</TextTitle>
+                        <MainTextTitle>Select your best car, manage user and facilities in your company using complex management system</MainTextTitle>
+                        <PostStoryButtonContainer>
+                            <PostStory>
+                                Welcome to the future of car management! Say goodbye to worries and inefficiencies with our cutting-edge car management app designed to make your driving experience a breeze.
+                                Discover the power of real-time control as our app offers seamless GPS tracking, allowing you to monitor your vehicle's location at all times, ensuring its safety and security.
+                            </PostStory>
+                            <CreateButtonPostContainer>
+                                <ButtonLink as={Link} to="/semi-trailers-equipment-create">
+                                    Create Semitrailer Equipment
+                                </ButtonLink>
+                            </CreateButtonPostContainer>
+                        </PostStoryButtonContainer>
+                    </TextPostContainer>
                 </InformPostContentContainer>
             </InformPostContainer>
             <HeaderContainer>

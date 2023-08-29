@@ -53,16 +53,6 @@ function LeftPanelComponent(){
                     <PanelItemText>
                     </PanelItemText>
                 </LeftPanelItem>
-                <LeftPanelItem as={Link} to="/truck-equipment-create">
-                    <PanelItemText>
-                        Truck Trailer
-                    </PanelItemText>
-                </LeftPanelItem>
-                <LeftPanelItem as={Link} to="/semi-trailers-equipment-create">
-                    <PanelItemText>
-                        Semi tariler eq
-                    </PanelItemText>
-                </LeftPanelItem>
                 <LeftPanelItem>
                     <LogoPanelItem src={icon3}/>
                     <PanelItemText>
@@ -73,7 +63,7 @@ function LeftPanelComponent(){
                     <PanelItemText>
                     </PanelItemText>
                 </LeftPanelItem>
-                <LeftPanelItem>
+                <LeftPanelItem as={Link} to="/users">
                     <LogoPanelItem src={icon10}/>
                     <PanelItemText>
                     </PanelItemText>

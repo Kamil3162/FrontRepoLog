@@ -18,7 +18,7 @@ import {
 
 import {access_token} from "../utils/Sender";
 import client from "../utils/Sender";
-
+import {ButtonLink} from "../assets/styles/link_buttons";
 function SemiTrailers(){
 
     const [semitrailers, setSemiTrailers] = useState([]);
@@ -47,7 +47,9 @@ function SemiTrailers(){
                                 Discover the power of real-time control as our app offers seamless GPS tracking, allowing you to monitor your vehicle's location at all times, ensuring its safety and security.
                             </PostStory>
                             <CreateButtonPostContainer>
-                                fdfdsfdsfds
+                                <ButtonLink as={Link} to="/semitrailer-create">
+                                    Create Semitrailer
+                                </ButtonLink>
                             </CreateButtonPostContainer>
                         </PostStoryButtonContainer>
                     </TextPostContainer>

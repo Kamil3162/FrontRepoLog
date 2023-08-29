@@ -27,6 +27,7 @@ export const ContentContainerHome = styled.div`
 export const InformPostContainer = styled.div`
   display: flex;
   flex-direction: row;
+  max-width: 1200px;
     
 `;
 
@@ -53,6 +54,7 @@ export const TextPostContainer = styled.div`
 export const CreateButtonPostContainer = styled.div`
     display: flex;
     align-items: center;
+    flex-grow: 1;
 `;
 export const InformPostPhoto = styled.img`
   object-fit: contain;
