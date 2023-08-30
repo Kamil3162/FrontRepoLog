@@ -10,6 +10,7 @@ import icon8 from "../assets/contract.png";
 import icon10 from "../assets/group.png";
 import icon_login from "../assets/login.png";
 import register from "../assets/register.png"
+import transfer from "../assets/transfers.png";
 import {Link} from "react-router-dom";
 import {user_permission_group} from "../utils/Sender";
 import login from "./Login";
@@ -40,6 +41,11 @@ function LeftPanelComponent(){
                 </LeftPanelItem>
                 <LeftPanelItem as={Link} to="/receivment-create/">
                     <LogoPanelItem src={icon8}/>
+                    <PanelItemText>
+                    </PanelItemText>
+                </LeftPanelItem>
+                <LeftPanelItem>
+                    <LogoPanelItem src={transfer}/>
                     <PanelItemText>
                     </PanelItemText>
                 </LeftPanelItem>

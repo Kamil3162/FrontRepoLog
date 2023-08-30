@@ -1,20 +1,22 @@
 import styled from "styled-components";
 
 export const UsersContainer = styled.div`
-    display: flex;
-    width: 100%;
+  display: flex;
   margin-left: 50px;
-  margin-top: 100px;
+  width: 1600px;
+  height: 90%;
+  flex-direction: column;
+  background-color: #dad4d4;
+  padding: 20px;
+  border-radius: 15px;
 `;
 export const UsersListContainer = styled.div`
   display: flex;
-  flex-grow: 1;
   flex-direction: column;
-  max-width: 300px;
+  width: 300px;
   border-right: 2px solid black;
   overflow-y: scroll;
-  max-height: 700px;
-  padding: 10px;
+  max-height: 500px;
 
   &::-webkit-scrollbar {
     display: none;
@@ -59,3 +61,27 @@ export const UserContainer = styled.div`
     display: flex;
     flex-grow: 4;
 `;
+
+export const UserSearchContainer = styled.div`
+    display: flex;
+    text-align: center;
+    margin-bottom: 10px;
+    height: 50px;
+    width: 250px;
+  justify-items: center;
+  align-items: center;
+  margin-left: 40px;
+`;
+
+export const SeachUserField = styled.input`
+    height: 25px;
+    flex-grow: 1;
+  font-size: 15px;
+  font-family: 'Work Sans', sans-serif;
+  font-weight: 600;
+
+`;
+export const MainUsersContentContainer = styled.div`
+    display: flex;
+`;
+

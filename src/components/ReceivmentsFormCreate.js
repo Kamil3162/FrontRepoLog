@@ -48,6 +48,7 @@ import {
 import {user_data} from "../utils/Sender.js";
 import user from "./User";
 import {UpdateButton} from "../assets/styles/user_display";
+import Truck from "./Truck";
 function ReceivmentFromCreate(){
     const [truck, setTruck] = useState(true);
 
@@ -130,13 +131,9 @@ function ReceivmentFromCreate(){
                 </InformPostContentContainer>
             </InformPostContainer>
             <ReceivmentInfoContainer>
-                <TextTitle>NAURA</TextTitle>
-                <MainTextTitle>Select your best car, manage user and facilities in your company using complex management system</MainTextTitle>
+                <MainTextTitle>Receivments Create</MainTextTitle>
                 <PostStory>
                     This panel is reponsible for creating receivment bu turck driver.
-                    You have to options rent  truck with semi-trailer or only semitrailer if you have your own truck.
-                    Also if you will chose truck it will be automatic you will not have a option to chooce you truck but
-                    you have a chance to choose your semitrailer
                 </PostStory>
             </ReceivmentInfoContainer>
             <ChoiceContainer>
@@ -237,6 +234,14 @@ function ReceivmentFromCreate(){
                                 Approve</UpdateButton>
                         </>
                     )}
+                </TruckChoice>
+            </ChoiceContainer>
+            <ChoiceContainer>
+                <TruckChoice>
+                    fds
+                </TruckChoice>
+                <TruckChoice>
+                    fds
                 </TruckChoice>
             </ChoiceContainer>
         </ReceivmentContainer>

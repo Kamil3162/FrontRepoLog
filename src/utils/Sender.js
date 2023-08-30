@@ -26,3 +26,18 @@ export const countSessionTime = () => {
         history.push('/');
     }
 }
+const handleUpdateUser = (userData, access_token, user_id) => {
+    console.log("Handle update user");
+    client
+        .post('/api/detail-user/', userData, {
+            headers: {
+                Authorization: `Bearer ${access_token}`
+            },
+        })
+        .then(response => {
+            console.log(response);
+        })
+        .catch(error => {
+            console.log(error);
+        });
+};

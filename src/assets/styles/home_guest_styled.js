@@ -131,6 +131,10 @@ export const MainTextTitle = styled.p`
   margin-bottom: 5px;
 `;
 
+export const MainTextTitleFontChange = styled(MainTextTitle)`
+    font-family: 'Niramit', sans-serif;
+`;
+
 export const PhotoBigTitle = styled.p`
     
 `;
