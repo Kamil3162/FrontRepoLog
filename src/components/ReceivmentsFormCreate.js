@@ -49,6 +49,8 @@ import {user_data} from "../utils/Sender.js";
 import user from "./User";
 import {UpdateButton} from "../assets/styles/user_display";
 import Truck from "./Truck";
+import {SemiTrailerViewContainerFun, TruckViewContainerFun} from "../utils/FunctionComponents.js";
+
 function ReceivmentFromCreate(){
     const [truck, setTruck] = useState(true);
 
@@ -63,11 +65,14 @@ function ReceivmentFromCreate(){
     const handlePickTruck = (event, key) =>{
         setSemiTrailerId(key);
         setChoseSemiTrailer(key);
+        console.log(semitrailerId);
     };
 
     const handlePickSemiTrailer = (event, key) =>{
+        console.log("kilknieto");
         setTruckId(key);
         setChoseTruck(key);
+        console.log(truckId);
     };
 
     const approveChoice = () => {
@@ -77,7 +82,7 @@ function ReceivmentFromCreate(){
         client.post('/api/receivment-create/',{
             truck : truckId,
             semi_trailer: semitrailerId,
-            sender: user_data.id
+            destination_user: user_data.id
         }, {
             headers: {
                 Authorization: `Bearer ${access_token}`
@@ -148,34 +153,11 @@ function ReceivmentFromCreate(){
                                     <HeaderName>SEMI NOTE</HeaderName>
                                     <HeaderName>REGISTRATION NUMBER</HeaderName>
                             </HeaderTablesName>
-                            <TruckViewContainer>
-                                {trucks.map((truck, index) => (
-                                    <RowMachineContainer key={index}>
-                                    <RowMachineRecord>{truck.brand}</RowMachineRecord>
-                                    <RowMachineRecord>{truck.model}</RowMachineRecord>
-                                    <RowMachineRecord>{truck.production_date}</RowMachineRecord>
-                                    <RowMachineRecord>
-                                        {truck.available === "Wolny" ? (
-                                            <StyleAvailable className="style-text">✔</StyleAvailable>
-                                        ) : (
-                                            <StyleAvailableFalse className="style-text">X</StyleAvailableFalse>
-                                        )}
-                                    </RowMachineRecord>
-                                    <RowMachineRecord>{truck.registration_number}</RowMachineRecord>
-                                    <RowMachineRecord>
-                                        <ButtonPick onClick={
-                                            (e) => handlePickSemiTrailer(e, truck.id)
-                                        }
-                                                    style={{
-                                                        backgroundColor: choseTruck === truck.id ? "green" : 'red'
-                                                    }}
-                                        >
-                                            Pick
-                                        </ButtonPick>
-                                    </RowMachineRecord>
-                                </RowMachineContainer>
-                            ))}
-                            </TruckViewContainer>
+                            <SemiTrailerViewContainerFun
+                                items={semitrailers}
+                                selectedItem={choseSemiTrailer}
+                                onSelect={handlePickSemiTrailer}
+                            />
                         </>
                     )}
                 </TruckChoice>
@@ -190,41 +172,10 @@ function ReceivmentFromCreate(){
                                 <HeaderName>SEMI NOTE</HeaderName>
                                 <HeaderName>REGISTRATION NUMBER</HeaderName>
                             </HeaderTablesName>
-                            <TruckViewContainer>
-                                {semitrailers.map(semitrailer => (
-                                    <RowMachineContainer key={semitrailer.id}>
-                                        <RowMachineRecord>
-                                            {semitrailer.brand}
-                                        </RowMachineRecord>
-                                        <RowMachineRecord>
-                                            {semitrailer.model}
-                                        </RowMachineRecord>
-                                        <RowMachineRecord>
-                                            {semitrailer.production_year}
-                                        </RowMachineRecord>
-                                        <RowMachineRecord>
-                                            {semitrailer.semi_note === 'Wolny' ? (
-                                                <StyleAvailable className="style-text">✔</StyleAvailable>
-                                            ) : (
-                                                <StyleAvailableFalse className="style-text">X</StyleAvailableFalse>
-                                            )}
-                                        </RowMachineRecord>
-                                        <RowMachineRecord>
-                                            {semitrailer.registration_number}
-                                        </RowMachineRecord>
-                                        <RowMachineRecord>
-                                            <ButtonPick
-                                                onClick={(e) => handlePickTruck(e, semitrailer.id)}
-                                                style={{
-                                                    backgroundColor: choseSemiTrailer === semitrailer.id ? 'green' : 'red'
-                                                }}
-                                            >
-                                                Pick
-                                            </ButtonPick>
-                                        </RowMachineRecord>
-                                    </RowMachineContainer>
-                                ))}
-                            </TruckViewContainer>
+                            <TruckViewContainerFun
+                                items={trucks}
+                                selectedItem={choseTruck}
+                                onSelect={handlePickTruck}/>
                             <UpdateButton
                                 onClick={approveChoice}
                                 style={{

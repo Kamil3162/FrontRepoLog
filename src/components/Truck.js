@@ -116,7 +116,7 @@ function TruckDisplay(){
                                 Discover the power of real-time control as our app offers seamless GPS tracking, allowing you to monitor your vehicle's location at all times, ensuring its safety and security.
                             </PostStory>
                             <CreateButtonPostContainer>
-                                <ButtonLink as={Link} to="/truck-create">
+                                <ButtonLink as={Link} to="/truck-equipment-create">
                                     Truck Equipment Create
                                 </ButtonLink>
                             </CreateButtonPostContainer>
