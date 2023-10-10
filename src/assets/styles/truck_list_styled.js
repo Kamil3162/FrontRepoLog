@@ -29,12 +29,15 @@ export const RowListContainer = styled.div`
   display: flex;
   width: 90%;
   height: 80px;
+  text-decoration: none;
   border-left: 1px solid rgba(0, 0, 0, 0.3);
   border-bottom: 1px solid rgba(0, 0, 0, 0.3);
   border-right: 1px solid rgba(0, 0, 0, 0.3);
 
   &:hover {
-    background-color: rgba(16, 15, 15, 0.38);
+    background-color: rgb(152, 150, 150);
+    transition: 0.3s linear background-color;
+    border-radius: 15px;
 
     .style-text {
       color: white;
@@ -69,6 +72,8 @@ export const StyleText = styled.a`
   width: 100px;
   border-radius: 10px;
   font-size: 17px;
+  text-decoration: none;
+  color: #070606;
 `;
 export const StyleAvailable = styled.a`
   font-family: 'Work Sans', sans-serif;

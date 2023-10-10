@@ -9,7 +9,7 @@ import {
     LoginLabel, LoginPageContainer,
     LoginPart
 } from "../assets/styles/login_styled";
-import cargophoto from "../assets/truck-login.jpg";
+import cargophoto from "../assets/icons/truck-login.jpg";
 import client from "../utils/Sender";
 
 const Register = () => {

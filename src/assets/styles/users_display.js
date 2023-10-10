@@ -6,7 +6,6 @@ export const UsersContainer = styled.div`
   width: 1600px;
   height: 90%;
   flex-direction: column;
-  background-color: #dad4d4;
   padding: 20px;
   border-radius: 15px;
 `;
@@ -14,7 +13,6 @@ export const UsersListContainer = styled.div`
   display: flex;
   flex-direction: column;
   width: 300px;
-  border-right: 2px solid black;
   overflow-y: scroll;
   max-height: 500px;
 
@@ -30,6 +28,7 @@ export const UserListElement = styled.div`
   background-color: rgb(168 168 168 / 47%);
   border-radius: 10px;
   margin-bottom: 5px;
+  margin-left: 10px;
 
   &:hover {
     background-color: rgba(34, 121, 43, 0.47);
@@ -81,7 +80,7 @@ export const SeachUserField = styled.input`
   font-weight: 600;
 
 `;
-export const MainUsersContentContainer = styled.div`
-    display: flex;
-`;
 
+export const MainUsersContentContainer = styled.div`
+  display: flex;
+`;

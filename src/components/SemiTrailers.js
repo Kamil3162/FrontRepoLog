@@ -32,8 +32,14 @@ function SemiTrailers(){
         }).then(response =>{
             console.log(response.data);
             setSemiTrailers(response.data);
+        }).catch((error) =>{
+            console.log(error);
+            if (error.response.status === 401){
+                alert("Autowylogowywanie - koniec sesji");
+            }
         })
     }, []);
+
     return(
         <TruckListContainer>
             <InformPostContainer>

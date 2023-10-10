@@ -9,7 +9,7 @@ import {
     InformPostContentContainer,
     InformPostPhoto, InfoTestService, MainTextTitle, PostStory, TextPostContainer, TextTitle,
 } from "../assets/styles/home_guest_styled.js";
-import icon6 from "../assets/truck-img.jpg";
+import icon6 from "../assets/icons/truck-img.jpg";
 
 
 function HomeGuest(){

@@ -5,7 +5,16 @@ import {
     TruckViewContainer
 } from "../assets/styles/receivment_create_styled";
 import {StyleAvailable, StyleAvailableFalse} from "../assets/styles/truck_list_styled";
-import React from "react";
+import React, {useState} from "react";
+import {
+    AlertButton,
+    AlertContainer,
+    AlertInformation,
+    AlertRotationContainer,
+    AlertTitle
+} from "../assets/styles/alert_styled";
+import {Link, useNavigate} from "react-router-dom";
+import client from "./Sender";
 
 export const SemiTrailerViewContainerFun = ({items, selectedItem, onSelect}) => {
     return (
@@ -50,7 +59,7 @@ export const TruckViewContainerFun = ({items, selectedItem, onSelect}) =>{
     return (
         <TruckViewContainer>
             {items.map((truck, index) => (
-                <RowMachineContainer key={index}>
+                <RowMachineContainer key={truck.id}>
                     <RowMachineRecord>{truck.brand}</RowMachineRecord>
                     <RowMachineRecord>{truck.model}</RowMachineRecord>
                     <RowMachineRecord>{truck.production_date}</RowMachineRecord>
@@ -77,4 +86,29 @@ export const TruckViewContainerFun = ({items, selectedItem, onSelect}) =>{
             ))}
         </TruckViewContainer>
         )
+}
+
+export const AlertComponent = ({title, information, buttonText, redirectUrl = "#"}) =>{
+    const [visibleState, setVisibleState] = useState(true);
+    const navigate = useNavigate();
+    const handleClose = (e) =>{
+        e.preventDefault();
+        if (redirectUrl !== "#"){
+            navigate(redirectUrl);
+        }
+        setVisibleState(false);
+    }
+    return (
+         visibleState && (
+             <AlertContainer>
+                 <AlertTitle>{title}</AlertTitle>
+                 <AlertInformation>{information}</AlertInformation>
+                 <AlertRotationContainer></AlertRotationContainer>
+                 <AlertButton
+                     as={Link}
+                     to={redirectUrl}
+                     onClick={handleClose}>{buttonText}</AlertButton>
+             </AlertContainer>
+        )
+    )
 }

@@ -4,9 +4,7 @@ import styled from "styled-components";
 export const SettingsContainer = styled.div`
   display: flex;
   flex-direction: column;
-  
   max-height: 950px;
-  padding: 20px;
   margin-left: 50px;
   border-radius: 15px;
 `;
@@ -33,7 +31,6 @@ export const SettingsLeftPanel = styled.div`
 `;
 export const SettingDetails = styled.div`
   flex-grow: 7;
-  padding: 20px;
   border-radius: 15px;
   //border-left: 1px solid rgba(130, 132, 132, 0.27);
 `;
@@ -65,9 +62,11 @@ export const DeleteAccountText = styled.span`
   }
 `;
 export const SettingDetailContainer = styled.div`
-    padding: 10px;
+    padding: 20px;
   //border: 1px solid rgba(0, 0, 0, 0.25);
   border-radius: 15px;
+  width: 300px;
+  
 `;
 
 export const SettingsNavTitle = styled.a`

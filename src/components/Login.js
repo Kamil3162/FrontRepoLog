@@ -1,7 +1,7 @@
 import axios from "axios";
 import {useState} from "react";
 import {useHistory, useNavigate} from "react-router-dom";
-import cargophoto from '../assets/truck-login.jpg';
+import cargophoto from '../assets/icons/truck-login.jpg';
 import {
     LoginForm,
     LoginDisplay,

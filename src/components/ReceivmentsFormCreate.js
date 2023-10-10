@@ -28,7 +28,7 @@ import {
     RowMachineContainer,
     RowMachineRecord
 } from "../assets/styles/receivment_create_styled";
-import icon1 from "../assets/truck-img.jpg"
+import icon1 from "../assets/icons/truck-img.jpg"
 import {
     HeaderName,
     HeaderTablesName,
@@ -53,7 +53,6 @@ import {SemiTrailerViewContainerFun, TruckViewContainerFun} from "../utils/Funct
 
 function ReceivmentFromCreate(){
     const [truck, setTruck] = useState(true);
-
     const [semitrailerId, setSemiTrailerId] = useState('');
     const [truckId, setTruckId] = useState('');
     const [trucks, setTrucks] = useState([]);
@@ -63,16 +62,13 @@ function ReceivmentFromCreate(){
     const [approve, setApprove] = useState(false);
 
     const handlePickTruck = (event, key) =>{
-        setSemiTrailerId(key);
-        setChoseSemiTrailer(key);
-        console.log(semitrailerId);
+        setTruckId(key);
+        setChoseTruck(key);
     };
 
     const handlePickSemiTrailer = (event, key) =>{
-        console.log("kilknieto");
-        setTruckId(key);
-        setChoseTruck(key);
-        console.log(truckId);
+        setSemiTrailerId(key);
+        setChoseSemiTrailer(key);
     };
 
     const approveChoice = () => {
@@ -142,7 +138,7 @@ function ReceivmentFromCreate(){
                 </PostStory>
             </ReceivmentInfoContainer>
             <ChoiceContainer>
-                <TruckChoice>
+                <SemiTrailerChoice>
                     {!approve && (
                         <>
                             <p>SemiTrailers</p>
@@ -160,7 +156,7 @@ function ReceivmentFromCreate(){
                             />
                         </>
                     )}
-                </TruckChoice>
+                </SemiTrailerChoice>
                 <TruckChoice>
                     {!approve && (
                         <>

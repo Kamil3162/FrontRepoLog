@@ -31,6 +31,7 @@ function ReceivmentsList(){
                 console.log(response);
                 let data = response.data;
                 setReceivments(data);
+                console.log(receivments);
 
             })
             .catch(error =>{
@@ -60,20 +61,18 @@ function ReceivmentsList(){
             </HeaderTablesName>
             <TruckList>
                 {receivments.map((receivment, index) => (
-                    <RowListContainer>
+                    <RowListContainer as={Link} to={`/receivment-detail/${receivment.id}`}>
                         <RowListElements>
-                            <StyleText className="style-text">{receivment.semi_trailer}</StyleText>
+                            <StyleText className="style-text">{receivment.semitrailer_registration_numer}</StyleText>
                         </RowListElements>
                         <RowListElements>
-                            <StyleText className="style-text">{receivment.truck}</StyleText>
+                            <StyleText className="style-text">{receivment.truck_registration_number}</StyleText>
                         </RowListElements>
                         <RowListElements>
-                            <StyleText className="style-text">{receivment.sender}</StyleText>
+                            <StyleText className="style-text">{receivment.source_user_name} {receivment.source_user_surname}</StyleText>
                         </RowListElements>
                         <RowListElements>
-                            <StyleText className="style-text">{receivment.transferring_user}</StyleText>
-                        </RowListElements>
-                        <RowListElements><StyleText className="style-text">{receivment.registration_number}</StyleText>
+                            <StyleText className="style-text">{receivment.destination_user_name} {receivment.destination_user_surname}</StyleText>
                         </RowListElements>
                         {
                             receivment.status === true ? (

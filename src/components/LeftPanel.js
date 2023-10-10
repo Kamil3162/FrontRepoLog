@@ -1,16 +1,16 @@
 import {LeftPanel, LeftPanelItem, LeftPanelLogo, LogoPanelItem, PanelItemText} from "../assets/styles/home_styled";
-import icon1 from "../assets/dashboard.png";
-import icon9 from "../assets/cargo-truck.png";
-import icon3 from "../assets/settings.png";
-import icon4 from "../assets/logout.png";
-import icon5 from "../assets/trailer.png";
-import icon6 from "../assets/user.png";
-import icon7 from "../assets/conversation.png";
-import icon8 from "../assets/contract.png";
-import icon10 from "../assets/group.png";
-import icon_login from "../assets/login.png";
-import register from "../assets/register.png"
-import transfer from "../assets/transfers.png";
+import icon1 from "../assets/icons/dashboard.png";
+import icon9 from "../assets/icons/cargo-truck.png";
+import icon3 from "../assets/icons/settings.png";
+import icon4 from "../assets/icons/logout.png";
+import icon5 from "../assets/icons/trailer.png";
+import icon6 from "../assets/icons/user.png";
+import icon7 from "../assets/icons/conversation.png";
+import icon8 from "../assets/icons/contract.png";
+import icon10 from "../assets/icons/group.png";
+import icon_login from "../assets/icons/login.png";
+import register from "../assets/icons/register.png"
+import transfer from "../assets/icons/transfers.png";
 import {Link} from "react-router-dom";
 import {user_permission_group} from "../utils/Sender";
 import login from "./Login";
@@ -44,7 +44,7 @@ function LeftPanelComponent(){
                     <PanelItemText>
                     </PanelItemText>
                 </LeftPanelItem>
-                <LeftPanelItem>
+                <LeftPanelItem as={Link} to="/receivments/">
                     <LogoPanelItem src={transfer}/>
                     <PanelItemText>
                     </PanelItemText>

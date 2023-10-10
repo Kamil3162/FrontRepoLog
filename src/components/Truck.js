@@ -27,7 +27,7 @@ import {
     TextTitle
 } from "../assets/styles/home_guest_styled";
 import {AddressContainer, LabelFields, InputField, UpdateButton} from "../assets/styles/user_display";
-import icon6 from "../assets/truck-img.jpg";
+import icon6 from "../assets/icons/truck-img.jpg";
 import {MachinePhotoInput} from "../assets/styles/truck_list_styled";
 import {ButtonLink} from "../assets/styles/link_buttons";
 

@@ -11,7 +11,7 @@ import {
     UsersContainer, UserSearchContainer,
     UsersListContainer
 } from "../assets/styles/users_display";
-import user_icon from "../assets/user_icon.png";
+import user_icon from "../assets/icons/user_icon.png";
 import {
     CreateButtonPostContainer,
     MainTextTitle, MainTextTitleFontChange,
@@ -33,7 +33,6 @@ import handleUpdateUser from "../utils/Sender";
 function Users(){
     const [users, setUsers] = useState([]);
     const [pickedUser, setPickedUser] = useState(false);
-
     const [firstName, setFirstName] = useState('');
     const [lastName, setLastName] = useState('');
     const [email, setEmail] = useState('');
