@@ -89,8 +89,10 @@ export const TruckViewContainerFun = ({items, selectedItem, onSelect}) =>{
 }
 
 export const AlertComponent = ({title, information, buttonText, redirectUrl = "#"}) =>{
+
     const [visibleState, setVisibleState] = useState(true);
     const navigate = useNavigate();
+
     const handleClose = (e) =>{
         e.preventDefault();
         if (redirectUrl !== "#"){
@@ -98,6 +100,7 @@ export const AlertComponent = ({title, information, buttonText, redirectUrl = "#
         }
         setVisibleState(false);
     }
+
     return (
          visibleState && (
              <AlertContainer>

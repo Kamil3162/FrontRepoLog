@@ -11,6 +11,7 @@ import {
 } from "../assets/styles/login_styled";
 import cargophoto from "../assets/icons/truck-login.jpg";
 import client from "../utils/Sender";
+import {AlertComponent} from "../utils/FunctionComponents";
 
 const Register = () => {
     const [firstName, setFirstName] = useState(null);
@@ -23,6 +24,10 @@ const Register = () => {
     const [street, setStreet] = useState('');
     const [zipCode, setZipCode] = useState('');
     const [phoneNumber, setPhoneNumber] = useState('');
+
+    const [isAlertVisible, setIsAlertVisible] = useState(false);
+    const [infoRegister, setInfoRegister] = useState("");
+    const [infoRegisterTitle, setInfoRegisterTitle] = useState("");
 
     const handleSubmit = (event) =>{
         event.preventDefault();
@@ -39,128 +44,140 @@ const Register = () => {
             street: street
         })
         .then(response =>{
-            console.log(response);
-            alert("Pozytywnie zalozono konto");
+            setInfoRegister("Pomyslnie zalozono konto");
+            setInfoRegisterTitle("Sukces");
+            setIsAlertVisible(true);
+
         })
         .catch(error =>{
-            console.log(error);
+            setInfoRegister("Cos poszlo nie tak sprobuj jeszcze raz");
+            setInfoRegisterTitle("Blad");
+            setIsAlertVisible(true);
+
         })
     }
 
+
     return (
-        <LoginPageContainer>
-            <LoginPart>
-                <LoginEntry>Log In</LoginEntry>
-                <LoginForm onSubmit={handleSubmit}>
-                    <LoginInput
-                        type="text"
-                        name="firstName"
-                        value={firstName}
-                        onChange={(e) => setFirstName(e.target.value)}
-                        placeholder="First Name"
-                        required
-                    />
-                    <br/>
-                    <LoginInput
-                        type="text"
-                        name="lastName"
-                        value={lastName}
-                        onChange={(e) => setLastName(e.target.value)}
-                        placeholder="Last Name"
-                        required
-                    />
-                    <br/>
+        <div>
+            <AlertComponent
+                title={infoRegisterTitle}
+                information={infoRegister}
+                buttonText="Zamknij"
+            />
 
-                    <LoginInput
-                        type="email"
-                        name="email"
-                        value={email}
-                        onChange={(e) => setEmail(e.target.value)}
-                        placeholder="Email"
-                        required
-                    />
-                    <br/>
+            <LoginPageContainer>
+                <LoginPart>
+                    <LoginEntry>Log In</LoginEntry>
+                    <LoginForm onSubmit={handleSubmit}>
+                        <LoginInput
+                            type="text"
+                            name="firstName"
+                            value={firstName}
+                            onChange={(e) => setFirstName(e.target.value)}
+                            placeholder="First Name"
+                            required
+                        />
+                        <br/>
+                        <LoginInput
+                            type="text"
+                            name="lastName"
+                            value={lastName}
+                            onChange={(e) => setLastName(e.target.value)}
+                            placeholder="Last Name"
+                            required
+                        />
+                        <br/>
 
-                    <LoginInput
-                        type="password"
-                        name="password"
-                        value={password}
-                        onChange={(e) => setPassword(e.target.value)}
-                        placeholder="Password"
-                        required
-                    />
-                    <br/>
+                        <LoginInput
+                            type="email"
+                            name="email"
+                            value={email}
+                            onChange={(e) => setEmail(e.target.value)}
+                            placeholder="Email"
+                            required
+                        />
+                        <br/>
 
-                    <LoginInput
-                        type="text"
-                        name="houseNumber"
-                        value={houseNumber}
-                        onChange={(e) => setHouseNumber(e.target.value)}
-                        placeholder="House Number"
-                        required
-                    />
-                    <br/>
+                        <LoginInput
+                            type="password"
+                            name="password"
+                            value={password}
+                            onChange={(e) => setPassword(e.target.value)}
+                            placeholder="Password"
+                            required
+                        />
+                        <br/>
 
-                    <LoginInput
-                        type="text"
-                        name="apartmentNumber"
-                        value={apartmentNumber}
-                        onChange={(e) => setApartmentNumber(e.target.value)}
-                        placeholder="Apartment Number"
-                    />
-                    <br/>
+                        <LoginInput
+                            type="text"
+                            name="houseNumber"
+                            value={houseNumber}
+                            onChange={(e) => setHouseNumber(e.target.value)}
+                            placeholder="House Number"
+                            required
+                        />
+                        <br/>
 
-                    <LoginInput
-                        type="text"
-                        name="city"
-                        value={city}
-                        onChange={(e) => setCity(e.target.value)}
-                        placeholder="City"
-                        required
-                    />
-                    <br/>
+                        <LoginInput
+                            type="text"
+                            name="apartmentNumber"
+                            value={apartmentNumber}
+                            onChange={(e) => setApartmentNumber(e.target.value)}
+                            placeholder="Apartment Number"
+                        />
+                        <br/>
 
-                    <LoginInput
-                        type="text"
-                        name="street"
-                        value={street}
-                        onChange={(e) => setStreet(e.target.value)}
-                        placeholder="Street"
-                        required
-                    />
-                    <br/>
+                        <LoginInput
+                            type="text"
+                            name="city"
+                            value={city}
+                            onChange={(e) => setCity(e.target.value)}
+                            placeholder="City"
+                            required
+                        />
+                        <br/>
 
-                    <LoginInput
-                        type="text"
-                        name="zipCode"
-                        value={zipCode}
-                        onChange={(e) => setZipCode(e.target.value)}
-                        placeholder="Zip Code"
-                        required
-                    />
-                    <br/>
+                        <LoginInput
+                            type="text"
+                            name="street"
+                            value={street}
+                            onChange={(e) => setStreet(e.target.value)}
+                            placeholder="Street"
+                            required
+                        />
+                        <br/>
 
-                    <LoginInput
-                        type="tel"
-                        name="phoneNumber"
-                        value={phoneNumber}
-                        onChange={(e) => setPhoneNumber(e.target.value)}
-                        placeholder="Phone Number"
-                        required
-                    />
+                        <LoginInput
+                            type="text"
+                            name="zipCode"
+                            value={zipCode}
+                            onChange={(e) => setZipCode(e.target.value)}
+                            placeholder="Zip Code"
+                            required
+                        />
+                        <br/>
 
-                    <LoginButton type="submit">Register</LoginButton>
-                </LoginForm>
+                        <LoginInput
+                            type="tel"
+                            name="phoneNumber"
+                            value={phoneNumber}
+                            onChange={(e) => setPhoneNumber(e.target.value)}
+                            placeholder="Phone Number"
+                            required
+                        />
 
-            </LoginPart>
-            <LoginDisplay>
-                <LoginDisplayPhotoContainer>
-                    <LoginDisplayPhoto src={cargophoto}/>
-                </LoginDisplayPhotoContainer>
-            </LoginDisplay>
+                        <LoginButton type="submit">Register</LoginButton>
+                    </LoginForm>
 
-        </LoginPageContainer>
-
+                </LoginPart>
+                <LoginDisplay>
+                    <LoginDisplayPhotoContainer>
+                        <LoginDisplayPhoto src={cargophoto}/>
+                    </LoginDisplayPhotoContainer>
+                </LoginDisplay>
+            </LoginPageContainer>
+        </div>
     )
 }
 

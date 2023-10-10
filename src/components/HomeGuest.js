@@ -7,9 +7,16 @@ import {
     InfoButton,
     InformPostContainer,
     InformPostContentContainer,
-    InformPostPhoto, InfoTestService, MainTextTitle, PostStory, TextPostContainer, TextTitle,
+    InformPostPhoto,
+    InfoTestService, InfoTestServiceContent,
+    InfoTestServiceMain,
+    InfoTestServiceTitle,
+    MainTextTitle,
+    PostStory,
+    TextPostContainer,
+    TextTitle,
 } from "../assets/styles/home_guest_styled.js";
-import icon6 from "../assets/icons/truck-img.jpg";
+import icon6 from "../assets/icons/cargo-background.png";
 
 
 function HomeGuest(){
@@ -30,20 +37,19 @@ function HomeGuest(){
                     </InformPostContentContainer>
                     <InformPostPhoto src={icon6}/>
                 </InformPostContainer>
-
                 <InformPostContainer>
-                    <InformPostContentContainer>
-                        <InfoTestService>
-                            fds
-                        </InfoTestService>
-                        <InfoTestService>
-                            fds
-                        </InfoTestService>
-                        <InfoTestService>
-                            fds
-                        </InfoTestService>
-                    </InformPostContentContainer>
-                    <InformPostPhoto/>
+                    <InfoTestService>
+                        <InfoTestServiceTitle>Speed</InfoTestServiceTitle>
+                        <InfoTestServiceMain>For us this very curcial to perfoerm actions very fast and be the best company in this secotr of industry</InfoTestServiceMain>
+                    </InfoTestService>
+                    <InfoTestService>
+                        <InfoTestServiceTitle>Variaty</InfoTestServiceTitle>
+                        <InfoTestServiceMain>For us this very curcial to perfoerm actions very fast and be the best company in this secotr of industry</InfoTestServiceMain>
+                    </InfoTestService>
+                    <InfoTestService>
+                        <InfoTestServiceTitle>Secure</InfoTestServiceTitle>
+                        <InfoTestServiceMain>For us this very curcial to perfoerm actions very fast and be the best company in this secotr of industry</InfoTestServiceMain>
+                    </InfoTestService>
                 </InformPostContainer>
             </ContentContainerHome>
         </HomeContainer>

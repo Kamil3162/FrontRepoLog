@@ -19,17 +19,13 @@ export const AlertContainer = styled.div`
   margin: 20% 0 0 35%;
   animation: ${slide} 1s ease forwards ;
   overflow: hidden;
-  
 `;
-
-
 
 export const AlertTitle = styled.p`
 `;
 
 export const AlertInformation = styled.p`
   font-family:"Niramit";
-    
 `;
 export const rotate = keyframes`
   to {

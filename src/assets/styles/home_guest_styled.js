@@ -5,9 +5,9 @@ export const HomeContainer = styled.div`
     position: absolute;
     display: flex;
     background-color: white;
-  flex-direction: column;
-  width: 80%;
-  height: 80%;
+    flex-direction: column;
+    width: 80%;
+    height: 80%;
 `;
 
 export const HomeNavbar = styled.div`
@@ -27,7 +27,7 @@ export const ContentContainerHome = styled.div`
 export const InformPostContainer = styled.div`
   display: flex;
   flex-direction: row;
-  max-width: 1200px;
+  margin-bottom: 30px;
     
 `;
 
@@ -38,12 +38,45 @@ export const InformPostContentContainer = styled.div`
 `;
 
 export const InfoTestService = styled.div`
-    display: flex;
-    text-align: center;
-    flex-grow: 1;
-    flex-basis: 0;
-  
+  //width: 300px;
+  //max-width: 300px;
+  display: flex;
+  flex-direction: column;
+  background-color: #2b0080;
+  flex: 1;
+  text-align: center;
+  height: 30vh;
+  margin-right: 5px;
+  border-radius: 10px;
+  padding: 10px;
+  justify-items: center;
+  align-items: center;
 `;
+
+export const InfoTestServiceTitle = styled.p`
+    font-size: 25px;
+    font-weight: 600;
+  font-family: 'Raleway', sans-serif;
+  background-color: white;
+  border-radius: 15px;
+  color: black;
+  width: 300px;
+  padding: 10px;
+`;
+
+export const InfoTestServiceMain = styled.p`
+  color: white;
+  font-size: 15px;
+  font-weight: 600;
+  font-family: 'Work Sans', sans-serif;
+  border-radius: 15px;
+  width: 300px;
+  padding: 10px;
+`;
+
+export const InfoTestServiceContent = styled.p`
+`;
+
 
 export const TextPostContainer = styled.div`
     display: flex;
@@ -58,9 +91,9 @@ export const CreateButtonPostContainer = styled.div`
 `;
 export const InformPostPhoto = styled.img`
   object-fit: contain;
-  max-width: 500px;
+  max-width: 800px;
   max-height: 500px;
-  border-radius: 5px;
+  border-radius: 10px;
 `;
 
 export const HomeLoginBtn = styled.button`
