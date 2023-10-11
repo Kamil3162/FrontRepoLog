@@ -28,7 +28,7 @@ function ReceivmentsList(){
             }
         })
             .then(response =>{
-                console.log(response);
+                console.log(response.data);
                 let data = response.data;
                 setReceivments(data);
                 console.log(receivments);
