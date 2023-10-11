@@ -32,7 +32,6 @@ export const InformPostContainer = styled.div`
 `;
 
 export const InformPostContentContainer = styled.div`
-    display: flex;
     justify-content: space-between;
     //max-width: 1200px;
 `;

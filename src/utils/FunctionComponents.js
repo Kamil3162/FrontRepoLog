@@ -31,7 +31,7 @@ export const SemiTrailerViewContainerFun = ({items, selectedItem, onSelect}) => 
                         {semitrailer.production_year}
                     </RowMachineRecord>
                     <RowMachineRecord>
-                        {semitrailer.semi_note === 'Wolny' ? (
+                        {semitrailer.available === 'Wolny' ? (
                             <StyleAvailable className="style-text">✔</StyleAvailable>
                         ) : (
                             <StyleAvailableFalse className="style-text">X</StyleAvailableFalse>
@@ -88,7 +88,7 @@ export const TruckViewContainerFun = ({items, selectedItem, onSelect}) =>{
         )
 }
 
-export const AlertComponent = ({title, information, buttonText, redirectUrl = "#"}) =>{
+export const AlertComponent = ({title, information, buttonText, redirectUrl = "#", buttonClickFunction}) =>{
 
     const [visibleState, setVisibleState] = useState(true);
     const navigate = useNavigate();
@@ -99,6 +99,7 @@ export const AlertComponent = ({title, information, buttonText, redirectUrl = "#
             navigate(redirectUrl);
         }
         setVisibleState(false);
+        buttonClickFunction();
     }
 
     return (

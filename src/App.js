@@ -29,6 +29,8 @@ import Logout from "./components/Logout";
 import SemiTrailerEquipmentCreate from "./components/SemiTrailerEquipmentCreate";
 import TruckEquipmentCreate from "./components/TruckEquipmentCreate";
 import Users from "./components/Users";
+import {GoogleMap} from "@react-google-maps/api";
+import MapGen from "./components/MapGen";
 
 
 
@@ -57,6 +59,7 @@ function App(){
                 <Route path="/semi-trailers" element={<SemiTrailers/>}/>
                 <Route path="/truck-equipment-create" element={<TruckEquipmentCreate/>}/>
                 <Route path="/semi-trailers-equipment-create" element={<SemiTrailerEquipmentCreate/>}/>
+                <Route path="/maps" element={<MapGen/>}/>
             </Routes>
         </ContentContainer>
     </PageContainer>

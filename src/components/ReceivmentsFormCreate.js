@@ -50,6 +50,9 @@ import user from "./User";
 import {UpdateButton} from "../assets/styles/user_display";
 import Truck from "./Truck";
 import {SemiTrailerViewContainerFun, TruckViewContainerFun} from "../utils/FunctionComponents.js";
+import {AlertComponent} from "../utils/FunctionComponents.js";
+import SemiTrailerEquipmentCreate from "./SemiTrailerEquipmentCreate";
+import TruckEquipmentCreate from "./TruckEquipmentCreate";
 
 function ReceivmentFromCreate(){
     const [truck, setTruck] = useState(true);
@@ -60,8 +63,14 @@ function ReceivmentFromCreate(){
     const [choseSemiTrailer, setChoseSemiTrailer] = useState(null);
     const [choseTruck, setChoseTruck] = useState(null);
     const [approve, setApprove] = useState(false);
+    const [error, setError] = useState(false);
+
+    // code responsible for steps - choose equipment to truck etc
+    const [step1, setStep1] = useState(true);
+    const [step2, setStep2] = useState(false);
 
     const handlePickTruck = (event, key) =>{
+        console.log(event, key);
         setTruckId(key);
         setChoseTruck(key);
     };
@@ -72,8 +81,6 @@ function ReceivmentFromCreate(){
     };
 
     const approveChoice = () => {
-
-        console.log(user_data.id);
 
         client.post('/api/receivment-create/',{
             truck : truckId,
@@ -86,11 +93,20 @@ function ReceivmentFromCreate(){
         }).then(response => {
             console.log(response);
             setApprove(true);
+            setStep1(false);
+            setStep2(true);
         }).catch(error => {
-            alert("Something is bad with you data");
-            console.log(error);
+            setError(true);
+            setStep1(false);
         })
     };
+
+    const handleTryAgain = () =>{
+        setError(false);
+        setChoseTruck(null);
+        setChoseSemiTrailer(null);
+        setStep1(true);
+    }
 
     useEffect(() => {
         client.get('/api/trucks/',{
@@ -124,11 +140,10 @@ function ReceivmentFromCreate(){
             })
     },[])
 
-    return (
-        <ReceivmentContainer>
+    const DivMainContent = () => (
+        <div>
             <InformPostContainer>
                 <InformPostContentContainer>
-
                 </InformPostContentContainer>
             </InformPostContainer>
             <ReceivmentInfoContainer>
@@ -138,25 +153,25 @@ function ReceivmentFromCreate(){
                 </PostStory>
             </ReceivmentInfoContainer>
             <ChoiceContainer>
-                <SemiTrailerChoice>
-                    {!approve && (
-                        <>
+                {!approve && (
+                    <>
+                        <SemiTrailerChoice>
                             <p>SemiTrailers</p>
                             <HeaderTablesName>
                                 <HeaderName>BRAND</HeaderName>
-                                    <HeaderName>MODEL</HeaderName>
-                                    <HeaderName>PRODUCTION DATE</HeaderName>
-                                    <HeaderName>SEMI NOTE</HeaderName>
-                                    <HeaderName>REGISTRATION NUMBER</HeaderName>
+                                <HeaderName>MODEL</HeaderName>
+                                <HeaderName>PRODUCTION DATE</HeaderName>
+                                <HeaderName>SEMI NOTE</HeaderName>
+                                <HeaderName>REGISTRATION NUMBER</HeaderName>
                             </HeaderTablesName>
                             <SemiTrailerViewContainerFun
                                 items={semitrailers}
                                 selectedItem={choseSemiTrailer}
                                 onSelect={handlePickSemiTrailer}
                             />
-                        </>
-                    )}
-                </SemiTrailerChoice>
+                        </SemiTrailerChoice>
+                    </>
+                )}
                 <TruckChoice>
                     {!approve && (
                         <>
@@ -191,6 +206,34 @@ function ReceivmentFromCreate(){
                     fds
                 </TruckChoice>
             </ChoiceContainer>
+        </div>
+    )
+
+    return (
+        <ReceivmentContainer>
+            {
+                error && (
+                    <div>
+                        <AlertComponent
+                            title="Error"
+                            information="Something is bad with creation"
+                            buttonText="Try again"
+                            buttonClickFunction={handleTryAgain}
+                        />
+                    </div>
+                )
+            }
+            { step1 &&
+                (
+                    <DivMainContent/>
+                )
+            }
+            { step2 && (
+                <ChoiceContainer>
+                    <SemiTrailerEquipmentCreate/>
+                    <TruckEquipmentCreate/>
+                </ChoiceContainer>
+            ) }
         </ReceivmentContainer>
     )
 }

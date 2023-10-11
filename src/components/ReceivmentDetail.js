@@ -12,6 +12,7 @@ function ReceivmentDetail(){
     const [destinationUserData, setDestinationUserData] = useState('');
     const [truckRegistrationNumber, setTruckRegistrationNumber] = useState('');
     const [semitrailerRegistrationNumer, setSemiTrailerRegistrationNumber] = useState('');
+
     const { pk } = useParams();
 
     useEffect(() => {
@@ -26,11 +27,9 @@ function ReceivmentDetail(){
 
 
     return (
-        <AlertComponent
-            title="esa"
-            information="information"
-            buttonText="buttonText"
-        />
+        <>
+
+        </>
     )
 }
 
