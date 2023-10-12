@@ -13,6 +13,7 @@ import {useState, useEffect} from "react";
 import client from "../utils/Sender";
 import {access_token} from "../utils/Sender";
 import {InfoCreateMachineContainer, SelectContainer, SelectOption} from "../assets/styles/truck_styled";
+import {useLocation} from "react-router-dom";
 
 function SemiTrailerEquipmentCreate(){
 
@@ -26,13 +27,33 @@ function SemiTrailerEquipmentCreate(){
     const [dimensionBoard, setDimensionBoard] = useState(true);
     const [status, setStatus] = useState('Wolny');
 
+    let location = useLocation();
+    let id = location.state.id;
+
     const submitForm = (e) =>{
         e.preventDefault();
         client.
             post('/api/semitrailereqipment-create/',{
-
+                semi_trailer : id,
+                belts : belts,
+                corners: corners,
+                aluminium_stick : aluminiumStick,
+                wide_stick: wideStick,
+                ladder: ladder,
+                roof_stick: roofStick,
+                dimenstion_board: dimensionBoard,
+                status: status
         },
-        )
+            {
+            headers: {
+                Authorization: `Bearer ${access_token}`
+            },
+        }).then(response => {
+            console.log("pomyslnie dodano equipment");
+            alert("SUckes");
+        }).catch(error => {
+            console.log(error);
+        })
     }
 
     const handleSelectOption = (event) => {
@@ -73,19 +94,19 @@ function SemiTrailerEquipmentCreate(){
             <MachineContainer onSubmit={submitForm} encType="multipart/form-data">
                 <InfoCreateMachineContainer>
                     <LabelFields>Belts: </LabelFields>
-                    <InputField name="betls" type="number" onChange={(e) => setBelts(e.target.value)} />
+                    <InputField name="betls" type="number" onChange={(e) => setBelts(Number(e.target.value))} />
                 </InfoCreateMachineContainer>
                 <InfoCreateMachineContainer>
                     <LabelFields>Corners: </LabelFields>
-                    <InputField name="betls" type="number" onChange={(e) => setCorners(e.target.value)} />
+                    <InputField name="betls" type="number" onChange={(e) => setCorners(Number(e.target.value))} />
                 </InfoCreateMachineContainer>
                 <InfoCreateMachineContainer>
                     <LabelFields>Aluminium Stick: </LabelFields>
-                    <InputField name="betls" type="number" onChange={(e) => setAluminiumStick(e.target.value)} />
+                    <InputField name="betls" type="number" onChange={(e) => setAluminiumStick(Number(e.target.value))} />
                 </InfoCreateMachineContainer>
                 <InfoCreateMachineContainer>
                     <LabelFields>Wide Stcik: </LabelFields>
-                    <InputField name="betls" type="number" onChange={(e) => setWideStick(e.target.value)} />
+                    <InputField name="betls" type="number" onChange={(e) => setWideStick(Number(e.target.value))} />
                 </InfoCreateMachineContainer>
                 <InfoCreateMachineContainer>
                     <LabelFields>Ladder: </LabelFields>

@@ -15,6 +15,7 @@ export const ContentContainer = styled.div`
 `;
 
 export const LeftPanel = styled.div`
+  position: sticky;
   flex-direction: column;
   flex: 1;
   flex-basis: auto;

@@ -5,7 +5,7 @@ import {
     TruckViewContainer
 } from "../assets/styles/receivment_create_styled";
 import {MachinePhotoInput, StyleAvailable, StyleAvailableFalse} from "../assets/styles/truck_list_styled";
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import {
     AlertButton,
     AlertContainer,
@@ -14,7 +14,7 @@ import {
     AlertTitle
 } from "../assets/styles/alert_styled";
 import {Link, useNavigate, useParams} from "react-router-dom";
-import client, {access_token} from "./Sender";
+import client, {access_token, countSessionTime} from "./Sender";
 import {
     CreateButtonPostContainer,
     InformPostContainer,
@@ -134,8 +134,8 @@ export const AlertComponent = ({title, information, buttonText, redirectUrl = "#
 
 
 export const SemiTrailerComponent = ({props}) => {
-    console.log(props);
 
+    const pk = props.id;
     const [brand, setBrand] = useState(props.brand);
     const [model, setModel] = useState(props.model);
     const [production_data, setProduction_data] = useState(props.production_data);
@@ -143,8 +143,6 @@ export const SemiTrailerComponent = ({props}) => {
     const [aviable, setAviable] = useState(props.aviable);
     const [semi_note, setSemiNote] = useState(props.semi_note);
     const [photo, setPhoto] = useState("");
-
-    const { pk } = useParams();
 
     const handleSubmit = (e) =>{
         e.preventDefault();
@@ -175,21 +173,6 @@ export const SemiTrailerComponent = ({props}) => {
                 <InformPostContentContainer>
                     <TextPostContainer>
 
-                    </TextPostContainer>
-                    <TextPostContainer>
-                        <TextTitle>NAURA</TextTitle>
-                        <MainTextTitle>Select your best car, manage user and facilities in your company using complex management system</MainTextTitle>
-                        <PostStoryButtonContainer>
-                            <PostStory>
-                                Welcome to the future of car management! Say goodbye to worries and inefficiencies with our cutting-edge car management app designed to make your driving experience a breeze.
-                                Discover the power of real-time control as our app offers seamless GPS tracking, allowing you to monitor your vehicle's location at all times, ensuring its safety and security.
-                            </PostStory>
-                            <CreateButtonPostContainer>
-                                <ButtonLink as={Link} to="/semi-trailers-equipment-create">
-                                    Create Semitrailer Equipment
-                                </ButtonLink>
-                            </CreateButtonPostContainer>
-                        </PostStoryButtonContainer>
                     </TextPostContainer>
                 </InformPostContentContainer>
             </InformPostContainer>
@@ -256,3 +239,153 @@ export const SemiTrailerComponent = ({props}) => {
     )
 
 }
+
+export const TruckComponent = ({props}) => {
+
+    const pk = props.id;
+    const [brand, setBrand] = useState(props.brand);
+    const [model, setModel] = useState(props.model);
+    const [power, setPower] = useState(props.power);
+    const [registration_number, setRegistration_number] = useState(props.registration_number);
+    const [driven_lenght, setDriven_lenght] = useState(props.driven_lenght);
+    const [production_data, setProduction_data] = useState(props.production_data);
+    const [aviable, setAviable] = useState(props.aviable);
+    const [photo, setPhoto] = useState(props.photo);
+
+
+    const access_token = localStorage.getItem('access');
+    console.log("generowanie truck");
+    countSessionTime();
+    /*
+        ✔
+        X✔
+     */
+    useEffect(() =>{
+        client.get(`/api/trucks/${pk}/`,{
+            headers:{
+                Authorization: `Bearer ${access_token}`
+            }
+        })
+            .then(response =>{
+                console.log(response);
+                let data = response.data
+                setBrand(data.brand)
+                setModel(data.model)
+                setPower(data.power)
+                setRegistration_number(data.registration_number)
+                setDriven_lenght(data.driven_length)
+                setProduction_data(data.production_date)
+                setAviable(data.aviable)
+                setPhoto(data.photo);
+            })
+            .catch(error =>{
+                console.log(error);
+            })
+    }, []);
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+
+        client
+            .post(`/api/trucks/${pk}/`, {
+                    brand: brand,
+                    model: model,
+                    power: power,
+                    registration_number: registration_number,
+                    production_data: production_data,
+                    driven_lenght: driven_lenght,
+                    aviable: aviable,
+                    photo: photo
+                },
+                {
+                    headers: {
+                        Authorization:
+                            `Bearer ${access_token}`,
+                        'Content-Type': 'multipart/form-data'
+                    },
+
+                })
+    }
+    const handlePhotoChange = (e) => {
+        const selectedPhoto = e.target.files[0];
+        if (selectedPhoto) {
+            setPhoto(URL.createObjectURL(selectedPhoto));
+        }
+    };
+
+    return (
+        <MachineDetailContainer>
+            <HeaderContainer>
+                <MachineHeaderName>
+                    Truck Detail
+                </MachineHeaderName>
+            </HeaderContainer>
+            <MachineDetail>
+                <MachineInformation>
+                    <MachineDetailRow>
+                        <LabelFields>Brand:</LabelFields>
+                        <InputField
+                            type="text"
+                            value={brand}
+                            onChange={(e) => setBrand(e.target.value)}
+                        />
+                    </MachineDetailRow>
+                    <MachineDetailRow>
+                        <LabelFields>Power:</LabelFields>
+                        <InputField
+                            type="text"
+                            value={power}
+                            onChange={(e) => setPower(e.target.value)}
+                        />
+                    </MachineDetailRow>
+                    <MachineDetailRow>
+                        <LabelFields>Driven Length:</LabelFields>
+                        <InputField
+                            type="text"
+                            value={driven_lenght}
+                            onChange={(e) => setDriven_lenght(e.target.value)}
+                        />
+                    </MachineDetailRow>
+                    <MachineDetailRow>
+                        <LabelFields>Production Date:</LabelFields>
+                        <InputField
+                            type="date"
+                            value={production_data}
+                            onChange={(e) => setProduction_data(e.target.value)}
+                        />
+                    </MachineDetailRow>
+                    <MachineDetailRow>
+                        <LabelFields>Registration Number:</LabelFields>
+                        <InputField
+                            type="text"
+                            value={registration_number}
+                            onChange={(e) => setRegistration_number(e.target.value)}
+                        />
+                    </MachineDetailRow>
+                    <UpdateButton onClick={handleSubmit}>Update</UpdateButton>
+
+                </MachineInformation>
+                <MachinePhotoContainer>
+                    <MachinePhoto src={photo} />
+                    <MachinePhotoInput
+                        type="file"
+                        accept="image/*"
+                        onChange={handlePhotoChange}
+
+                    />
+                </MachinePhotoContainer>
+            </MachineDetail>
+
+        </MachineDetailContainer>
+    )
+}
+
+
+export const TruckEquipmentDetailComponent = ({props}) =>{
+
+};
+
+
+export const SemiTrailerEquipmentDetailComponent = ({props}) =>{
+
+};

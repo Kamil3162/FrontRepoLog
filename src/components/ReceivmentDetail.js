@@ -6,17 +6,16 @@ import {useParams, UseParams} from 'react-router-dom';
 import {AlertTitle, AlertContainer, AlertInformation, AlertRotationContainer, AlertButton} from "../assets/styles/alert_styled";
 import {AlertComponent} from "../utils/FunctionComponents";
 import {SemiTrailerComponent} from "../utils/FunctionComponents";
+import {TruckComponent} from "../utils/FunctionComponents";
+import Truck from "./Truck";
+import {DetailRowReceivment} from "../assets/styles/receivment_detail_styled";
 
 function ReceivmentDetail(){
     // get all this kind of data
-    const [data, setData] = useState([]);
-    const [sourceUserData, setSourceUserData] = useState('');
-    const [destinationUserData, setDestinationUserData] = useState('');
-    const [truckRegistrationNumber, setTruckRegistrationNumber] = useState('');
-    const [semitrailerRegistrationNumer, setSemiTrailerRegistrationNumber] = useState('');
+    const [data, setData] = useState(null);
 
     const { pk } = useParams();
-    console.log(pk);
+
     useEffect(() => {
         client.get(
             `/api/receivments/${pk}/`,{
@@ -25,20 +24,36 @@ function ReceivmentDetail(){
                 }
             }
         ).then(response => {
-            console.log(response);
             setData(response.data);
         }).catch(error => {
-            console.log(error);
+            console.log("blad");
         })
     }, []);
 
-    console.log(data.semi_trailer);
 
     return (
         <div>
-            <SemiTrailerComponent
-                props={data.semi_trailer}
-            />
+            { data &&
+                <>
+                    <DetailRowReceivment>
+                        <SemiTrailerComponent
+                            props={data.semi_trailer}
+                        />
+                        <TruckComponent
+                            props={data.truck}
+                        />
+                    </DetailRowReceivment>
+                    <DetailRowReceivment>
+                        <SemiTrailerComponent
+                            props={data.semi_trailer}
+                        />
+                        <TruckComponent
+                            props={data.truck}
+                        />
+                    </DetailRowReceivment>
+                </>
+                }
+
         </div>
     )
 }

@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from "react";
 import axios from "axios";
 import {Link, useParams} from "react-router-dom";
+import {useNavigate} from "react-router-dom";
 import {access_token, countSessionTime} from "../utils/Sender";
 import client from "../utils/Sender";
 
@@ -44,7 +45,9 @@ function TruckDisplay(){
 
     const { pk } = useParams();
     const access_token = localStorage.getItem('access');
-    console.log("generowanir ruck");
+
+    const navigate = useNavigate();
+
     countSessionTime();
     /*
         ✔
@@ -103,6 +106,12 @@ function TruckDisplay(){
         }
     };
 
+    const handleNavigate = () =>{
+        navigate('/truck-equipment-create',{
+            state: { id: pk }
+        });
+    }
+
     return (
         <MachineDetailContainer>
             <InformPostContainer>
@@ -116,7 +125,7 @@ function TruckDisplay(){
                                 Discover the power of real-time control as our app offers seamless GPS tracking, allowing you to monitor your vehicle's location at all times, ensuring its safety and security.
                             </PostStory>
                             <CreateButtonPostContainer>
-                                <ButtonLink as={Link} to="/truck-equipment-create">
+                                <ButtonLink onClick={handleNavigate}>
                                     Truck Equipment Create
                                 </ButtonLink>
                             </CreateButtonPostContainer>
@@ -180,7 +189,6 @@ function TruckDisplay(){
                         type="file"
                         accept="image/*"
                         onChange={handlePhotoChange}
-
                     />
                 </MachinePhotoContainer>
             </MachineDetail>

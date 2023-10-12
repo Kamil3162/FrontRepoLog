@@ -19,6 +19,8 @@ import {
 import {InputField, LabelFields, UpdateButton} from "../assets/styles/user_display";
 import {MachinePhotoInput} from "../assets/styles/truck_list_styled";
 import {ButtonLink} from "../assets/styles/link_buttons";
+import {useNavigate} from "react-router-dom";
+
 function SemiTrailer(){
     const [brand, setBrand] = useState("");
     const [model, setModel] = useState("");
@@ -29,6 +31,7 @@ function SemiTrailer(){
     const [photo, setPhoto] = useState("");
 
     const { pk } = useParams();
+    const navigate = useNavigate();
 
     useEffect(() =>{
         client.get(`/api/semitrailers/${pk}/`,{
@@ -81,6 +84,12 @@ function SemiTrailer(){
         })
     }
 
+    const handleNavigate = () =>{
+        navigate('/semi-trailers-equipment-create',{
+            state : {id : pk}
+        })
+    }
+
     return (
         <MachineDetailContainer>
             <InformPostContainer>
@@ -97,7 +106,7 @@ function SemiTrailer(){
                                 Discover the power of real-time control as our app offers seamless GPS tracking, allowing you to monitor your vehicle's location at all times, ensuring its safety and security.
                             </PostStory>
                             <CreateButtonPostContainer>
-                                <ButtonLink as={Link} to="/semi-trailers-equipment-create">
+                                <ButtonLink onClick={handleNavigate}>
                                     Create Semitrailer Equipment
                                 </ButtonLink>
                             </CreateButtonPostContainer>

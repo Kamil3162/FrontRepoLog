@@ -1,21 +1,19 @@
-import React from "react";
+import React, {useState} from "react";
 import {
     CreateButtonPostContainer,
     InformPostContainer,
-    InformPostContentContainer,
-    MainTextTitle, PostStory, PostStoryButtonContainer, TextPostContainer,
+    InformPostContentContainer, MainTextTitle, PostStory, PostStoryButtonContainer,
+    TextPostContainer,
     TextTitle
 } from "../assets/styles/home_guest_styled";
 import {MachineContainer} from "../assets/styles/mechine_create_styled";
-import {AddressContainer, InputField, LabelFields} from "../assets/styles/user_display";
-import {LoginButton} from "../assets/styles/login_styled";
-import {useState, useEffect} from "react";
-import client from "../utils/Sender";
-import {access_token} from "../utils/Sender";
 import {InfoCreateMachineContainer, SelectContainer, SelectOption} from "../assets/styles/truck_styled";
+import {LabelFields} from "../assets/styles/user_display";
+import {LoginButton} from "../assets/styles/login_styled";
+import client, {access_token} from "../utils/Sender";
 import {useLocation} from "react-router-dom";
+function TruckEquipmentDetail(){
 
-function TruckEquipmentCreate(){
     const [chest, setChest] = useState(true);
     const [chains, setChains] = useState(true);
     const [jackHitch, setJackHitch] = useState(true);
@@ -24,34 +22,21 @@ function TruckEquipmentCreate(){
     const [tirePumpingWire, setTirePumpingWire] = useState(true);
     const [photo, setPhoto] = useState(null); // For image upload, you might need additional logic
 
-    let location = useLocation();
-    let id = location.state.id;
 
     const submitForm = (e) =>{
         e.preventDefault();
         client.
-            post('/api/truck-equipment-create/',{
-                truck : id,
-                chest : chest,
-                chains: chains,
-                jack_hitch : jackHitch,
-                planetar_key : planetarKey,
-                manometer : manometer,
-                tire_pumping_wire : tirePumpingWire,
-                photo : photo
+        post('/truck-equipment-create',{
+
             },
             {
                 headers: {
-                    Authorization: `Bearer ${access_token}`
+                    Authorization: `Bearer ${access_token}`,
+                    'Content-Type': 'multipart/form-data',
                 },
             }
-        ).then(response => {
-            console.log(response);
-        }).catch(error => {
-            console.log(error);
-        })
+        )
     }
-
     const handleSelectOption = (event) => {
         let name = event.target.name;
         let value = event.target.value;
@@ -146,4 +131,4 @@ function TruckEquipmentCreate(){
     )
 }
 
-export default TruckEquipmentCreate;
+export default TruckEquipmentDetail;
