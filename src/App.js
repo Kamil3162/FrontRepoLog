@@ -52,6 +52,7 @@ function App(){
                 <Route path="/semitrailer-create" element={<SemiTrailer/>}/>
                 <Route path="/semitrailer/:pk" element={<SemiTrailer/>}/>
                 <Route path="/receivments/" element={<ReceivmentsList/>}/>
+                <Route path="/receivments/:pageNumber" element={<ReceivmentsList/>}/>
                 <Route path="/receivment-create/" element={<ReceivmentFromCreate/>}/>
                 <Route path="/receivment-detail/:pk" element={<ReceivmentsDetail/>}/>
                 <Route path="/home-guest" element={<HomeGuest/>}/>

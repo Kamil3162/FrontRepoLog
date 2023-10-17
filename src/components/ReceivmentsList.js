@@ -15,21 +15,27 @@ import {
     TruckList, TruckListContainer,
     TruckListTitle
 } from "../assets/styles/truck_list_styled";
-import {Link} from "react-router-dom";
+import {Link, useParams} from "react-router-dom";
+import {PaginationContainer} from "../assets/styles/pagination_styled";
+import {ButtonLink} from "../assets/styles/link_buttons";
 
 
 function ReceivmentsList(){
     const [receivments, setReceivments] = useState([]);
+    const { pageNumber } = useParams();
+    const actualPageNumber = pageNumber ? pageNumber.split("=")[1] : 1
+
+
 
     useEffect(() => {
-        client.get('/api/receivments/',{
+        client.get(`/api/receivments/?page=${actualPageNumber}`,{
             headers:{
                 Authorization: `Bearer ${access_token}`
             }
         })
             .then(response =>{
                 console.log(response.data);
-                let data = response.data;
+                let data = response.data.results;
                 setReceivments(data);
                 console.log(receivments);
 
@@ -63,16 +69,16 @@ function ReceivmentsList(){
                 {receivments.map((receivment, index) => (
                     <RowListContainer as={Link} to={`/receivment-detail/${receivment.id}`}>
                         <RowListElements>
-                            <StyleText className="style-text">{receivment.semitrailer_registration_numer}</StyleText>
+                            <StyleText className="style-text">{receivment.semi_trailer.registration_number}</StyleText>
                         </RowListElements>
                         <RowListElements>
-                            <StyleText className="style-text">{receivment.truck_registration_number}</StyleText>
+                            <StyleText className="style-text">{receivment.truck.registration_number}</StyleText>
                         </RowListElements>
                         <RowListElements>
-                            <StyleText className="style-text">{receivment.source_user_name} {receivment.source_user_surname}</StyleText>
+                            <StyleText className="style-text">{receivment.source_user.first_name} {receivment.source_user.last_name}</StyleText>
                         </RowListElements>
                         <RowListElements>
-                            <StyleText className="style-text">{receivment.destination_user_name} {receivment.destination_user_surname}</StyleText>
+                            <StyleText className="style-text">{receivment.destination_user.first_name} {receivment.destination_user.last_name}</StyleText>
                         </RowListElements>
                         {
                             receivment.status === true ? (
@@ -88,6 +94,20 @@ function ReceivmentsList(){
                     </RowListContainer>
                 ))}
             </TruckList>
+            <PaginationContainer>
+                <ButtonLink as={Link} to={`/receivments/${pageNumber}`} style={{
+                    width: '200px',
+                    height: '50px'
+                }}>
+                    Previous
+                </ButtonLink>
+                <ButtonLink as={Link} to={`/receivments/${pageNumber}`} style={{
+                    width: '200px',
+                    height: '50px'
+                }}>
+                    Next
+                </ButtonLink>
+            </PaginationContainer>
         </TruckListContainer>
     )
 }
