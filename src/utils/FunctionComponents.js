@@ -152,14 +152,13 @@ export const SemiTrailerComponent = ({props}) => {
     const [aviable, setAviable] = useState(props.aviable);
     const [semi_note, setSemiNote] = useState(props.semi_note);
     const [photo, setPhoto] = useState("");
+    const groups = props.groups
 
     const handleSubmit = (e) =>{
         e.preventDefault();
-
         client.post(`/api/truck/${pk}`,{
             headers: {
-                Authorization: `Bearer ${access_token}`,
-                'Content-Type': 'multipart/form-data',
+                Authorization: `Bearer ${access_token}`
             },
             data:{
                 brand:brand,
@@ -234,7 +233,6 @@ export const SemiTrailerComponent = ({props}) => {
                         />
                     </MachineDetailRow>
                     <UpdateButton>Update</UpdateButton>
-
                 </MachineInformation>
             </MachineDetail>
         </MachineDetailContainer>
@@ -402,6 +400,7 @@ export const UserComponent = ({props}) => {
     const [street, setStreet] = useState(props.street || '');
     const [zipCode, setZipCode] = useState(props.zip_code || '');
     const [phoneNumber, setPhoneNumber] = useState(props.phone_number || '');
+    const groupId = props.groups[0];
 
     const handleUpdate = (e) => {
         e.preventDefault();
@@ -435,6 +434,7 @@ export const UserComponent = ({props}) => {
     }
 
 
+
     return (
         <SettingsContainer>
             <InformPostContainer>
@@ -444,100 +444,162 @@ export const UserComponent = ({props}) => {
                 <SettingDetails>
                     <SettingsNavTitle>Profile Detail</SettingsNavTitle>
                     <SettingDetailContainer>
+                        {
+                            (groupId === 2 || groupId === 3) ? (
+                                <>
+                                    <AddressContainer>
+                                        <LabelFields>Email Address</LabelFields>
+                                        <InputField
+                                            type="text"
+                                            value={email}
+                                            onChange={(e) => setEmail(e.target.value)}
+                                        />
+                                    </AddressContainer>
+                                    <AddressContainer>
 
-                        <AddressContainer>
-                            <LabelFields>Email Address</LabelFields>
-                            <InputField
-                                type="text"
-                                value={email}
-                                onChange={(e) => setEmail(e.target.value)}
-                            />
-                        </AddressContainer>
-                        <AddressContainer>
+                                        <LabelFields>Full name</LabelFields>
+                                        <InputField
+                                            type="text"
+                                            value={firstName}
+                                            onChange={(e) => setFirstName(e.target.value)}
+                                        />
+                                        <InputField
+                                            type="text"
+                                            value={lastName}
+                                            onChange={(e) => setLastName(e.target.value)}
+                                        />
+                                    </AddressContainer>
+                                    <AddressContainer>
+                                        <LabelFields>Zip code</LabelFields>
+                                        <InputField
+                                            type="text"
+                                            value={zipCode}
+                                            onChange={(e) => setZipCode(e.target.value)}
+                                        />
+                                    </AddressContainer>
+                                    <PersonalDataContainer>
+                                        <AddressContainer>
+                                            <LabelFields>Phone:</LabelFields>
+                                            <InputField
+                                                type="number"
+                                                value={phoneNumber}
+                                                onChange={(e) => setPhoneNumber(e.target.value)}
+                                            />
+                                            <br/>
+                                        </AddressContainer>
+                                    </PersonalDataContainer>
+                                    <PersonalDataContainer>
+                                        <AddressContainer>
+                                            <LabelFields>Password</LabelFields>
+                                            <InputField
+                                                type="password"
+                                                value={password}
+                                                onChange={(e) => setPassword(e.target.value)}
+                                            />
+                                        </AddressContainer>
+                                        <UpdateButton onClick={handleUpdate}>Update</UpdateButton>
+                                    </PersonalDataContainer>
+                                </>
+                            ) : (
+                                <>
+                                    <AddressContainer>
+                                        <LabelFields>Email Address</LabelFields>
+                                        <InputField
+                                            type="text"
+                                            value={email}
+                                            onChange={(e) => setEmail(e.target.value)}
+                                        />
+                                    </AddressContainer>
+                                    <AddressContainer>
 
-                            <LabelFields>Full name</LabelFields>
-                            <InputField
-                                type="text"
-                                value={firstName}
-                                onChange={(e) => setFirstName(e.target.value)}
-                            />
-                            <InputField
-                                type="text"
-                                value={lastName}
-                                onChange={(e) => setLastName(e.target.value)}
-                            />
-                        </AddressContainer>
-                        <AddressContainer>
-                            <LabelFields>Street</LabelFields>
-                            <InputField
-                                type="text"
-                                value={street}
-                                onChange={(e) => setStreet(e.target.value)}
-                            />
-                            <br/>
-                        </AddressContainer>
-                        <AddressContainer>
-                            <LabelFields>City</LabelFields>
-                            <InputField
-                                type="text"
-                                value={city}
-                                onChange={(e) => setCity(e.target.value)}
-                            />
-                            <br/>
-                        </AddressContainer>
-                        <AddressContainer>
-                            <LabelFields>Aparment</LabelFields>
-                            <InputField
-                                type="text"
-                                value={apartmentNumber}
-                                onChange={(e) => setApartmentNumber(e.target.value)}
-                            />
-                            <br/>
-                        </AddressContainer>
+                                        <LabelFields>Full name</LabelFields>
+                                        <InputField
+                                            type="text"
+                                            value={firstName}
+                                            onChange={(e) => setFirstName(e.target.value)}
+                                        />
+                                        <InputField
+                                            type="text"
+                                            value={lastName}
+                                            onChange={(e) => setLastName(e.target.value)}
+                                        />
+                                    </AddressContainer>
+                                    <AddressContainer>
+                                        <LabelFields>Street</LabelFields>
+                                        <InputField
+                                            type="text"
+                                            value={street}
+                                            onChange={(e) => setStreet(e.target.value)}
+                                        />
+                                        <br/>
+                                    </AddressContainer>
+                                    <AddressContainer>
+                                        <LabelFields>City</LabelFields>
+                                        <InputField
+                                            type="text"
+                                            value={city}
+                                            onChange={(e) => setCity(e.target.value)}
+                                        />
+                                        <br/>
+                                    </AddressContainer>
+                                    <AddressContainer>
+                                        <LabelFields>Aparment</LabelFields>
+                                        <InputField
+                                            type="text"
+                                            value={apartmentNumber}
+                                            onChange={(e) => setApartmentNumber(e.target.value)}
+                                        />
+                                        <br/>
+                                    </AddressContainer>
 
-                        <AddressContainer>
-                            <LabelFields>HopuseNum</LabelFields>
-                            <InputField
-                                type="text"
-                                value={houseNumber}
-                                onChange={(e) => setHouseNumber(e.target.value)}
-                            />
-                            <br/>
-                        </AddressContainer>
+                                    <AddressContainer>
+                                        <LabelFields>HopuseNum</LabelFields>
+                                        <InputField
+                                            type="text"
+                                            value={houseNumber}
+                                            onChange={(e) => setHouseNumber(e.target.value)}
+                                        />
+                                        <br/>
+                                    </AddressContainer>
 
-                        <AddressContainer>
-                            <LabelFields>Zip code</LabelFields>
-                            <InputField
-                                type="text"
-                                value={zipCode}
-                                onChange={(e) => setZipCode(e.target.value)}
-                            />
-                        </AddressContainer>
-                        <PersonalDataContainer>
-                            <AddressContainer>
-                                <LabelFields>Phone:</LabelFields>
-                                <InputField
-                                    type="number"
-                                    value={phoneNumber}
-                                    onChange={(e) => setPhoneNumber(e.target.value)}
-                                />
-                                <br/>
-                            </AddressContainer>
-                        </PersonalDataContainer>
-                        <PersonalDataContainer>
-                            <AddressContainer>
-                                <LabelFields>Password</LabelFields>
-                                <InputField
-                                    type="password"
-                                    value={password}
-                                    onChange={(e) => setPassword(e.target.value)}
-                                />
-                            </AddressContainer>
-                            <UpdateButton onClick={handleUpdate}>Update</UpdateButton>
-                        </PersonalDataContainer>
+                                    <AddressContainer>
+                                        <LabelFields>Zip code</LabelFields>
+                                        <InputField
+                                            type="text"
+                                            value={zipCode}
+                                            onChange={(e) => setZipCode(e.target.value)}
+                                        />
+                                    </AddressContainer>
+                                    <PersonalDataContainer>
+                                        <AddressContainer>
+                                            <LabelFields>Phone:</LabelFields>
+                                            <InputField
+                                                type="number"
+                                                value={phoneNumber}
+                                                onChange={(e) => setPhoneNumber(e.target.value)}
+                                            />
+                                            <br/>
+                                        </AddressContainer>
+                                    </PersonalDataContainer>
+                                    <PersonalDataContainer>
+                                        <AddressContainer>
+                                            <LabelFields>Password</LabelFields>
+                                            <InputField
+                                                type="password"
+                                                value={password}
+                                                onChange={(e) => setPassword(e.target.value)}
+                                            />
+                                        </AddressContainer>
+                                        <UpdateButton onClick={handleUpdate}>Update</UpdateButton>
+                                    </PersonalDataContainer>
+                                </>
+                                )
+                            }
                     </SettingDetailContainer>
                 </SettingDetails>
             </SettingElementsContainer>
         </SettingsContainer>
     );
 };
+
+

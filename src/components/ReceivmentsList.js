@@ -23,9 +23,10 @@ import {ButtonLink} from "../assets/styles/link_buttons";
 function ReceivmentsList(){
     const [receivments, setReceivments] = useState([]);
     const { pageNumber } = useParams();
-    const actualPageNumber = pageNumber ? pageNumber.split("=")[1] : 1
-
-
+    const actualPageNumber = pageNumber && !isNaN(pageNumber) ? Number(pageNumber) : 1;
+    console.log(actualPageNumber);
+    const [nextPage, setNextPage] = useState(null);
+    const [previusPage, setPreviousPage] = useState(null);
 
     useEffect(() => {
         client.get(`/api/receivments/?page=${actualPageNumber}`,{
@@ -34,16 +35,33 @@ function ReceivmentsList(){
             }
         })
             .then(response =>{
-                console.log(response.data);
                 let data = response.data.results;
                 setReceivments(data);
-                console.log(receivments);
+                console.log(response.data)
+                const next = response.data.next ? response.data.next.split('?page=')[1] : "";
+                console.log(next);
+                const previous = response.data.previous ? response.data.previous.split('?page=')[1] : "";
+                console.log(previous);
+
+                if (next){
+                    setNextPage(next)
+
+                }
+
+                if (previous){
+                    setPreviousPage(previous)
+
+                }
+
+                console.log(nextPage);
+                console.log(previusPage);
+                console.log('esa');
 
             })
             .catch(error =>{
                 console.log(error);
             })
-    },[]);
+    },[actualPageNumber]);
     
     return (
         <TruckListContainer>
@@ -95,13 +113,13 @@ function ReceivmentsList(){
                 ))}
             </TruckList>
             <PaginationContainer>
-                <ButtonLink as={Link} to={`/receivments/${pageNumber}`} style={{
+                <ButtonLink as={Link} to={`/receivments/${previusPage}`} style={{
                     width: '200px',
                     height: '50px'
                 }}>
                     Previous
                 </ButtonLink>
-                <ButtonLink as={Link} to={`/receivments/${pageNumber}`} style={{
+                <ButtonLink as={Link} to={`/receivments/${nextPage}`} style={{
                     width: '200px',
                     height: '50px'
                 }}>

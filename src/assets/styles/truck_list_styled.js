@@ -20,7 +20,8 @@ export const TruckListTitle = styled.a`
 export const TruckList = styled.div`
     display: flex;
     flex-direction: column;
-  border-top: 1px solid rgba(0, 0, 0, 0.3);;
+  border-top: 1px solid rgba(0, 0, 0, 0.3);
+  height: 400px;
   
 `;
 

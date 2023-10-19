@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled,{keyframes} from "styled-components";
 import GlobalStyle from "../../fonts/fontStyles";
 
 export const PageContainer = styled.div`
@@ -37,6 +37,17 @@ export const LeftPanelLogo = styled.div`
   margin-bottom: 100px;
 `;
 
+
+export const backIn = keyframes`
+    50% {
+        transform: scale(0.8);
+    }
+    100%{
+        transform: scale(0.5);
+    }
+`;
+
+
 export const LeftPanelItem = styled.div`
   display: flex;
   align-items: center;
@@ -47,13 +58,15 @@ export const LeftPanelItem = styled.div`
   text-decoration: none;
   width: calc(100% - 50px); /* Set width minus the margin */
   margin-left: 25px;
-
+  
   &:hover {
     transition: background-color 0.3s ease, transition-delay 0.2s;
     border-radius: 15px;
     background-color: white;
     width: 100%;
   }
+    
+  
 `;
 export const PanelItemText = styled.div`
     margin-left: 15px;

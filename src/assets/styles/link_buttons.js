@@ -24,6 +24,5 @@ export const ButtonLink = styled.button`
     background-color: green;
     transition: background-color 100ms linear;
     color: whitesmoke;
-    border: none;
   }
 `;

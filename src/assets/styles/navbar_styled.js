@@ -1,29 +1,40 @@
 import styled from "styled-components";
 
-export const NavbarStyle = styled.div`
-    background-color: darkblue;
+export const NavbarLoginContainer = styled.div`
+    display: flex;
 `;
 
-
+export const NavbarLinksContainer = styled.div`
+  display: flex;    
+`;
 export const NavbarContainer = styled.div`
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  background-color: hsl(25, 61%, 100%);
+  background-color: #dedddd;
   padding: 10px;
-  color: #fff;
+  justify-content: right;
   // opacity - przejrzystosc
   // rgba 
   // 
 `;
 
 export const NavItem = styled.a`
-  color: #fff;
+  color: white;
   text-decoration: none;
   margin: 0 10px;
+  background-color: #008029;
+  padding: 10px;
+  min-width: 100px;
+  max-width: 150px;
+  text-align: center;
+  border-radius: 10px;
+  font-family: Rubik;
 
   &:hover {
-    text-decoration: underline;
+    background-color: #3e0080;
+    color: white;
+    transition: background-color 100ms linear;
+
   }
 `;
 

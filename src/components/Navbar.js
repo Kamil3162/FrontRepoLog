@@ -1,11 +1,12 @@
 
 import axios from "axios";
-import {NavbarContainer, NavbarStyle, NavItem, Logo} from "../assets/styles/navbar_styled.js";
+import {NavbarContainer, NavbarLoginContainer, NavItem, Logo} from "../assets/styles/navbar_styled.js";
 import {useState, useEffect} from "react";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import client from "../utils/Sender";
-
+import {ButtonLink} from "../assets/styles/link_buttons";
+import {user_data} from "../utils/Sender";
 
 function Navbar(){
     const [isValidSession, setIsValidSession] = useState(false);
@@ -58,17 +59,23 @@ function Navbar(){
 
     return (
         <NavbarContainer>
-            <Logo src="/path/to/logo.png" alt="Logo" />
-            <NavItem href="/">Home</NavItem>
-            <NavItem href="/login">Login</NavItem>
-            <NavItem href="/contact">Contact</NavItem>
-            <NavbarStyle>
+
+            <NavbarLoginContainer>
                 { isValidSession ? (
-                    <button onClick={handleLogout}>Logout</button>
+                    <>
+                        <NavItem href="/">Home</NavItem>
+                        <NavItem href="/contact">Contact</NavItem>
+                        <NavItem style={{
+                            border:'none',
+                            backgroundColor: "purple"}}>Hello</NavItem>
+                        <NavItem style={{ width:'120px'}}
+                                 onClick={handleLogout}>Logout</NavItem>
+                    </>
                 ): (
-                    <p>Error something wrong</p>
+                    <NavItem href="/login">Login</NavItem>
+
                 )}
-            </NavbarStyle>
+            </NavbarLoginContainer>
         </NavbarContainer>
     )
 }

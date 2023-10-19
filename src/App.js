@@ -31,6 +31,7 @@ import TruckEquipmentCreate from "./components/TruckEquipmentCreate";
 import Users from "./components/Users";
 import {GoogleMap} from "@react-google-maps/api";
 import MapGen from "./components/MapGen";
+import Navbar from "./components/Navbar";
 
 
 
@@ -39,8 +40,10 @@ function App(){
     <PageContainer>
         <LeftPanelComponent/>
         <ContentContainer>
+            <Navbar/>
             <Routes>
                 <Route path="/" element={<Home/>}/>
+                <Route path="/navbar" element={<Navbar/>}/>
                 <Route path="/register" element={<Register/>}/>
                 <Route path="/login" element={<Login/>}/>
                 <Route path="/logout" element={<Logout/>}/>
