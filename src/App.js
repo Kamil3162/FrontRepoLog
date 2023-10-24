@@ -52,6 +52,8 @@ function App(){
                 <Route path="/semitrailer-create" element={<SemiTrailerForm/>}/>
                 <Route path="/truck-create" element={<TruckCreate/>}/>
                 <Route path="/truck/:pk" element={<Truck/>}/>
+                <Route path="/trucks" element={<Trucks/>}/>
+                <Route path="/trucks/:pk" element={<Trucks/>}/>
                 <Route path="/semitrailer-create" element={<SemiTrailer/>}/>
                 <Route path="/semitrailer/:pk" element={<SemiTrailer/>}/>
                 <Route path="/receivments/" element={<ReceivmentsList/>}/>
@@ -59,8 +61,8 @@ function App(){
                 <Route path="/receivment-create/" element={<ReceivmentFromCreate/>}/>
                 <Route path="/receivment-detail/:pk" element={<ReceivmentsDetail/>}/>
                 <Route path="/home-guest" element={<HomeGuest/>}/>
-                <Route path="/trucks" element={<Trucks/>}/>
                 <Route path="/semi-trailers" element={<SemiTrailers/>}/>
+                <Route path="/semi-trailers/:pk" element={<SemiTrailers/>}/>
                 <Route path="/truck-equipment-create" element={<TruckEquipmentCreate/>}/>
                 <Route path="/semi-trailers-equipment-create" element={<SemiTrailerEquipmentCreate/>}/>
                 <Route path="/maps" element={<MapGen/>}/>

@@ -10,7 +10,8 @@ import {
 import {LoginButton} from "../assets/styles/login_styled";
 
 const mapStyles = { height: "100vh", width: "100%" };
-const defaultCenter = { lat: 52.229879338318824, lng: 21.01311935222952 };
+const defaultCenter = "Rzeszów";
+const destinationAddress = "Grzęska 216";
 const apiKey = process.env.REACT_APP_GOOGLE_MAPS_API_KEY;
 const styles = require("../assets/map_styles/GoogleMapsStyles.json");
 
@@ -18,10 +19,11 @@ function MapComponent() {
     const [directions, setDirections] = useState(null);
     const [distance, setDistance] = useState('');
     const [duration, setDuration] = useState('');
+    //
+    // const address1 = new window.google.maps.DirectionsService();
+    // const address2 = new window.google.maps.Geocoder();
 
-    const calculateRoute = () =>{
 
-    }
     return (
         <MapContainer>
             <MapInfoContainer>
@@ -42,7 +44,7 @@ function MapComponent() {
                         directionsService.route(
                             {
                                 origin: defaultCenter,
-                                destination: { lat: 50.01642397881435, lng: 22.678127467056516 }, // This is another point for demonstration
+                                destination: destinationAddress, // This is another point for demonstration
                                 travelMode: window.google.maps.TravelMode.DRIVING,
                             },
                             (result, status) => {

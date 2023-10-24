@@ -24,7 +24,6 @@ function ReceivmentsList(){
     const [receivments, setReceivments] = useState([]);
     const { pageNumber } = useParams();
     const actualPageNumber = pageNumber && !isNaN(pageNumber) ? Number(pageNumber) : 1;
-    console.log(actualPageNumber);
     const [nextPage, setNextPage] = useState(null);
     const [previusPage, setPreviousPage] = useState(null);
 
@@ -37,12 +36,8 @@ function ReceivmentsList(){
             .then(response =>{
                 let data = response.data.results;
                 setReceivments(data);
-                console.log(response.data)
                 const next = response.data.next ? response.data.next.split('?page=')[1] : "";
-                console.log(next);
                 const previous = response.data.previous ? response.data.previous.split('?page=')[1] : "";
-                console.log(previous);
-
                 if (next){
                     setNextPage(next)
 

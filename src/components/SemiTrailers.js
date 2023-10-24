@@ -6,7 +6,7 @@ import {
     TruckListContainer,
     TruckListTitle
 } from "../assets/styles/truck_list_styled";
-import {Link} from "react-router-dom";
+import {Link, useParams} from "react-router-dom";
 import {
     CreateButtonPostContainer,
     InformPostContainer,
@@ -19,25 +19,34 @@ import {
 import {access_token} from "../utils/Sender";
 import client from "../utils/Sender";
 import {ButtonLink} from "../assets/styles/link_buttons";
+import {PaginationContainer} from "../assets/styles/pagination_styled";
 function SemiTrailers(){
-
     const [semitrailers, setSemiTrailers] = useState([]);
+    const { pk } = useParams();
+    const actualPageNumber = pk && !isNaN(pk) ? Number(pk) : 1;
+    console.log(actualPageNumber);
+    const [nextPage, setNextPage] = useState(null);
+    const [previusPage, setPreviousPage] = useState(null);
+    
 
     useEffect(() =>{
-        client.get("/api/semitrailers/",{
+        client.get(`/api/semitrailers/?page=${actualPageNumber}`,{
             headers:{
                 Authorization: `Bearer ${access_token}`
-
             }
         }).then(response =>{
-            setSemiTrailers(response.data);
+            setSemiTrailers(response.data.results);
+            const next = response.data.next ? response.data.next.split('?page=')[1] : "";
+            const previous = response.data.previous ? response.data.previous.split('?page=')[1] : "";
+            setNextPage(next);
+            setPreviousPage(previous);
         }).catch((error) =>{
             console.log(error);
             if (error.response.status === 401){
                 alert("Autowylogowywanie - koniec sesji");
             }
         })
-    }, []);
+    }, [actualPageNumber]);
 
     return(
         <TruckListContainer>
@@ -113,6 +122,20 @@ function SemiTrailers(){
                     </Link>
                 ))}
             </TruckList>
+            <PaginationContainer>
+                <ButtonLink as={Link} to={`/semi-trailers/${previusPage}`} style={{
+                    width: '200px',
+                    height: '50px'
+                }}>
+                    Previous
+                </ButtonLink>
+                <ButtonLink as={Link} to={`/semi-trailers/${nextPage}`} style={{
+                    width: '200px',
+                    height: '50px'
+                }}>
+                    Next
+                </ButtonLink>
+            </PaginationContainer>
         </TruckListContainer>
     )
 }

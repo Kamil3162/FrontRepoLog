@@ -116,7 +116,7 @@ function ReceivmentFromCreate(){
         })
             .then(response =>{
                 console.log(response);
-                let received_trucks = response.data;
+                let received_trucks = response.data.results;
                 setTrucks(received_trucks);
             })
             .catch(error =>{
@@ -132,7 +132,7 @@ function ReceivmentFromCreate(){
         })
             .then(response =>{
                 console.log(response);
-                let received_semitrailers = response.data;
+                let received_semitrailers = response.data.results;
                 setSemiTrailers(received_semitrailers);
             })
             .catch(error =>{

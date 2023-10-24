@@ -19,7 +19,7 @@ import {
     StyleAvailable,
     StyleAvailableFalse
 } from "../assets/styles/truck_list_styled";
-import {Link} from "react-router-dom";
+import {Link, useParams} from "react-router-dom";
 import {
     CreateButtonPostContainer,
     InformPostContainer,
@@ -38,25 +38,36 @@ import {
 from "../assets/styles/receivment_create_styled";
 import {ButtonLink} from "../assets/styles/link_buttons";
 import {AlertComponent} from "../utils/FunctionComponents";
+import {PaginationContainer} from "../assets/styles/pagination_styled";
 
 function Trucks(){
 
     const [trucks, setTrucks] = useState([]);
     const [isUnauthorizedError, setIsUnauthorizedError] = useState(true);
+    const [nextPage, setNextPage] = useState(null);
+    const [previusPage, setPreviousPage] = useState(null);
+    const { pk } = useParams()
+    const actualPageNumber = pk && !isNaN(pk) ? Number(pk) : 1;
 
+    const actual_page = pk ? pk : 1;
     useEffect(() =>{
-        client.get("/api/trucks/",{
+        client.get(`/api/trucks/?page=${actualPageNumber}`,{
             headers:{
                 Authorization: `Bearer ${access_token}`
 
             }
         }).then(response =>{
-            setTrucks(response.data);
+            setTrucks(response.data.results);
+            const next = response.data.next ? response.data.next.split('?page=')[1] : "";
+            const previous = response.data.previous === null ||
+            response.data.previous.split('?page=')[1] === null ? "": response.data.previous.split('?page=')[1];
+            setPreviousPage(previous);
+            setNextPage(next);
         }).catch(error =>{
             console.log("Blad");
             setIsUnauthorizedError(false);
         })
-    }, []);
+    }, [actualPageNumber]);
 
     return(
         <div>
@@ -128,6 +139,20 @@ function Trucks(){
                                 </Link>
                             ))}
                         </TruckList>
+                        <PaginationContainer>
+                            <ButtonLink as={Link} to={`/trucks/${previusPage}`} style={{
+                                width: '200px',
+                                height: '50px'
+                            }}>
+                                Previous
+                            </ButtonLink>
+                            <ButtonLink as={Link} to={`/trucks/${nextPage}`} style={{
+                                width: '200px',
+                                height: '50px'
+                            }}>
+                                Next
+                            </ButtonLink>
+                        </PaginationContainer>
                     </TruckListContainer>
                 ) : (
                     <AlertComponent
