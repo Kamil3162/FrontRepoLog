@@ -87,6 +87,7 @@ export const StyleAvailable = styled.a`
   border-radius: 20px;
 `;
 export const StyleAvailableFalse = styled.a`
+  display: flex;
   font-family: 'Work Sans', sans-serif;
   font-weight: 600;
   font-size: 20px;
@@ -95,6 +96,8 @@ export const StyleAvailableFalse = styled.a`
   padding: 5px;
   width: 60px;
   border-radius: 20px;
+  justify-content: center;
+  align-items: center;
 `;
 export const MachineInfo = styled.div`
   flex-grow: 1;
@@ -151,6 +154,8 @@ export const BtnExplore = styled.button`
 export const MachinePhotoInput = styled.input`
   position: absolute;
   order: 2;
-  display: inline-block;
   float: right;
+  font-family: 'Varela Round', sans-serif;
+  width: 100px;
+  display: flex;
 `;

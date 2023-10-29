@@ -32,6 +32,7 @@ import Users from "./components/Users";
 import {GoogleMap} from "@react-google-maps/api";
 import MapGen from "./components/MapGen";
 import Navbar from "./components/Navbar";
+import ActiveReceivment from "./components/ActiveReceivment";
 
 
 
@@ -56,6 +57,7 @@ function App(){
                 <Route path="/trucks/:pk" element={<Trucks/>}/>
                 <Route path="/semitrailer-create" element={<SemiTrailer/>}/>
                 <Route path="/semitrailer/:pk" element={<SemiTrailer/>}/>
+                <Route path="/active-receivment/" element={<ActiveReceivment/>}/>
                 <Route path="/receivments/" element={<ReceivmentsList/>}/>
                 <Route path="/receivments/:pageNumber" element={<ReceivmentsList/>}/>
                 <Route path="/receivment-create/" element={<ReceivmentFromCreate/>}/>

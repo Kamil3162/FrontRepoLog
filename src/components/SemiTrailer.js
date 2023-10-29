@@ -58,6 +58,8 @@ function SemiTrailer(){
         if (selectedPhoto) {
             setPhoto(URL.createObjectURL(selectedPhoto));
         }
+        console.log(selectedPhoto);
+        console.log(photo);
     };
 
     const handleSubmit = (e) =>{
@@ -170,7 +172,6 @@ function SemiTrailer(){
                         />
                     </MachineDetailRow>
                     <UpdateButton>Update</UpdateButton>
-
                 </MachineInformation>
                 <MachinePhotoContainer>
                     <MachinePhoto src={photo} />

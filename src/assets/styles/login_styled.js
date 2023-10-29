@@ -53,7 +53,11 @@ export const LoginButton = styled.button`
   font-family: 'Work Sans', sans-serif;
   font-weight: 600;
   background-color: rgb(101, 196, 62);
-
+  
+  &:hover{
+    background-color: blue;
+    color: whitesmoke;
+  }
 `;
 
 

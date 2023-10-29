@@ -8,6 +8,7 @@ import icon6 from "../assets/icons/user.png";
 import icon7 from "../assets/icons/conversation.png";
 import icon8 from "../assets/icons/contract.png";
 import icon10 from "../assets/icons/group.png";
+import icon11 from "../assets/icons/arrow-back-8.png";
 import icon_login from "../assets/icons/login.png";
 import register from "../assets/icons/register.png"
 import transfer from "../assets/icons/transfers.png";
@@ -15,20 +16,28 @@ import {Link} from "react-router-dom";
 import {user_permission_group} from "../utils/Sender";
 import login from "./Login";
 import {useState, useEffect} from "react";
+import {useNavigate} from "react-router-dom";
 
 function LeftPanelComponent(){
     const [userPermissionGroup, setUserPermissionGroup] = useState(undefined);
+    const navigate = useNavigate();
 
     useEffect(() => {
         const permission = user_permission_group;  // Fetch the value from wherever it's stored
         setUserPermissionGroup(permission);
     }, []);
+
     return (
         user_permission_group === 'Admin' || user_permission_group === 'Manager' ? (
             <LeftPanel>
                 <LeftPanelLogo>
                     KD
                 </LeftPanelLogo>
+                <LeftPanelItem onClick={() => { navigate(-1)}}>
+                    <LogoPanelItem src={icon11}/>
+                    <PanelItemText>
+                    </PanelItemText>
+                </LeftPanelItem>
                 <LeftPanelItem as={Link} to="/home-guest">
                     <LogoPanelItem src={icon1}/>
                     <PanelItemText>

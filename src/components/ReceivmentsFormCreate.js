@@ -156,12 +156,9 @@ function ReceivmentFromCreate(){
                 {!approve && (
                     <>
                         <SemiTrailerChoice>
-                            <p>SemiTrailers</p>
+                            <MainTextTitle>SemiTrailers</MainTextTitle>
                             <HeaderTablesName>
-                                <HeaderName>BRAND</HeaderName>
-                                <HeaderName>MODEL</HeaderName>
-                                <HeaderName>PRODUCTION DATE</HeaderName>
-                                <HeaderName>SEMI NOTE</HeaderName>
+                                <HeaderName>AVIABLE</HeaderName>
                                 <HeaderName>REGISTRATION NUMBER</HeaderName>
                             </HeaderTablesName>
                             <SemiTrailerViewContainerFun
@@ -175,42 +172,36 @@ function ReceivmentFromCreate(){
                 <TruckChoice>
                     {!approve && (
                         <>
-                            <p>Trucks</p>
+                            <MainTextTitle>Trucks</MainTextTitle>
                             <HeaderTablesName>
-                                <HeaderName>BRAND</HeaderName>
-                                <HeaderName>MODEL</HeaderName>
-                                <HeaderName>PRODUCTION DATE</HeaderName>
-                                <HeaderName>SEMI NOTE</HeaderName>
+                                <HeaderName>AVIABLE</HeaderName>
                                 <HeaderName>REGISTRATION NUMBER</HeaderName>
                             </HeaderTablesName>
                             <TruckViewContainerFun
                                 items={trucks}
                                 selectedItem={choseTruck}
                                 onSelect={handlePickTruck}/>
-                            <UpdateButton
-                                onClick={approveChoice}
-                                style={{
-                                    display : approve ? "none": "normal",
-                                }}
-                            >
-                                Approve</UpdateButton>
+
                         </>
                     )}
+
                 </TruckChoice>
+
             </ChoiceContainer>
             <ChoiceContainer>
-                <TruckChoice>
-                    fds
-                </TruckChoice>
-                <TruckChoice>
-                    fds
-                </TruckChoice>
+                <UpdateButton
+                    onClick={approveChoice}
+                    style={{
+                        display : approve ? "none": "normal",
+                    }}
+                >
+                    Approve</UpdateButton>
             </ChoiceContainer>
         </div>
     )
 
     return (
-        <ReceivmentContainer>
+        <div>
             {
                 error && (
                     <div>
@@ -234,7 +225,7 @@ function ReceivmentFromCreate(){
                     <TruckEquipmentCreate/>
                 </ChoiceContainer>
             ) }
-        </ReceivmentContainer>
+        </div>
     )
 }
 

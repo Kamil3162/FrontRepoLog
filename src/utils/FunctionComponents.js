@@ -46,19 +46,10 @@ export const SemiTrailerViewContainerFun = ({items, selectedItem, onSelect}) => 
             {items.map(semitrailer => (
                 <RowMachineContainer key={semitrailer.id}>
                     <RowMachineRecord>
-                        {semitrailer.brand}
-                    </RowMachineRecord>
-                    <RowMachineRecord>
-                        {semitrailer.model}
-                    </RowMachineRecord>
-                    <RowMachineRecord>
-                        {semitrailer.production_year}
-                    </RowMachineRecord>
-                    <RowMachineRecord>
                         {semitrailer.available === 'Wolny' ? (
-                            <StyleAvailable className="style-text">✔</StyleAvailable>
+                            <StyleAvailable style={{width:'40px'}}  className="style-text">✔</StyleAvailable>
                         ) : (
-                            <StyleAvailableFalse className="style-text">X</StyleAvailableFalse>
+                            <StyleAvailableFalse style={{width:'40px'}} className="style-text">X</StyleAvailableFalse>
                         )}
                     </RowMachineRecord>
                     <RowMachineRecord>
@@ -67,9 +58,7 @@ export const SemiTrailerViewContainerFun = ({items, selectedItem, onSelect}) => 
                     <RowMachineRecord>
                         <ButtonPick
                             onClick={(e) => onSelect(e, semitrailer.id)}
-                            style={{
-                                backgroundColor: selectedItem === semitrailer.id ? 'green' : 'red'
-                            }}
+                            isSelected={selectedItem === semitrailer.id}
                         >
                             Pick
                         </ButtonPick>
@@ -84,14 +73,11 @@ export const TruckViewContainerFun = ({items, selectedItem, onSelect}) =>{
         <TruckViewContainer>
             {items.map((truck, index) => (
                 <RowMachineContainer key={truck.id}>
-                    <RowMachineRecord>{truck.brand}</RowMachineRecord>
-                    <RowMachineRecord>{truck.model}</RowMachineRecord>
-                    <RowMachineRecord>{truck.production_date}</RowMachineRecord>
                     <RowMachineRecord>
                         {truck.available === "Wolny" ? (
-                            <StyleAvailable className="style-text">✔</StyleAvailable>
+                            <StyleAvailable width='40px' className="style-text">✔</StyleAvailable>
                         ) : (
-                            <StyleAvailableFalse className="style-text">X</StyleAvailableFalse>
+                            <StyleAvailableFalse style={{width:'40px'}} className="style-text">X</StyleAvailableFalse>
                         )}
                     </RowMachineRecord>
                     <RowMachineRecord>{truck.registration_number}</RowMachineRecord>
@@ -99,9 +85,7 @@ export const TruckViewContainerFun = ({items, selectedItem, onSelect}) =>{
                         <ButtonPick onClick={
                             (e) => onSelect(e, truck.id)
                         }
-                                    style={{
-                                        backgroundColor: selectedItem === truck.id ? "green" : 'red'
-                                    }}
+                            isSelected={selectedItem === truck.id}
                         >
                             Pick
                         </ButtonPick>
@@ -377,16 +361,6 @@ export const TruckComponent = ({props}) => {
     )
 }
 
-
-export const TruckEquipmentDetailComponent = ({props}) =>{
-
-};
-
-
-export const SemiTrailerEquipmentDetailComponent = ({props}) =>{
-
-};
-
 export const UserComponent = ({props}) => {
 
     const [firstName, setFirstName] = useState(props.first_name || '');
@@ -602,3 +576,7 @@ export const UserComponent = ({props}) => {
 };
 
 
+export const ActiveUserMapComponent = () => {
+
+
+}

@@ -28,7 +28,8 @@ import {
     SettingDetailContainer, SettingDetails,
     SettingsNavTitle, UpdateButton
 } from "../assets/styles/user_display";
-import handleUpdateUser from "../utils/Sender";
+import {handleUpdateUser} from "../utils/Sender";
+import user from "./User";
 
 function Users(){
     const [users, setUsers] = useState([]);
@@ -43,13 +44,14 @@ function Users(){
     const [street, setStreet] = useState('');
     const [zipCode, setZipCode] = useState('');
     const [phoneNumber, setPhoneNumber] = useState('');
+    const [pickedUserId, setPickedUserId] = useState(null);
 
     const handleUpdate = (e) => {
         e.preventDefault();
         console.log("Handle update user");
 
-        handleUpdateUser(
-            {
+        console.log(`/api/user/${pickedUserId}`);
+        const userData = {
             first_name:firstName,
             last_name: lastName,
             email: email,
@@ -60,13 +62,17 @@ function Users(){
             street: street,
             phone_number: phoneNumber,
             zip_code: zipCode
-        },
-            access_token
-        );
+        }
+        handleUpdateUser(userData, access_token, pickedUserId);
     }
 
     const pickUser = (event) =>{
         setPickedUser(event);
+        setFirstName(event.first_name);
+        setLastName(event.last_name);
+        setEmail(event.email);
+        setPhoneNumber(event.phone_number);
+        setPickedUserId(event.pk);
     };
 
     const selectUser = () => {
@@ -107,7 +113,7 @@ function Users(){
             </UserSearchContainer>
             <MainUsersContentContainer>
                 <UsersListContainer>
-                    {users.map(user => (
+                    {users.map((user, index) => (
                         <UserListElement onClick={() => pickUser(user)}>
                             <UserPhotoContainer>
                                 <UserPhoto src={user_icon}/>
@@ -173,7 +179,6 @@ function Users(){
                                     />
                                     <br/>
                                 </AddressContainer>
-
                                 <AddressContainer>
                                     <LabelFields>HopuseNum</LabelFields>
                                     <InputField
@@ -183,7 +188,6 @@ function Users(){
                                     />
                                     <br/>
                                 </AddressContainer>
-
                                 <AddressContainer>
                                     <LabelFields>Zip code</LabelFields>
                                     <InputField
@@ -208,13 +212,14 @@ function Users(){
                                         <LabelFields>Password:</LabelFields>
                                         <InputField
                                             type="password"
-                                            value=""
+                                            placeholder="password"
+                                            value={password}
                                             onChange={(e) => setPassword(e.target.value)}
                                         />
                                         <br/>
                                     </AddressContainer>
                                 </PersonalDataContainer>
-                                <UpdateButton onClick={() => handleUpdateUser(pickedUser.id)}>Update</UpdateButton>
+                                <UpdateButton onClick={(e) => handleUpdate(e)}>Update</UpdateButton>
                             </SettingDetailContainer>
                         ) : (
                             <SettingDetailContainer>

@@ -133,6 +133,8 @@ export const ChoiceContainer = styled.div`
   display: flex;
   flex-direction: row;
   width: 100%;
+  text-align: center;
+  justify-content: center;
   
 `;
 
@@ -204,7 +206,7 @@ export const SemiTrailerViewContainer = styled.div`
 `;
 export const ButtonPick = styled.button`
   align-items: center; /* This will center the button vertically */
-  background-color: green;
+  background-color: ${props => (props.isSelected ? 'green' : 'red')};
   font-family: 'Work Sans', sans-serif;
   padding: 5px;
   font-size: 15px;
@@ -229,6 +231,7 @@ export const RowMachineContainer = styled.div`
 `;
 
 export const RowMachineRecord = styled.div`
+  display: flex;
   flex: 1;
   font-weight: 600;
   width: 100px;

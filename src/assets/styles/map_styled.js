@@ -2,21 +2,22 @@ import styled from "styled-components";
 
 export const MapInfoContainer = styled.div`
   display: flex;
-    position: fixed;
+  position: sticky;
   color: white;
   z-index: 1;
   justify-items: center;
   margin-top: 50px;
-  background-color: white;  
+  background-color: rgba(7, 6, 6, 0.7);
   border-radius: 10px;
   width: 500px;
-  height: 150px;
+  height: 120px;
   padding: 5px;
   flex-direction: column;
+  margin-bottom: 20px;
 `;
 
 export const MapInputField = styled.input`
-  width: 140px;
+  width: 100px;
   border-radius: 10px;
   height: 30px;
   padding: 5px;
@@ -34,12 +35,20 @@ export const HeaderInfoContainer = styled.div`
     
 `;
 export const InfoHeader = styled.p`
-    color: black;
-    width: 160px;
-  text-align: center;
+    width: 100px;
+    text-align: center;
+    font-weight: 800;
+    font-family: "Raleway",sans-serif;
+  color: whitesmoke;
+  margin-right: 10px;
+  padding: 6px;
+  
+  
 `;
 
 export const MapContainer = styled.div`
     display: flex;
     justify-content: center;
+    border-radius: 15px;
+  flex-grow: 1;
 `;

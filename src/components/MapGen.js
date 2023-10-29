@@ -7,36 +7,52 @@ import {
     MapInfoContainer,
     MapInputField
 } from "../assets/styles/map_styled";
-import {LoginButton} from "../assets/styles/login_styled";
+import {LoginButton, LoginInput} from "../assets/styles/login_styled";
 
-const mapStyles = { height: "100vh", width: "100%" };
-const defaultCenter = "Rzeszów";
-const destinationAddress = "Grzęska 216";
+const mapStyles = { width: "100%", borderRadius: "15px" };
 const apiKey = process.env.REACT_APP_GOOGLE_MAPS_API_KEY;
 const styles = require("../assets/map_styles/GoogleMapsStyles.json");
 
-function MapComponent() {
+function MapComponent({props, updateLocation=true}) {
+    console.log(props);
+    const defaultCenter = props.source_address;
+    const destinationAddress = props.destination;
     const [directions, setDirections] = useState(null);
     const [distance, setDistance] = useState('');
     const [duration, setDuration] = useState('');
-    //
-    // const address1 = new window.google.maps.DirectionsService();
-    // const address2 = new window.google.maps.Geocoder();
-
 
     return (
         <MapContainer>
-            <MapInfoContainer>
-                <HeaderInfoContainer>
-                    <InfoHeader>Time</InfoHeader>
-                    <InfoHeader>Distance</InfoHeader>
-                </HeaderInfoContainer>
-                <div>
-                    <MapInputField value={duration}/>
-                    <MapInputField value={distance}/>
-                    <LoginButton type="submit">Calculate</LoginButton>
-                </div>
-            </MapInfoContainer>
+            <div>
+                <MapInfoContainer>
+                    <HeaderInfoContainer>
+                        <InfoHeader>From</InfoHeader>
+                        <InfoHeader>To</InfoHeader>
+                        <InfoHeader>Time</InfoHeader>
+                        <InfoHeader>Distance</InfoHeader>
+                    </HeaderInfoContainer>
+                    <HeaderInfoContainer>
+                        <MapInputField value={defaultCenter}/>
+                        <MapInputField value={destinationAddress}/>
+                        <MapInputField value={duration}/>
+                        <MapInputField value={distance}/>
+                    </HeaderInfoContainer>
+
+                </MapInfoContainer>
+                {
+                    updateLocation && (
+                        <div>
+                            <LoginInput
+                                type="text"
+                                placeholder="Twoja Lokalizacja"
+                                values={props.source_address}
+
+                            />
+                            <LoginButton>Update lokalizacje</LoginButton>
+                        </div>
+                    )
+                }
+            </div>
             <LoadScript googleMapsApiKey={apiKey}>
                 <GoogleMap
                     onLoad={() =>{

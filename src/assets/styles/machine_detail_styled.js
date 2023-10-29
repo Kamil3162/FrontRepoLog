@@ -63,6 +63,7 @@ export const MachineDetailRow = styled.div`
 export const MachinePhotoContainer = styled.div`
     display: flex;
   flex-grow: 2;
+  background-color: black;
 `;
 // export const MachinePhoto = styled.img`
 //     object-fit: contain;
@@ -75,5 +76,5 @@ export const MachinePhoto = styled.img`
   object-fit: cover; /* this will make sure your image covers the entire container without distorting */
   max-width: 500px;
   max-height: 500px;
-  border-radius: 150px;
+  border-radius: 15px;
 `;

@@ -10,6 +10,7 @@ import {TruckComponent} from "../utils/FunctionComponents";
 import Truck from "./Truck";
 import {DetailReceivmentContainer, DetailRowReceivment} from "../assets/styles/receivment_detail_styled";
 import {UserComponent} from "../utils/FunctionComponents";
+import MapGen, { MapComponent } from "./MapGen";
 import {
     InformPostContainer,
     InformPostContentContainer,
@@ -22,9 +23,14 @@ function ReceivmentDetail(){
     // get all this kind of data
     const [data, setData] = useState(null);
 
-    const { pk } = useParams();
+    let [locationData, setLocationData] = useState({
+        source_address: null,
+        destination : null
+    });
 
+    const { pk } = useParams();
     useEffect(() => {
+        const updatedLocationData = { ...locationData };
         client.get(
             `/api/receivments/${pk}/`,{
                 headers:{
@@ -33,7 +39,10 @@ function ReceivmentDetail(){
             }
         ).then(response => {
             setData(response.data);
-            console.log(response.data);
+            const destination = `${response.data.destination.city} ${response.data.destination.street} ${response.data.destination.apartment_number}`;
+            const source_address = "Jarosław PWSTE";
+            setLocationData({destination, source_address: source_address });
+            console.log(locationData);
         }).catch(error => {
             console.log("blad");
         })
@@ -54,34 +63,42 @@ function ReceivmentDetail(){
             </InformPostContainer>
             { data &&
                 <>
+                    <DetailRowReceivment style={{marginBottom: "0px"}}>
+                        <MapGen
+                            props={locationData}
+                        />
+                    </DetailRowReceivment>
                     <DetailRowReceivment>
-                        <div style={{ width: '40%'}}>
-                            <SemiTrailerComponent
-                                props={data.semi_trailer}
-                            />
-                        </div>
                         <div style={{ width : '50%'}}>
                             <TruckComponent
                                 props={data.truck}
                             />
                         </div>
                     </DetailRowReceivment>
-                    <DetailRowReceivment>
+                    <DetailRowReceivment style={{marginBottom: "0px"}}>
                         <div style={{ width: '40%'}}>
-                            Manager
-                            <UserComponent
-                                props={data.source_user}
-                            />
-                        </div>
-                        <div style={{ width: '50%'}}>
-                            Driver
-                        <UserComponent
-                                props={data.destination_user}
+                            <SemiTrailerComponent
+                                props={data.semi_trailer}
                             />
                         </div>
                     </DetailRowReceivment>
+                    {/*<DetailRowReceivment>*/}
+                    {/*    <div style={{ width: '40%'}}>*/}
+                    {/*        Manager*/}
+                    {/*        <UserComponent*/}
+                    {/*            props={data.source_user}*/}
+                    {/*        />*/}
+                    {/*    </div>*/}
+                    {/*    <div style={{ width: '50%'}}>*/}
+                    {/*        Driver*/}
+                    {/*    <UserComponent*/}
+                    {/*            props={data.destination_user}*/}
+                    {/*        />*/}
+                    {/*    </div>*/}
+                    {/*</DetailRowReceivment>*/}
                 </>
                 }
+
         </DetailReceivmentContainer>
     )
 }

@@ -11,7 +11,8 @@ export const ContentContainer = styled.div`
   flex: 1;
   flex-grow: 100;
   flex-shrink: 0;
-  background-color: rgb(255, 255, 255);
+  background-color: rgb(246, 244, 244);
+  //background-color: rgb(7, 7, 7);
   margin-left: 100px;
 `;
 
