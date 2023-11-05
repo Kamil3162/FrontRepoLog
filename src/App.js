@@ -33,6 +33,7 @@ import {GoogleMap} from "@react-google-maps/api";
 import MapGen from "./components/MapGen";
 import Navbar from "./components/Navbar";
 import ActiveReceivment from "./components/ActiveReceivment";
+import CreateLocation from "./components/CreateLocation";
 
 
 
@@ -58,6 +59,7 @@ function App(){
                 <Route path="/semitrailer-create" element={<SemiTrailer/>}/>
                 <Route path="/semitrailer/:pk" element={<SemiTrailer/>}/>
                 <Route path="/active-receivment/" element={<ActiveReceivment/>}/>
+                <Route path="/create-location/" element={<CreateLocation/>}/>
                 <Route path="/receivments/" element={<ReceivmentsList/>}/>
                 <Route path="/receivments/:pageNumber" element={<ReceivmentsList/>}/>
                 <Route path="/receivment-create/" element={<ReceivmentFromCreate/>}/>

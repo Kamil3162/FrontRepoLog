@@ -8,18 +8,52 @@ import {
     MapInputField
 } from "../assets/styles/map_styled";
 import {LoginButton, LoginInput} from "../assets/styles/login_styled";
+import client, {access_token} from "../utils/Sender";
 
 const mapStyles = { width: "100%", borderRadius: "15px" };
 const apiKey = process.env.REACT_APP_GOOGLE_MAPS_API_KEY;
 const styles = require("../assets/map_styles/GoogleMapsStyles.json");
 
 function MapComponent({props, updateLocation=true}) {
-    console.log(props);
     const defaultCenter = props.source_address;
     const destinationAddress = props.destination;
     const [directions, setDirections] = useState(null);
     const [distance, setDistance] = useState('');
     const [duration, setDuration] = useState('');
+    const [location, setLocation] = useState('');
+
+    const handleInputChange = (e) =>{
+        setLocation(e.target.value);
+    }
+
+    const handleUpdateLocation = () =>{
+        client.put(
+            '/api/location-history/',{
+                location: location
+            },{
+                headers: {
+                    Authorization: `Bearer ${access_token}`
+                }
+            }
+        ).then(response => {
+            console.log(response);
+        }).catch(error => {
+            console.log('esaesaesaesa');
+            console.log(error);
+            client.post('/api/location-history/',{
+                location: location
+            },{
+                headers: {
+                    Authorization: `Bearer ${access_token}`
+                }
+            }).then(res => {
+                console.log(res);
+            }).catch(error => {
+                console.log('naura');
+            })
+        })
+    }
+
 
     return (
         <MapContainer>
@@ -45,10 +79,10 @@ function MapComponent({props, updateLocation=true}) {
                             <LoginInput
                                 type="text"
                                 placeholder="Twoja Lokalizacja"
-                                values={props.source_address}
-
+                                values={location}
+                                onChange={handleInputChange}
                             />
-                            <LoginButton>Update lokalizacje</LoginButton>
+                            <LoginButton onClick={handleUpdateLocation}>Update lokalizacje</LoginButton>
                         </div>
                     )
                 }

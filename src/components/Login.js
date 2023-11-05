@@ -27,6 +27,7 @@ function Login(){
             password
         })
             .then(response => {
+                console.log(response);
                 let today = new Date();
                 let hour_later = new Date(today);
                 hour_later.setHours(hour_later.getHours() + 1);

@@ -102,43 +102,33 @@ function ReceivmentFromCreate(){
     };
 
     const handleTryAgain = () =>{
+        console.log('click');
         setError(false);
         setChoseTruck(null);
         setChoseSemiTrailer(null);
         setStep1(true);
+        console.log(step1);
+        console.log(error);
+    }
+
+    const fetchData = (url, setData) => {
+        client.get(url, {
+            headers:{
+                Authorization: `Bearer ${access_token}`
+            }
+        }).then(response => {
+            setData(response.data.results);
+        })
+        .catch(error => {
+            console.log(error);
+        });
     }
 
     useEffect(() => {
-        client.get('/api/trucks/',{
-            headers:{
-                Authorization: `Bearer ${access_token}`
-            }
-        })
-            .then(response =>{
-                console.log(response);
-                let received_trucks = response.data.results;
-                setTrucks(received_trucks);
-            })
-            .catch(error =>{
-                console.log(error);
-            })
+        fetchData('/api/trucks/', setTrucks);
+        fetchData('/api/semitrailers/', setSemiTrailers);
     },[]);
 
-    useEffect(() => {
-        client.get('/api/semitrailers/',{
-            headers:{
-                Authorization: `Bearer ${access_token}`
-            }
-        })
-            .then(response =>{
-                console.log(response);
-                let received_semitrailers = response.data.results;
-                setSemiTrailers(received_semitrailers);
-            })
-            .catch(error =>{
-                console.log(error);
-            })
-    },[])
 
     const DivMainContent = () => (
         <div>
