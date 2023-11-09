@@ -35,7 +35,7 @@ export const LeftPanelLogo = styled.div`
   color: #070707;
   text-align: center;
   padding: 20px;
-  margin-bottom: 100px;
+  margin-bottom: 50px;
 `;
 
 

@@ -21,10 +21,10 @@ import {
     PostStory, PostStoryButtonContainer, TextPostContainer,
     TextTitle
 } from "../assets/styles/home_guest_styled";
-
 function User() {
     // convert json stringify data to json format data
     const user_data = JSON.parse(localStorage.getItem('user'));
+    const refresh_token = localStorage.getItem('refresh');
 
     const [firstName, setFirstName] = useState(user_data.first_name || '');
     const [lastName, setLastName] = useState(user_data.last_name || '');
@@ -36,6 +36,8 @@ function User() {
     const [street, setStreet] = useState(user_data.street || '');
     const [zipCode, setZipCode] = useState(user_data.zip_code || '');
     const [phoneNumber, setPhoneNumber] = useState(user_data.phone_number || '');
+
+
 
     const handleUpdate = (e) => {
         e.preventDefault();
@@ -80,6 +82,27 @@ function User() {
          */
     }
 
+
+    const handleDelete = (e) => {
+        e.preventDefault();
+
+        client.delete('/api/delete-account/',{
+            refresh_token: refresh_token
+        },{
+            headers: {
+                Authorization: `Bearer ${access_token}`
+            },
+        }).then(response =>{
+            console.log(response);
+            alert('Your account has been successfully deleted.');
+            localStorage.clear();
+            window.location.replace('/login');
+        }).catch(error => {
+            console.log(error);
+        });
+    }
+
+
     return (
         <SettingsContainer>
             <InformPostContainer>
@@ -105,7 +128,7 @@ function User() {
                     <SettingLeftPanelItem>My Profile</SettingLeftPanelItem>
                     <SettingLeftPanelItem>Teams</SettingLeftPanelItem>
                     <SettingLeftPanelItem>Notifications</SettingLeftPanelItem>
-                    <DeleteAccountText>Delete Account</DeleteAccountText>
+                    <DeleteAccountText onClick={handleDelete}>Delete Account</DeleteAccountText>
                 </SettingsLeftPanel>
                 <SettingDetails>
                     <SettingsNavTitle>Profile Detail</SettingsNavTitle>

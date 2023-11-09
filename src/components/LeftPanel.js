@@ -12,6 +12,7 @@ import icon11 from "../assets/icons/arrow-back-8.png";
 import icon_login from "../assets/icons/login.png";
 import register from "../assets/icons/register.png"
 import transfer from "../assets/icons/transfers.png";
+import giving from "../assets/icons/giving.png";
 import {Link} from "react-router-dom";
 import {user_permission_group} from "../utils/Sender";
 import login from "./Login";
@@ -85,6 +86,11 @@ function LeftPanelComponent(){
                 </LeftPanelItem>
                 <LeftPanelItem as={Link} to="/logout">
                     <LogoPanelItem src={icon4}/>
+                    <PanelItemText>
+                    </PanelItemText>
+                </LeftPanelItem>
+                <LeftPanelItem as={Link} to="/active-receivment/">
+                    <LogoPanelItem src={giving}/>
                     <PanelItemText>
                     </PanelItemText>
                 </LeftPanelItem>

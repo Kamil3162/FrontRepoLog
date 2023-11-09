@@ -31,8 +31,6 @@ function ActiveReceivment(){
                 }
             }
         ).then(response => {
-            console.log('esaddsada');
-            console.log(response);
             setData(response.data);
             const destination = `${response.data.destination.city} ${response.data.destination.street} ${response.data.destination.apartment_number}`;
             const source_address = "Jarosław PWSTE";
@@ -72,7 +70,7 @@ function ActiveReceivment(){
                     {/*    </div>*/}
                     {/*    <div style={{ width: '50%'}}>*/}
                     {/*        Driver*/}
-                    {/*    <UserComponent*/}
+                    {/*        <UserComponent*/}
                     {/*            props={data.destination_user}*/}
                     {/*        />*/}
                     {/*    </div>*/}

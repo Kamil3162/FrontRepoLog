@@ -38,8 +38,7 @@ function MapComponent({props, updateLocation=true}) {
         ).then(response => {
             console.log(response);
         }).catch(error => {
-            console.log('esaesaesaesa');
-            console.log(error);
+            console.log(error.status);
             client.post('/api/location-history/',{
                 location: location
             },{
