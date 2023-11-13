@@ -34,6 +34,7 @@ import MapGen from "./components/MapGen";
 import Navbar from "./components/Navbar";
 import ActiveReceivment from "./components/ActiveReceivment";
 import CreateLocation from "./components/CreateLocation";
+import ChatDashboard from "./components/ChatDashboard";
 
 
 
@@ -70,6 +71,7 @@ function App(){
                 <Route path="/truck-equipment-create" element={<TruckEquipmentCreate/>}/>
                 <Route path="/semi-trailers-equipment-create" element={<SemiTrailerEquipmentCreate/>}/>
                 <Route path="/maps" element={<MapGen/>}/>
+                <Route path="/chat" element={<ChatDashboard/>}/>
             </Routes>
         </ContentContainer>
     </PageContainer>
