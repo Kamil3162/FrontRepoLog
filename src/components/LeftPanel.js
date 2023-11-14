@@ -74,7 +74,7 @@ function LeftPanelComponent(){
                     <PanelItemText>
                     </PanelItemText>
                 </LeftPanelItem>
-                <LeftPanelItem>
+                <LeftPanelItem as={Link} to="/chat">
                     <LogoPanelItem src={icon7}/>
                     <PanelItemText>
                     </PanelItemText>
@@ -130,6 +130,11 @@ function LeftPanelComponent(){
                         <LeftPanelItem as={Link} to="/user">
                             <LogoPanelItem src={icon6}/>
                             <PanelItemText>
+                            </PanelItemText>
+                        </LeftPanelItem>
+                        <LeftPanelItem as={Link} to="/chat">
+                            <LogoPanelItem/>
+                            <PanelItemText>Chat
                             </PanelItemText>
                         </LeftPanelItem>
                         <LeftPanelItem as={Link} to="/logout">
