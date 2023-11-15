@@ -6,10 +6,11 @@ import {access_token} from "../utils/Sender";
 
 import {
     ActiveUserList,
-    ChatDashboardComponent, ChatMessageContainer, ChatWindows,
+    ChatDashboardComponent, ChatMessageContainer, ChatWindowComponent, ChatWindows,
     styledUser,
     StyledUserChat
 } from "../assets/styles/chat_dashboard_styled";
+import ChatWindow from "./ChatWindow";
 
 function ChatDashboard(){
 
@@ -19,6 +20,7 @@ function ChatDashboard(){
     const websocketRef = useRef(null);
     const [message, setMessage] = useState('');
     const current_user_id = JSON.parse(localStorage.getItem('user')).id;
+    const [conversationId, setConversationID] = useState('');
 
     useEffect(() =>{
         // const websocket = new WebSocket(`ws://127.0.0.1:8000/ws/users/?userId=${user_data}/`);
@@ -86,31 +88,32 @@ function ChatDashboard(){
         }
     };
 
+    const pickConversation = (user_id) =>{
+        setConversationID(user_id);
+        console.log(user_id);
+    }
+
+
     return (
         <ChatDashboardComponent>
             <div>
                 <ActiveUserList>
                     <h2>Active Users</h2>
                     {active_users && active_users.map((data, index) => (
-                        <StyledUserChat key={data.user.id}>
+                        <StyledUserChat key={data.user.id} onClick={() => pickConversation(data.user.id)}>
                             {data.user.first_name} {data.user.last_name} {data.active}
-                            {/* Add other user details you want to display */}
                         </StyledUserChat>
                     ))}
                 </ActiveUserList>
             </div>
             <ChatMessageContainer>
-                <ChatWindows>
-
-                </ChatWindows>
-                <div>
-                    <input type="text"
-                           placeholder="Wprowadz tekst"
-                           value={message}
-                           onChange={(e) => setMessage(e.target.value)}
+                { conversationId && (
+                    <ChatWindow
+                        conversation_id={conversationId}
+                        websocketRef={websocketRef}
+                        user_id={user_data}
                     />
-                    <button onClick={sendMessage}>Button</button>
-                </div>
+                )}
             </ChatMessageContainer>
         </ChatDashboardComponent>
     )

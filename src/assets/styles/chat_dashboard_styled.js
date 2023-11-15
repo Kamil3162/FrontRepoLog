@@ -31,14 +31,25 @@ export const ChatMessageContainer = styled.div`
 `;
 
 export const Message = styled.div`
-      
+    display: flex;
+    background-color: blue;
+    color: white;
+    font-family: 'Reem Kufi', sans-serif;
+    font-size: 15px;
+    margin-top: 15px;
+    max-width: 150px;
+    max-height: 75px ;
 `;
 
-export const ChatWindows = styled.div`
+export const ChatWindowComponent = styled.div`
     display: flex;
+  flex-direction: column;
     width: 80%;
     background-color: white;
     height: 400px;
   border: 1px solid black;
   border-radius: 15px;
+  overflow-y: scroll;
 `;
+
+
