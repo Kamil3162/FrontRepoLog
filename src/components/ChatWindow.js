@@ -14,9 +14,10 @@ function ChatWindow({conversation_id, websocketRef, user_id}){
     const [message_send, setMessageSend] = useState('');
     const [messages, setMessages] = useState([]);
 
-    console.log(messages);
+    console.log("esa321");
     console.log(conversation_id);
-    console.log(user_id);
+    console.log("esa");
+    console.log(messages);
 
     useEffect(() =>{
         websocketRef.current.send(JSON.stringify({
@@ -29,20 +30,35 @@ function ChatWindow({conversation_id, websocketRef, user_id}){
         websocketRef.current.onmessage = function(event){
             const data = JSON.parse(event.data);
             console.log(data);
-            console.log(messages);
 
             if (data.type === 'all_messages'){
                 setMessages(data.messages);
             }
 
-            else if (data.type === 'new_message' || data.type === 'chat_message') {
-                console.log('test');
-                console.log(data.messages);
-                setMessages(prevMessages => [...prevMessages, data.message]);
-                console.log(messages);
+            if (data.type === 'naura'){
+                console.log(data);
             }
+
+            if (data.type === 'group_message' && data.user_id !== null){
+                console.log(data);
+                console.log("esa esa esa");
+
+                const message_obj = {
+                    'content': data.message,
+                    'sender': data.user_id
+                }
+                setMessages(prevMessages => [...prevMessages, message_obj]);
+            }
+
+            return () => {
+                if (websocketRef.current) {
+                    websocketRef.current.close();
+                }
+            };
+
         }
-    }, [conversation_id]);
+
+    }, [conversation_id, websocketRef, user_id]);
 
     const sendMessage = () => {
         console.log(websocketRef);
