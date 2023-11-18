@@ -62,7 +62,6 @@ function ReceivmentsList(){
         <TruckListContainer>
             <InformPostContainer>
                 <InformPostContentContainer>
-                    <TextTitle>NAURA</TextTitle>
                     <MainTextTitle>Select your best car, manage user and facilities in your company using complex management system</MainTextTitle>
                     <PostStory>
                         Welcome to the future of car management! Say goodbye to worries and inefficiencies with our cutting-edge car management app designed to make your driving experience a breeze.

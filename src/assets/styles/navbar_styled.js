@@ -2,6 +2,7 @@ import styled from "styled-components";
 
 export const NavbarLoginContainer = styled.div`
     display: flex;
+    margin-left: 35%;
 `;
 
 export const NavbarLinksContainer = styled.div`
@@ -10,9 +11,11 @@ export const NavbarLinksContainer = styled.div`
 export const NavbarContainer = styled.div`
   display: flex;
   align-items: center;
-  background-color: #dedddd;
+  background-color: #5b5a5a;
   padding: 10px;
   justify-content: right;
+  height: 60px;
+  
   // opacity - przejrzystosc
   // rgba 
   // 

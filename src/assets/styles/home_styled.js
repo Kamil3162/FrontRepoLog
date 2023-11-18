@@ -5,27 +5,34 @@ export const PageContainer = styled.div`
   display: flex;
   flex-direction: row;
   min-height: 950px;
+  overflow-x: hidden;
+  max-width: 1920px;
+  height: 100%;
+  margin: 0;
+  padding: 0;
 `;
 
 export const ContentContainer = styled.div`
+  position: relative;
   flex: 1;
   flex-grow: 100;
   flex-shrink: 0;
   background-color: rgb(246, 244, 244);
   //background-color: rgb(7, 7, 7);
-  margin-left: 100px;
+  margin-left: 250px;
 `;
 
 export const LeftPanel = styled.div`
-  position: fixed;
+  position: absolute;
   flex-direction: column;
   flex: 1;
   flex-basis: auto;
   background-color: rgb(62, 196, 104);
   font-family: 'REM', sans-serif;
   justify-items: center;
-  width: 100px;
+  width: 250px;
   height: 100%;
+  padding-top: 15px;
 `;
 
 export const LeftPanelLogo = styled.div`
@@ -59,15 +66,19 @@ export const LeftPanelItem = styled.div`
   text-decoration: none;
   width: calc(100% - 50px); /* Set width minus the margin */
   margin-left: 25px;
-  
+  color: #070707;
+  font-family: "Raleway",sans-serif;
+  font-weight: 800;
+
+
   &:hover {
     transition: background-color 0.3s ease, transition-delay 0.2s;
     border-radius: 15px;
     background-color: white;
-    width: 100%;
+    width: 80%;
   }
-    
-  
+
+
 `;
 export const PanelItemText = styled.div`
     margin-left: 15px;

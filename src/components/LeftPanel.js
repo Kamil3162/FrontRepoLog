@@ -18,132 +18,45 @@ import {user_permission_group} from "../utils/Sender";
 import login from "./Login";
 import {useState, useEffect} from "react";
 import {useNavigate} from "react-router-dom";
+import DriverPanel from "../components/left_panel/driver_left_panel.js";
+import LoginPanel from "../components/left_panel/login_left_panel.js";
+import AdminPanel from "../components/left_panel/admin_left_panel.js";
+import {useContext} from "react";
+import {AuthContext} from "../auth/Auth_provider";
 
 function LeftPanelComponent(){
-    const [userPermissionGroup, setUserPermissionGroup] = useState(undefined);
+    // const [userPermissionGroup, setUserPermissionGroup] = useState(localStorage.getItem('user_permission_group'));
+    const [userPermissionGroup, setUserPermissionGroup] = useState(localStorage.getItem('permission_group'));
+
+    const {a1} = useContext(AuthContext);
+    console.log(userPermissionGroup);
     const navigate = useNavigate();
+    console.log('testowanie');
+    console.log(a1);
 
     useEffect(() => {
-        const permission = user_permission_group;  // Fetch the value from wherever it's stored
-        setUserPermissionGroup(permission);
+        const handleStorageUpdate = () => {
+            setUserPermissionGroup(localStorage.getItem('user_permission_group'));
+        };
+
+        window.addEventListener('storageUpdate', handleStorageUpdate);
+
+        return () => {
+            window.removeEventListener('storageUpdate', handleStorageUpdate);
+        };
     }, []);
 
     return (
-        user_permission_group === 'Admin' || user_permission_group === 'Manager' ? (
-            <LeftPanel>
-                <LeftPanelLogo>
-                    KD
-                </LeftPanelLogo>
-                <LeftPanelItem onClick={() => { navigate(-1)}}>
-                    <LogoPanelItem src={icon11}/>
-                    <PanelItemText>
-                    </PanelItemText>
-                </LeftPanelItem>
-                <LeftPanelItem as={Link} to="/home-guest">
-                    <LogoPanelItem src={icon1}/>
-                    <PanelItemText>
-                    </PanelItemText>
-                </LeftPanelItem>
-                <LeftPanelItem as={Link} to="/trucks">
-                    <LogoPanelItem src={icon9}/>
-                    <PanelItemText>
-                    </PanelItemText>
-                </LeftPanelItem>
-                <LeftPanelItem as={Link} to="/receivment-create/">
-                    <LogoPanelItem src={icon8}/>
-                    <PanelItemText>
-                    </PanelItemText>
-                </LeftPanelItem>
-                <LeftPanelItem as={Link} to="/receivments/">
-                    <LogoPanelItem src={transfer}/>
-                    <PanelItemText>
-                    </PanelItemText>
-                </LeftPanelItem>
-                <LeftPanelItem as={Link} to="/semi-trailers">
-                    <LogoPanelItem src={icon5}/>
-                    <PanelItemText>
-                    </PanelItemText>
-                </LeftPanelItem>
-                <LeftPanelItem as={Link} to="/user">
-                    <LogoPanelItem src={icon6}/>
-                    <PanelItemText>
-                    </PanelItemText>
-                </LeftPanelItem>
-                <LeftPanelItem>
-                    <LogoPanelItem src={icon3}/>
-                    <PanelItemText>
-                    </PanelItemText>
-                </LeftPanelItem>
-                <LeftPanelItem as={Link} to="/chat">
-                    <LogoPanelItem src={icon7}/>
-                    <PanelItemText>
-                    </PanelItemText>
-                </LeftPanelItem>
-                <LeftPanelItem as={Link} to="/users">
-                    <LogoPanelItem src={icon10}/>
-                    <PanelItemText>
-                    </PanelItemText>
-                </LeftPanelItem>
-                <LeftPanelItem as={Link} to="/logout">
-                    <LogoPanelItem src={icon4}/>
-                    <PanelItemText>
-                    </PanelItemText>
-                </LeftPanelItem>
-                <LeftPanelItem as={Link} to="/active-receivment/">
-                    <LogoPanelItem src={giving}/>
-                    <PanelItemText>
-                    </PanelItemText>
-                </LeftPanelItem>
-            </LeftPanel>
+        userPermissionGroup === 'Admin' || userPermissionGroup === 'Manager' ? (
+                <AdminPanel
+                    navigate={navigate}
+                />
             ) : (
-                user_permission_group === null ? (
-                    <LeftPanel>
-                        <LeftPanelLogo>
-                            KD
-                        </LeftPanelLogo>
-                        <LeftPanelItem as={Link} to="/login">
-                            <LogoPanelItem src={icon_login}/>
-                            <PanelItemText>
-                            </PanelItemText>
-                        </LeftPanelItem>
-                        <LeftPanelItem as={Link} to="/register">
-                            <LogoPanelItem src={register}/>
-                            <PanelItemText>
-                            </PanelItemText>
-                        </LeftPanelItem>
-                    </LeftPanel>
-                    ):(
-                    <LeftPanel>
-                        <LeftPanelLogo>
-                            KD
-                        </LeftPanelLogo>
-                        <LeftPanelItem as={Link} to="/home-guest">
-                            <LogoPanelItem src={icon1}/>
-                            <PanelItemText>
-                            </PanelItemText>
-                        </LeftPanelItem>
-                        <LeftPanelItem as={Link} to="/receivment-create/">
-                            <LogoPanelItem src={icon8}/>
-                            <PanelItemText>
-                            </PanelItemText>
-                        </LeftPanelItem>
-                        <LeftPanelItem as={Link} to="/user">
-                            <LogoPanelItem src={icon6}/>
-                            <PanelItemText>
-                            </PanelItemText>
-                        </LeftPanelItem>
-                        <LeftPanelItem as={Link} to="/chat">
-                            <LogoPanelItem/>
-                            <PanelItemText>Chat
-                            </PanelItemText>
-                        </LeftPanelItem>
-                        <LeftPanelItem as={Link} to="/logout">
-                            <LogoPanelItem src={icon4}/>
-                            <PanelItemText>
-                            </PanelItemText>
-                        </LeftPanelItem>
-                    </LeftPanel>
-                    )
+            userPermissionGroup === null ? (
+                    <LoginPanel/>
+                ):(
+                    <DriverPanel/>
+                )
             )
     )
 }

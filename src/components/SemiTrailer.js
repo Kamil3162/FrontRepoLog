@@ -100,7 +100,6 @@ function SemiTrailer(){
 
                     </TextPostContainer>
                     <TextPostContainer>
-                        <TextTitle>NAURA</TextTitle>
                         <MainTextTitle>Select your best car, manage user and facilities in your company using complex management system</MainTextTitle>
                         <PostStoryButtonContainer>
                             <PostStory>

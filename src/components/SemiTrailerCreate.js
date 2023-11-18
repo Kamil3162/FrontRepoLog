@@ -12,6 +12,7 @@ import {AddressContainer, InputField, LabelFields} from "../assets/styles/user_d
 import {LoginButton} from "../assets/styles/login_styled";
 import {useState} from "react";
 import {access_token} from "../utils/Sender";
+import {TruckListContainer} from "../assets/styles/truck_list_styled";
 function SemiTrailerForm(){
 
     const [brand, setBrand] = useState('');
@@ -34,6 +35,7 @@ function SemiTrailerForm(){
         formData.append('production_year', productionYear);
         formData.append('semi_note', semiNote);
         formData.append('available', available);
+
         if (image) {
             formData.append('photo', image, image.name);
         }
@@ -64,20 +66,16 @@ function SemiTrailerForm(){
     };
 
     return (
-        <div>
+        <TruckListContainer>
             <InformPostContainer>
                 <InformPostContentContainer>
                     <TextPostContainer>
-                        <TextTitle>NAURA</TextTitle>
                         <MainTextTitle>Create SemiTruck</MainTextTitle>
                         <PostStory>
                             Welcome to the future of car management! Say goodbye to worries and inefficiencies with our cutting-edge car management app designed to make your driving experience a breeze.
                             Discover the power of real-time control as our app offers seamless GPS tracking, allowing you to monitor your vehicle's location at all times, ensuring its safety and security.
                         </PostStory>
                     </TextPostContainer>
-                    <div>
-                        fdfdsfdsfds
-                    </div>
                 </InformPostContentContainer>
             </InformPostContainer>
             <MachineContainer onSubmit={submitForm} encType="multipart/form-data">
@@ -109,7 +107,7 @@ function SemiTrailerForm(){
                 </AddressContainer>
                 <LoginButton type="submit">Create</LoginButton>
             </MachineContainer>
-        </div>
+        </TruckListContainer>
     );
 }
 

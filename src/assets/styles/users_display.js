@@ -63,10 +63,12 @@ export const UserContainer = styled.div`
 
 export const UserSearchContainer = styled.div`
     display: flex;
+  position: absolute;
     text-align: center;
     margin-bottom: 10px;
     height: 50px;
     width: 250px;
+  margin-top: 18em;
   justify-items: center;
   align-items: center;
   margin-left: 40px;

@@ -20,14 +20,14 @@ import {access_token} from "../utils/Sender";
 import client from "../utils/Sender";
 import {ButtonLink} from "../assets/styles/link_buttons";
 import {PaginationContainer} from "../assets/styles/pagination_styled";
+import {useNavigate} from "react-router-dom";
 function SemiTrailers(){
     const [semitrailers, setSemiTrailers] = useState([]);
     const { pk } = useParams();
     const actualPageNumber = pk && !isNaN(pk) ? Number(pk) : 1;
-    console.log(actualPageNumber);
     const [nextPage, setNextPage] = useState(null);
     const [previusPage, setPreviousPage] = useState(null);
-    
+    const navigate = useNavigate();
 
     useEffect(() =>{
         client.get(`/api/semitrailers/?page=${actualPageNumber}`,{
@@ -44,6 +44,10 @@ function SemiTrailers(){
             console.log(error);
             if (error.response.status === 401){
                 alert("Autowylogowywanie - koniec sesji");
+                localStorage.clear();   // clear cache with aout data
+                window.dispatchEvent(new Event('storageUpdate')); // Dispatch custom event
+                navigate('/login');
+
             }
         })
     }, [actualPageNumber]);
@@ -53,7 +57,6 @@ function SemiTrailers(){
             <InformPostContainer>
                 <InformPostContentContainer>
                     <TextPostContainer>
-                        <TextTitle>NAURA</TextTitle>
                         <MainTextTitle>Select your best car, manage user and facilities in your company using complex management system</MainTextTitle>
                         <PostStoryButtonContainer>
                             <PostStory>

@@ -25,6 +25,8 @@ export const countSessionTime = () => {
         // eslint-disable-next-line no-restricted-globals
         history.push('/');
     }
+
+    console.log(current_time);
 }
 export const handleUpdateUser = (userData, access_token, user_id) => {
     console.log("Handle update user");

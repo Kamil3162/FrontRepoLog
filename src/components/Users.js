@@ -45,6 +45,10 @@ function Users(){
     const [zipCode, setZipCode] = useState('');
     const [phoneNumber, setPhoneNumber] = useState('');
     const [pickedUserId, setPickedUserId] = useState(null);
+    const [displayUsers, setDisplayUsers] = useState([]);
+
+
+    console.log(users);
 
     const handleUpdate = (e) => {
         e.preventDefault();
@@ -92,6 +96,14 @@ function Users(){
         })
     }, []);
 
+    const filterUsers = (e) =>{
+        const searchText = e.target.value.toLowerCase();
+        const filteredUsers = users.filter(user =>
+            user.first_name.toLowerCase().includes(searchText)
+        );
+        setDisplayUsers(filteredUsers);
+    }
+
     return (
         <UsersContainer>
             <TextPostContainer>
@@ -109,20 +121,38 @@ function Users(){
                 </PostStoryButtonContainer>
             </TextPostContainer>
             <UserSearchContainer>
-                <SeachUserField placeholder="Imie Nazwisko"/>
+                <SeachUserField
+                    placeholder="Imie Nazwisko"
+                    onChange={(e) => filterUsers(e)}
+                />
             </UserSearchContainer>
             <MainUsersContentContainer>
                 <UsersListContainer>
-                    {users.map((user, index) => (
-                        <UserListElement onClick={() => pickUser(user)}>
-                            <UserPhotoContainer>
-                                <UserPhoto src={user_icon}/>
-                            </UserPhotoContainer>
-                            <UserNameUsername>
-                                {user.first_name} {user.last_name}
-                            </UserNameUsername>
-                        </UserListElement>
-                    ))}
+                    {
+                        displayUsers && displayUsers.length > 0 ? (
+                            displayUsers.map((user, index) => (
+                                <UserListElement key={index} onClick={() => pickUser(user)}>
+                                    <UserPhotoContainer>
+                                        <UserPhoto src={user_icon}/>
+                                    </UserPhotoContainer>
+                                    <UserNameUsername>
+                                        {user.first_name} {user.last_name}
+                                    </UserNameUsername>
+                                </UserListElement>
+                            ))
+                        ) : (
+                            users.map((user, index) => (
+                                <UserListElement key={index} onClick={() => pickUser(user)}>
+                                    <UserPhotoContainer>
+                                        <UserPhoto src={user_icon}/>
+                                    </UserPhotoContainer>
+                                    <UserNameUsername>
+                                        {user.first_name} {user.last_name}
+                                    </UserNameUsername>
+                                </UserListElement>
+                            ))
+                        )
+                    }
                 </UsersListContainer>
                 <UserContainer>
                     {/*<MainTextTitleFontChange>Personal Information</MainTextTitleFontChange>*/}

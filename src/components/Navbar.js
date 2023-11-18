@@ -1,12 +1,14 @@
 
 import axios from "axios";
 import {NavbarContainer, NavbarLoginContainer, NavItem, Logo} from "../assets/styles/navbar_styled.js";
-import {useState, useEffect} from "react";
+import React, {useState, useEffect} from "react";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import client from "../utils/Sender";
 import {ButtonLink} from "../assets/styles/link_buttons";
 import {user_data} from "../utils/Sender";
+import {InputField} from "../assets/styles/user_display";
+import {LoginButton} from "../assets/styles/login_styled";
 
 function Navbar(){
     const [isValidSession, setIsValidSession] = useState(false);
@@ -34,6 +36,7 @@ function Navbar(){
                 console.log(error);
             });
     }, []);
+
     const handleLogout = () => {
         client
             .post(
@@ -58,25 +61,39 @@ function Navbar(){
     };
 
     return (
-        <NavbarContainer>
+        isValidSession ? (
+        <>
+            <NavbarContainer>
+                <div>
+                    <InputField type="text"
+                                placeholder="Wprowadz tekst"
+                                style={{
+                                    borderRadius: '20px',
+                                    width: '250px'
+                                }}
+                    />
+                    <LoginButton
+                        style={{
+                            width:'150px',
+                            backgroundColor: '#7878e8'
+                    }}
+                    >Search
+                    </LoginButton>
+                </div>
+                <NavbarLoginContainer>
+                    <NavItem style={{
+                        border:'none',
+                        backgroundColor: "purple"}}
+                    >
+                        Hello {user_data.first_name}
+                    </NavItem>
+                </NavbarLoginContainer>
+            </NavbarContainer>
+        </>
+     ): (
+        <div></div>
+        )
 
-            <NavbarLoginContainer>
-                { isValidSession ? (
-                    <>
-                        <NavItem href="/">Home</NavItem>
-                        <NavItem href="/contact">Contact</NavItem>
-                        <NavItem style={{
-                            border:'none',
-                            backgroundColor: "purple"}}>Hello</NavItem>
-                        <NavItem style={{ width:'120px'}}
-                                 onClick={handleLogout}>Logout</NavItem>
-                    </>
-                ): (
-                    <NavItem href="/login">Login</NavItem>
-
-                )}
-            </NavbarLoginContainer>
-        </NavbarContainer>
     )
 }
 

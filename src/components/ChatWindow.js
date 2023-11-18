@@ -3,6 +3,8 @@ import React, {useEffect, useState} from "react";
 import client from "../utils/Sender";
 import {ChatWindowComponent, Message} from "../assets/styles/chat_dashboard_styled";
 import user from "./User";
+import {InputField} from "../assets/styles/user_display";
+import {LoginButton} from "../assets/styles/login_styled";
 
 
 /*
@@ -13,11 +15,10 @@ function ChatWindow({conversation_id, websocketRef, user_id}){
 
     const [message_send, setMessageSend] = useState('');
     const [messages, setMessages] = useState([]);
-
-    console.log("esa321");
-    console.log(conversation_id);
-    console.log("esa");
-    console.log(messages);
+    const endOfMessagesRef = React.createRef()
+    console.log('esa');
+    console.log(user_id);
+    console.log(endOfMessagesRef);
 
     useEffect(() =>{
         websocketRef.current.send(JSON.stringify({
@@ -43,10 +44,13 @@ function ChatWindow({conversation_id, websocketRef, user_id}){
                 console.log(data);
                 console.log("esa esa esa");
 
+                console.log(data.user_id);
+
                 const message_obj = {
                     'content': data.message,
                     'sender': data.user_id
                 }
+                console.log(message_obj);
                 setMessages(prevMessages => [...prevMessages, message_obj]);
             }
 
@@ -61,9 +65,8 @@ function ChatWindow({conversation_id, websocketRef, user_id}){
     }, [conversation_id, websocketRef, user_id]);
 
     const sendMessage = () => {
-        console.log(websocketRef);
-        console.log(user_id);
-        console.log(conversation_id);
+
+        endOfMessagesRef.current?.scrollIntoView({ behavior: 'smooth' });
 
         if (websocketRef.current && websocketRef.current.readyState === WebSocket.OPEN) {
             websocketRef.current.send(JSON.stringify({
@@ -71,34 +74,64 @@ function ChatWindow({conversation_id, websocketRef, user_id}){
                 user: user_id,
                 room_id: conversation_id
             }));
+            setMessageSend('');
         } else {
             console.log("WebSocket is not open.");
         }
     };
+    const scrollToBottom = () => {
+        endOfMessagesRef.current?.scrollIntoView({ behavior: "smooth" })
+    }
+
+    useEffect(() => {
+        scrollToBottom()
+    }, [messages]);
+
 
     return (
         <div>
             <ChatWindowComponent>
                 {
                     messages.map((rec_message, index) => (
-                        // Render each message. This could be a simple div or a custom component
-                        <Message key={index}>
-                            {rec_message.content}
-                        </Message>
+                        rec_message.sender == user_id ? (
+                            <Message
+                                key={index}
+                                style={{
+                                    marginLeft: 'auto',
+                                    marginRight: '0',
+                                    backgroundColor: '#175bb4' // Example color for user's messages
+                                }}>
+                                {rec_message.content}
+                            </Message>
+                        ) : (
+                            <Message
+                                key={index}
+                                style={{
+                                    marginRight: 'auto',
+                                    marginLeft: '0',
+                                    backgroundColor: '#178fb4' // Example color for others' messages
+                                }}>
+                                {rec_message.content}
+                            </Message>
+                        )
                     ))
                 }
+                <div ref={endOfMessagesRef} />
             </ChatWindowComponent>
             <div>
-                <input type="text"
+                <InputField type="text"
                        placeholder="Wprowadz tekst"
                        value={message_send}
                        onChange={(e) => setMessageSend(e.target.value)}
                 />
-                <button onClick={sendMessage}>Button</button>
+                <LoginButton
+                    onClick={sendMessage}
+                    style={{width:'150px'}}
+                >Send
+                </LoginButton>
             </div>
         </div>
-
-    )
+    );
 }
 
 export default ChatWindow;
