@@ -21,6 +21,7 @@ import {
 
 function ReceivmentDetail(){
     // get all this kind of data
+
     const [data, setData] = useState(null);
 
     let [locationData, setLocationData] = useState({
@@ -41,8 +42,8 @@ function ReceivmentDetail(){
             setData(response.data);
             const destination = `${response.data.destination.city} ${response.data.destination.street} ${response.data.destination.apartment_number}`;
             const source_address = "Jarosław PWSTE";
+
             setLocationData({destination, source_address: source_address });
-            console.log(locationData);
         }).catch(error => {
             console.log("blad");
         })

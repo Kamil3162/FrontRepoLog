@@ -31,8 +31,6 @@ function LeftPanelComponent(){
     const {a1} = useContext(AuthContext);
     console.log(userPermissionGroup);
     const navigate = useNavigate();
-    console.log('testowanie');
-    console.log(a1);
 
     useEffect(() => {
         const handleStorageUpdate = () => {

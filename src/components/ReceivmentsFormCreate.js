@@ -81,7 +81,6 @@ function ReceivmentFromCreate(){
     };
 
     const approveChoice = () => {
-
         client.post('/api/receivment-create/',{
             truck : truckId,
             semi_trailer: semitrailerId,
@@ -171,7 +170,6 @@ function ReceivmentFromCreate(){
                                 items={trucks}
                                 selectedItem={choseTruck}
                                 onSelect={handlePickTruck}/>
-
                         </>
                     )}
 

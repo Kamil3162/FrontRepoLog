@@ -99,6 +99,11 @@ export const StyleAvailableFalse = styled.a`
   justify-content: center;
   align-items: center;
 `;
+
+export const StyleAvailableImg = styled.img`
+    
+`;
+
 export const MachineInfo = styled.div`
   flex-grow: 1;
 `;

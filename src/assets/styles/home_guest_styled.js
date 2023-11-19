@@ -26,7 +26,6 @@ export const ContentContainerHome = styled.div`
 
 export const InformPostContainer = styled.div`
   display: flex;
-  flex-direction: row;
   margin-bottom: 30px;
     
 `;

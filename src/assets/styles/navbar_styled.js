@@ -9,12 +9,15 @@ export const NavbarLinksContainer = styled.div`
   display: flex;    
 `;
 export const NavbarContainer = styled.div`
+  position: fixed;
   display: flex;
   align-items: center;
   background-color: #5b5a5a;
-  padding: 10px;
   justify-content: right;
   height: 60px;
+  width: calc(100% - 250px);
+  z-index: 1;
+  margin-left: 250px;
   
   // opacity - przejrzystosc
   // rgba 

@@ -68,7 +68,7 @@ export const UserSearchContainer = styled.div`
     margin-bottom: 10px;
     height: 50px;
     width: 250px;
-  margin-top: 18em;
+  margin-top: 13em;
   justify-items: center;
   align-items: center;
   margin-left: 40px;
@@ -77,10 +77,9 @@ export const UserSearchContainer = styled.div`
 export const SeachUserField = styled.input`
     height: 25px;
     flex-grow: 1;
-  font-size: 15px;
-  font-family: 'Work Sans', sans-serif;
-  font-weight: 600;
-
+    font-size: 15px;
+    font-family: 'Work Sans', sans-serif;
+    font-weight: 600;
 `;
 
 export const MainUsersContentContainer = styled.div`

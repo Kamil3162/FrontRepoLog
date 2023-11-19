@@ -9,6 +9,8 @@ import {
 } from "../assets/styles/map_styled";
 import {LoginButton, LoginInput} from "../assets/styles/login_styled";
 import client, {access_token} from "../utils/Sender";
+import MapHeaderComponent from "../components/map/MapHeaderComponent";
+import {AlertComponent} from "../utils/FunctionComponents";
 
 const mapStyles = { width: "100%", borderRadius: "15px" };
 const apiKey = process.env.REACT_APP_GOOGLE_MAPS_API_KEY;
@@ -22,15 +24,17 @@ function MapComponent({props, updateLocation=true}) {
     const [duration, setDuration] = useState('');
     const [location, setLocation] = useState('');
 
-    const handleInputChange = (e) =>{
+    console.log(destinationAddress);
+
+    const handleInputChange = (e) => {
         setLocation(e.target.value);
     }
 
-    const handleUpdateLocation = () =>{
+    const handleUpdateLocation = () => {
         client.put(
-            '/api/location-history/',{
+            '/api/location-history/', {
                 location: location
-            },{
+            }, {
                 headers: {
                     Authorization: `Bearer ${access_token}`
                 }
@@ -39,9 +43,9 @@ function MapComponent({props, updateLocation=true}) {
             console.log(response);
         }).catch(error => {
             console.log(error.status);
-            client.post('/api/location-history/',{
+            client.post('/api/location-history/', {
                 location: location
-            },{
+            }, {
                 headers: {
                     Authorization: `Bearer ${access_token}`
                 }
@@ -53,78 +57,79 @@ function MapComponent({props, updateLocation=true}) {
         })
     }
 
-
     return (
         <MapContainer>
-            <div>
-                <MapInfoContainer>
-                    <HeaderInfoContainer>
-                        <InfoHeader>From</InfoHeader>
-                        <InfoHeader>To</InfoHeader>
-                        <InfoHeader>Time</InfoHeader>
-                        <InfoHeader>Distance</InfoHeader>
-                    </HeaderInfoContainer>
-                    <HeaderInfoContainer>
-                        <MapInputField value={defaultCenter}/>
-                        <MapInputField value={destinationAddress}/>
-                        <MapInputField value={duration}/>
-                        <MapInputField value={distance}/>
-                    </HeaderInfoContainer>
+            {destinationAddress && destinationAddress.length > 3 ? (
+                <>
+                    <div>
+                        <MapHeaderComponent
+                            defaultCenter={defaultCenter}
+                            destinationAddress={destinationAddress}
+                            duration={duration}
+                            distance={distance}
+                        />
+                        {updateLocation && (
+                            <div>
+                                <LoginInput
+                                    type="text"
+                                    placeholder="Twoja Lokalizacja"
+                                    value={location}
+                                    onChange={handleInputChange}
+                                />
+                                <LoginButton onClick={handleUpdateLocation}>Update lokalizacje</LoginButton>
+                            </div>
+                        )}
+                    </div>
+                    <LoadScript googleMapsApiKey={apiKey}>
+                        <GoogleMap
+                            onLoad={() =>{
+                                const directionsService = new window.google.maps.DirectionsService();
+                                directionsService.route(
+                                    {
+                                        origin: defaultCenter,
+                                        destination: destinationAddress, // This is another point for demonstration
+                                        travelMode: window.google.maps.TravelMode.DRIVING,
+                                    },
+                                    (result, status) => {
+                                        if (status === window.google.maps.DirectionsStatus.OK) {
+                                            setDirections(result);
+                                            setDistance(result.routes[0].legs[0].distance.text);
+                                            setDuration(result.routes[0].legs[0].duration.text);
+                                        } else {
+                                            console.error(`Error fetching directions ${result}`);
+                                        }
+                                    }
+                                );
+                            }}
 
-                </MapInfoContainer>
-                {
-                    updateLocation && (
-                        <div>
-                            <LoginInput
-                                type="text"
-                                placeholder="Twoja Lokalizacja"
-                                values={location}
-                                onChange={handleInputChange}
-                            />
-                            <LoginButton onClick={handleUpdateLocation}>Update lokalizacje</LoginButton>
-                        </div>
-                    )
-                }
-            </div>
-            <LoadScript googleMapsApiKey={apiKey}>
-                <GoogleMap
-                    onLoad={() =>{
-                        const directionsService = new window.google.maps.DirectionsService();
-                        directionsService.route(
-                            {
-                                origin: defaultCenter,
-                                destination: destinationAddress, // This is another point for demonstration
-                                travelMode: window.google.maps.TravelMode.DRIVING,
-                            },
-                            (result, status) => {
-                                if (status === window.google.maps.DirectionsStatus.OK) {
-                                    setDirections(result);
-                                    setDistance(result.routes[0].legs[0].distance.text);
-                                    setDuration(result.routes[0].legs[0].duration.text);
-                                } else {
-                                    console.error(`Error fetching directions ${result}`);
-                                }
-                            }
-                        );
-                    }}
-                    mapContainerStyle={mapStyles}
-                    zoom={13}
-                    center={defaultCenter}
-                    options={{
-                        disableDefaultUI: true,
-                        draggable: true,
-                        keyboardShortcuts: false,
-                        scaleControl: true,
-                        scrollwheel: true,
-                        styles: styles
-                    }}
-                >
-                    {directions && <DirectionsRenderer
-                        directions={directions}
-                        polylineOptions={{ strokeColor: "red" }}
-                    />}
-                </GoogleMap>
-            </LoadScript>
+                            mapContainerStyle={mapStyles}
+                            zoom={13}
+                            center={defaultCenter}
+                            options={{
+                                disableDefaultUI: true,
+                                draggable: true,
+                                keyboardShortcuts: false,
+                                scaleControl: true,
+                                scrollwheel: true,
+                                styles: styles
+                            }}
+                        >
+                            {directions && <DirectionsRenderer
+                                directions={directions}
+                                polylineOptions={{strokeColor: "red"}}
+                            />}
+                        </GoogleMap>
+                    </LoadScript>
+                </>
+            ) : (
+                <div>
+                    <AlertComponent
+                        title={"Error"}
+                        information={"Error"}
+                        buttonText={"Error"}
+                    />
+                </div>
+            )}
         </MapContainer>
     );
 }

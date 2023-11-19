@@ -4,7 +4,12 @@ import {
     RowMachineRecord,
     TruckViewContainer
 } from "../assets/styles/receivment_create_styled";
-import {MachinePhotoInput, StyleAvailable, StyleAvailableFalse} from "../assets/styles/truck_list_styled";
+import {
+    MachinePhotoInput,
+    StyleAvailable,
+    StyleAvailableFalse,
+    StyleAvailableImg
+} from "../assets/styles/truck_list_styled";
 import React, {useEffect, useState} from "react";
 import {
     AlertButton,
@@ -39,17 +44,36 @@ import {
     SettingTitle,
     UpdateButton
 } from "../assets/styles/user_display";
+import  icon_approve  from "../assets/icons/check.png";
+import  icon_disapprove  from "../assets/icons/cross.png";
+
+
+// export const DisplayMachineRow = (machine) =>{
+//     return (
+//         <RowMachineRecord>
+//             {machine.available === 'Wolny' ? (
+//                 <StyleAvailable style={{width:'40px'}}  className="style-text">✔</StyleAvailable>
+//             ) : (
+//                 <StyleAvailableFalse style={{width:'40px'}} className="style-text">X</StyleAvailableFalse>
+//             )}
+//         </RowMachineRecord>
+//     )
+// }
 
 export const SemiTrailerViewContainerFun = ({items, selectedItem, onSelect}) => {
+
     return (
         <TruckViewContainer>
             {items.map(semitrailer => (
                 <RowMachineContainer key={semitrailer.id}>
                     <RowMachineRecord>
                         {semitrailer.available === 'Wolny' ? (
-                            <StyleAvailable style={{width:'40px'}}  className="style-text">✔</StyleAvailable>
+                            // <StyleAvailable style={{width:'40px'}}  className="style-text">✔</StyleAvailable>
+                            <StyleAvailableImg src={icon_approve}/>
                         ) : (
-                            <StyleAvailableFalse style={{width:'40px'}} className="style-text">X</StyleAvailableFalse>
+                            // <StyleAvailableFalse style={{width:'40px'}} className="style-text">X</StyleAvailableFalse>
+                            <StyleAvailableImg src={icon_disapprove}/>
+
                         )}
                     </RowMachineRecord>
                     <RowMachineRecord>
@@ -74,10 +98,13 @@ export const TruckViewContainerFun = ({items, selectedItem, onSelect}) =>{
             {items.map((truck, index) => (
                 <RowMachineContainer key={truck.id}>
                     <RowMachineRecord>
-                        {truck.available === "Wolny" ? (
-                            <StyleAvailable width='40px' className="style-text">✔</StyleAvailable>
+                        {truck.available === 'Wolny' ? (
+                            // <StyleAvailable style={{width:'40px'}}  className="style-text">✔</StyleAvailable>
+                            <StyleAvailableImg src={icon_approve}/>
                         ) : (
-                            <StyleAvailableFalse style={{width:'40px'}} className="style-text">X</StyleAvailableFalse>
+                            // <StyleAvailableFalse style={{width:'40px'}} className="style-text">X</StyleAvailableFalse>
+                            <StyleAvailableImg src={icon_disapprove}/>
+
                         )}
                     </RowMachineRecord>
                     <RowMachineRecord>{truck.registration_number}</RowMachineRecord>

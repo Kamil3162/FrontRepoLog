@@ -5,7 +5,6 @@ export const PageContainer = styled.div`
   display: flex;
   flex-direction: row;
   min-height: 950px;
-  overflow-x: hidden;
   max-width: 1920px;
   height: 100%;
   margin: 0;
@@ -13,17 +12,17 @@ export const PageContainer = styled.div`
 `;
 
 export const ContentContainer = styled.div`
-  position: relative;
   flex: 1;
   flex-grow: 100;
   flex-shrink: 0;
-  background-color: rgb(246, 244, 244);
   //background-color: rgb(7, 7, 7);
   margin-left: 250px;
+  margin-top: 100px;
 `;
 
 export const LeftPanel = styled.div`
-  position: absolute;
+  display: flex;
+  position: fixed;
   flex-direction: column;
   flex: 1;
   flex-basis: auto;
