@@ -18,7 +18,7 @@ import {
     StyleText,
     StyleAvailable,
     StyleAvailableFalse
-} from "../assets/styles/truck_list_styled";
+} from "../../assets/styles/truck_list_styled";
 import {Link, useParams} from "react-router-dom";
 import {
     CreateButtonPostContainer,
@@ -27,18 +27,18 @@ import {
     MainTextTitle,
     PostStory, PostStoryButtonContainer, TextPostContainer,
     TextTitle
-} from "../assets/styles/home_guest_styled";
-import client from "../utils/Sender";
-import {access_token} from "../utils/Sender";
+} from "../../assets/styles/home_guest_styled";
+import client from "../../utils/Sender";
+import {access_token} from "../../utils/Sender";
 import {useEffect, useState} from "react";
 import {
     ButtonPick,
     RowMachineContainer,
     RowMachineRecord}
-from "../assets/styles/receivment_create_styled";
-import {ButtonLink} from "../assets/styles/link_buttons";
-import {AlertComponent} from "../utils/FunctionComponents";
-import {PaginationContainer} from "../assets/styles/pagination_styled";
+from "../../assets/styles/receivment_create_styled";
+import {ButtonLink} from "../../assets/styles/link_buttons";
+import {AlertComponent} from "../../utils/FunctionComponents";
+import {PaginationContainer} from "../../assets/styles/pagination_styled";
 
 function Trucks(){
 

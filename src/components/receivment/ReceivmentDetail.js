@@ -1,23 +1,23 @@
 import React from "react";
 import {useState, useEffect} from "react";
-import client from "../utils/Sender";
-import {access_token} from "../utils/Sender";
+import client from "../../utils/Sender";
+import {access_token} from "../../utils/Sender";
 import {useParams, UseParams} from 'react-router-dom';
-import {AlertTitle, AlertContainer, AlertInformation, AlertRotationContainer, AlertButton} from "../assets/styles/alert_styled";
-import {AlertComponent} from "../utils/FunctionComponents";
-import {SemiTrailerComponent} from "../utils/FunctionComponents";
-import {TruckComponent} from "../utils/FunctionComponents";
-import Truck from "./Truck";
-import {DetailReceivmentContainer, DetailRowReceivment} from "../assets/styles/receivment_detail_styled";
-import {UserComponent} from "../utils/FunctionComponents";
-import MapGen, { MapComponent } from "./MapGen";
+import {AlertTitle, AlertContainer, AlertInformation, AlertRotationContainer, AlertButton} from "../../assets/styles/alert_styled";
+import {AlertComponent} from "../../utils/FunctionComponents";
+import {SemiTrailerComponent} from "../../utils/FunctionComponents";
+import {TruckComponent} from "../../utils/FunctionComponents";
+import Truck from "../truck/Truck";
+import {DetailReceivmentContainer, DetailRowReceivment} from "../../assets/styles/receivment_detail_styled";
+import {UserComponent} from "../../utils/FunctionComponents";
+import MapGen, { MapComponent } from "../MapGen";
 import {
     InformPostContainer,
     InformPostContentContainer,
     MainTextTitle,
     PostStory,
     TextTitle
-} from "../assets/styles/home_guest_styled";
+} from "../../assets/styles/home_guest_styled";
 
 function ReceivmentDetail(){
     // get all this kind of data

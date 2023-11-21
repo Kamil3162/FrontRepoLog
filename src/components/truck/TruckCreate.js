@@ -2,18 +2,18 @@ import React, { useState } from 'react';
 import axios from "axios";
 import {Form} from "react-router-dom";
 import {type} from "@testing-library/user-event/dist/type";
-import client from "../utils/Sender";
+import client from "../../utils/Sender";
 import {
     InformPostContainer,
     InformPostContentContainer,
     MainTextTitle,
     PostStory, TextPostContainer,
     TextTitle
-} from "../assets/styles/home_guest_styled";
-import {MachineContainer} from "../assets/styles/mechine_create_styled";
-import {AddressContainer, InputField, LabelFields} from "../assets/styles/user_display";
-import {LoginButton} from "../assets/styles/login_styled";
-import {TruckListContainer} from "../assets/styles/truck_list_styled";
+} from "../../assets/styles/home_guest_styled";
+import {MachineContainer} from "../../assets/styles/mechine_create_styled";
+import {AddressContainer, InputField, LabelFields} from "../../assets/styles/user_display";
+import {LoginButton} from "../../assets/styles/login_styled";
+import {TruckListContainer} from "../../assets/styles/truck_list_styled";
 const YourComponent = () => {
     const [brand, setBrand] = useState('');
     const [model, setModel] = useState('');

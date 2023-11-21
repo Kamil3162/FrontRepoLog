@@ -124,9 +124,10 @@ function MapComponent({props, updateLocation=true}) {
             ) : (
                 <div>
                     <AlertComponent
-                        title={"Error"}
-                        information={"Error"}
-                        buttonText={"Error"}
+                        title={"Receivment Error"}
+                        information={"You havent active receivment"}
+                        buttonText={"Close"}
+                        redirectUrl={'/receivment-create/'}
                     />
                 </div>
             )}

@@ -5,7 +5,7 @@ import {
     TruckList,
     TruckListContainer,
     TruckListTitle
-} from "../assets/styles/truck_list_styled";
+} from "../../assets/styles/truck_list_styled";
 import {Link, useParams} from "react-router-dom";
 import {
     CreateButtonPostContainer,
@@ -14,12 +14,12 @@ import {
     MainTextTitle,
     PostStory, PostStoryButtonContainer, TextPostContainer,
     TextTitle
-} from "../assets/styles/home_guest_styled";
+} from "../../assets/styles/home_guest_styled";
 
-import {access_token} from "../utils/Sender";
-import client from "../utils/Sender";
-import {ButtonLink} from "../assets/styles/link_buttons";
-import {PaginationContainer} from "../assets/styles/pagination_styled";
+import {access_token} from "../../utils/Sender";
+import client from "../../utils/Sender";
+import {ButtonLink} from "../../assets/styles/link_buttons";
+import {PaginationContainer} from "../../assets/styles/pagination_styled";
 import {useNavigate} from "react-router-dom";
 function SemiTrailers(){
     const [semitrailers, setSemiTrailers] = useState([]);

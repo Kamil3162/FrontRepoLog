@@ -1,7 +1,7 @@
 import React from "react";
 import {useState, useEffect} from "react";
-import client from "../utils/Sender";
-import {access_token} from "../utils/Sender";
+import client from "../../utils/Sender";
+import {access_token} from "../../utils/Sender";
 import {
     MainUsersContentContainer,
     SeachUserField,
@@ -10,16 +10,16 @@ import {
     UserPhotoContainer,
     UsersContainer, UserSearchContainer,
     UsersListContainer
-} from "../assets/styles/users_display";
-import user_icon from "../assets/icons/user_icon.png";
+} from "../../assets/styles/users_display";
+import user_icon from "../../assets/icons/user_icon.png";
 import {
     CreateButtonPostContainer,
     MainTextTitle, MainTextTitleFontChange,
     PostStory,
     PostStoryButtonContainer, TextPostContainer,
     TextTitle
-} from "../assets/styles/home_guest_styled";
-import {ButtonLink} from "../assets/styles/link_buttons";
+} from "../../assets/styles/home_guest_styled";
+import {ButtonLink} from "../../assets/styles/link_buttons";
 import {Link} from "react-router-dom";
 import {
     AddressContainer,
@@ -27,8 +27,8 @@ import {
     LabelFields, PersonalDataContainer,
     SettingDetailContainer, SettingDetails,
     SettingsNavTitle, UpdateButton
-} from "../assets/styles/user_display";
-import {handleUpdateUser} from "../utils/Sender";
+} from "../../assets/styles/user_display";
+import {handleUpdateUser} from "../../utils/Sender";
 import user from "./User";
 
 function Users(){

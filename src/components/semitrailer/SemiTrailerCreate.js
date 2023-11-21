@@ -1,18 +1,18 @@
 import React from 'react';
-import client from "../utils/Sender";
+import client from "../../utils/Sender";
 import {
     InformPostContainer,
     InformPostContentContainer,
     MainTextTitle,
     PostStory, TextPostContainer,
     TextTitle
-} from "../assets/styles/home_guest_styled";
-import {MachineContainer} from "../assets/styles/mechine_create_styled";
-import {AddressContainer, InputField, LabelFields} from "../assets/styles/user_display";
-import {LoginButton} from "../assets/styles/login_styled";
+} from "../../assets/styles/home_guest_styled";
+import {MachineContainer} from "../../assets/styles/mechine_create_styled";
+import {AddressContainer, InputField, LabelFields} from "../../assets/styles/user_display";
+import {LoginButton} from "../../assets/styles/login_styled";
 import {useState} from "react";
-import {access_token} from "../utils/Sender";
-import {TruckListContainer} from "../assets/styles/truck_list_styled";
+import {access_token} from "../../utils/Sender";
+import {TruckListContainer} from "../../assets/styles/truck_list_styled";
 function SemiTrailerForm(){
 
     const [brand, setBrand] = useState('');

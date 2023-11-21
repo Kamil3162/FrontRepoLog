@@ -1,23 +1,23 @@
 import axios from "axios";
 import React, {useEffect, useState} from "react";
-import {access_token} from "../utils/Sender.js";
-import client from "../utils/Sender.js";
+import {access_token} from "../../utils/Sender.js";
+import client from "../../utils/Sender.js";
 import {
     InformPostContainer,
     InformPostContentContainer,
     MainTextTitle, PostStory,
     TextTitle
-} from "../assets/styles/home_guest_styled";
+} from "../../assets/styles/home_guest_styled";
 import {
     HeaderName,
     HeaderTablesName,
     RowListContainer, RowListElements, StyleAvailable, StyleAvailableFalse, StyleText,
     TruckList, TruckListContainer,
     TruckListTitle
-} from "../assets/styles/truck_list_styled";
+} from "../../assets/styles/truck_list_styled";
 import {Link, useParams} from "react-router-dom";
-import {PaginationContainer} from "../assets/styles/pagination_styled";
-import {ButtonLink} from "../assets/styles/link_buttons";
+import {PaginationContainer} from "../../assets/styles/pagination_styled";
+import {ButtonLink} from "../../assets/styles/link_buttons";
 
 
 function ReceivmentsList(){

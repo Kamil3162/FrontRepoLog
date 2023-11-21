@@ -5,12 +5,12 @@ import {
     InformPostContentContainer, MainTextTitle, PostStory, PostStoryButtonContainer,
     TextPostContainer,
     TextTitle
-} from "../assets/styles/home_guest_styled";
-import {MachineContainer} from "../assets/styles/mechine_create_styled";
-import {InfoCreateMachineContainer, SelectContainer, SelectOption} from "../assets/styles/truck_styled";
-import {LabelFields} from "../assets/styles/user_display";
-import {LoginButton} from "../assets/styles/login_styled";
-import client, {access_token} from "../utils/Sender";
+} from "../../assets/styles/home_guest_styled";
+import {MachineContainer} from "../../assets/styles/mechine_create_styled";
+import {InfoCreateMachineContainer, SelectContainer, SelectOption} from "../../assets/styles/truck_styled";
+import {LabelFields} from "../../assets/styles/user_display";
+import {LoginButton} from "../../assets/styles/login_styled";
+import client, {access_token} from "../../utils/Sender";
 import {useLocation} from "react-router-dom";
 function TruckEquipmentDetail(){
 

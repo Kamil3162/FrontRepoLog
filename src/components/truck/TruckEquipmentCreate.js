@@ -5,14 +5,14 @@ import {
     InformPostContentContainer,
     MainTextTitle, PostStory, PostStoryButtonContainer, TextPostContainer,
     TextTitle
-} from "../assets/styles/home_guest_styled";
-import {MachineContainer} from "../assets/styles/mechine_create_styled";
-import {AddressContainer, InputField, LabelFields} from "../assets/styles/user_display";
-import {LoginButton} from "../assets/styles/login_styled";
+} from "../../assets/styles/home_guest_styled";
+import {MachineContainer} from "../../assets/styles/mechine_create_styled";
+import {AddressContainer, InputField, LabelFields} from "../../assets/styles/user_display";
+import {LoginButton} from "../../assets/styles/login_styled";
 import {useState, useEffect} from "react";
-import client from "../utils/Sender";
-import {access_token} from "../utils/Sender";
-import {InfoCreateMachineContainer, SelectContainer, SelectOption} from "../assets/styles/truck_styled";
+import client from "../../utils/Sender";
+import {access_token} from "../../utils/Sender";
+import {InfoCreateMachineContainer, SelectContainer, SelectOption} from "../../assets/styles/truck_styled";
 import {useLocation} from "react-router-dom";
 
 function TruckEquipmentCreate(){

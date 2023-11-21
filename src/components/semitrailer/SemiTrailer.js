@@ -1,13 +1,13 @@
 import React,{ useState, useEffect }from "react";
-import client from "../utils/Sender";
-import {access_token} from "../utils/Sender";
+import client from "../../utils/Sender";
+import {access_token} from "../../utils/Sender";
 import {Link, useParams} from "react-router-dom";
 import {
     HeaderContainer,
     MachineDetail,
     MachineDetailContainer, MachineDetailRow,
     MachineHeaderName, MachineInformation, MachinePhoto, MachinePhotoContainer
-} from "../assets/styles/machine_detail_styled";
+} from "../../assets/styles/machine_detail_styled";
 import {
     CreateButtonPostContainer,
     InformPostContainer,
@@ -15,10 +15,10 @@ import {
     MainTextTitle,
     PostStory, PostStoryButtonContainer, TextPostContainer,
     TextTitle
-} from "../assets/styles/home_guest_styled";
-import {InputField, LabelFields, UpdateButton} from "../assets/styles/user_display";
-import {MachinePhotoInput} from "../assets/styles/truck_list_styled";
-import {ButtonLink} from "../assets/styles/link_buttons";
+} from "../../assets/styles/home_guest_styled";
+import {InputField, LabelFields, UpdateButton} from "../../assets/styles/user_display";
+import {MachinePhotoInput} from "../../assets/styles/truck_list_styled";
+import {ButtonLink} from "../../assets/styles/link_buttons";
 import {useNavigate} from "react-router-dom";
 
 function SemiTrailer(){

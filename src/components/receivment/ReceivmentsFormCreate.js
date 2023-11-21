@@ -1,7 +1,7 @@
 import axios from "axios";
 import React, {useEffect, useState} from "react";
-import {access_token} from "../utils/Sender.js";
-import client from "../utils/Sender.js";
+import {access_token} from "../../utils/Sender.js";
+import client from "../../utils/Sender.js";
 import {
     ReceivmentContainer,
     ListElements,
@@ -27,8 +27,8 @@ import {
     TruckImagePick,
     RowMachineContainer,
     RowMachineRecord
-} from "../assets/styles/receivment_create_styled";
-import icon1 from "../assets/icons/truck-img.jpg"
+} from "../../assets/styles/receivment_create_styled";
+import icon1 from "../../assets/icons/truck-img.jpg"
 import {
     HeaderName,
     HeaderTablesName,
@@ -36,23 +36,23 @@ import {
     RowListElements,
     StyleAvailable, StyleAvailableFalse,
     StyleText
-} from "../assets/styles/truck_list_styled";
+} from "../../assets/styles/truck_list_styled";
 import {
     InformPostContainer,
     InformPostContentContainer,
     MainTextTitle,
     PostStory,
     TextTitle
-} from "../assets/styles/home_guest_styled";
+} from "../../assets/styles/home_guest_styled";
 
-import {user_data} from "../utils/Sender.js";
-import user from "./User";
-import {UpdateButton} from "../assets/styles/user_display";
-import Truck from "./Truck";
-import {SemiTrailerViewContainerFun, TruckViewContainerFun} from "../utils/FunctionComponents.js";
-import {AlertComponent} from "../utils/FunctionComponents.js";
-import SemiTrailerEquipmentCreate from "./SemiTrailerEquipmentCreate";
-import TruckEquipmentCreate from "./TruckEquipmentCreate";
+import {user_data} from "../../utils/Sender.js";
+import user from "../user/User";
+import {UpdateButton} from "../../assets/styles/user_display";
+import Truck from "../truck/Truck";
+import {SemiTrailerViewContainerFun, TruckViewContainerFun} from "../../utils/FunctionComponents.js";
+import {AlertComponent} from "../../utils/FunctionComponents.js";
+import SemiTrailerEquipmentCreate from "../semitrailer/SemiTrailerEquipmentCreate";
+import TruckEquipmentCreate from "../truck/TruckEquipmentCreate";
 
 function ReceivmentFromCreate(){
     const [truck, setTruck] = useState(true);

@@ -1,20 +1,20 @@
 import axios from "axios";
 import React, {StrictMode, useEffect, useState} from "react";
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import Home from "./components/Home";
+import Home from "./components/home/Home";
 import Login from "./components/Login";
 import Register from "./components/Register";
-import User from "./components/User";
-import HomeGuest from "./components/HomeGuest";
-import SemiTrailerForm from "./components/SemiTrailerCreate";
-import TruckCreate from "./components/TruckCreate";
-import Truck from "./components/Truck";
-import SemiTrailer from "./components/SemiTrailer";
-import LeftPanelComponent from "./components/LeftPanel";
-import ReceivmentsList from "./components/ReceivmentsList.js";
-import ReceivmentFromCreate from "./components/ReceivmentsFormCreate.js";
-import ReceivmentsDetail from "./components/ReceivmentDetail";
-import Trucks from "./components/Trucks";
+import User from "./components/user/User";
+import HomeGuest from "./components/home/HomeGuest";
+import SemiTrailerForm from "./components/semitrailer/SemiTrailerCreate";
+import TruckCreate from "./components/truck/TruckCreate";
+import Truck from "./components/truck/Truck";
+import SemiTrailer from "./components/semitrailer/SemiTrailer";
+import LeftPanelComponent from "./components/left_panel/LeftPanel";
+import ReceivmentsList from "./components/receivment/ReceivmentsList.js";
+import ReceivmentFromCreate from "./components/receivment/ReceivmentsFormCreate.js";
+import ReceivmentsDetail from "./components/receivment/ReceivmentDetail";
+import Trucks from "./components/truck/Trucks";
 import {
     PageContainer,
     LeftPanel,
@@ -24,18 +24,19 @@ import {
     PanelItemText,
     LogoPanelItem
 } from "./assets/styles/home_styled.js";
-import SemiTrailers from "./components/SemiTrailers";
+import SemiTrailers from "./components/semitrailer/SemiTrailers";
 import Logout from "./components/Logout";
-import SemiTrailerEquipmentCreate from "./components/SemiTrailerEquipmentCreate";
-import TruckEquipmentCreate from "./components/TruckEquipmentCreate";
-import Users from "./components/Users";
+import SemiTrailerEquipmentCreate from "./components/semitrailer/SemiTrailerEquipmentCreate";
+import TruckEquipmentCreate from "./components/truck/TruckEquipmentCreate";
+import Users from "./components/user/Users";
 import {GoogleMap} from "@react-google-maps/api";
 import MapGen from "./components/MapGen";
 import Navbar from "./components/Navbar";
-import ActiveReceivment from "./components/ActiveReceivment";
+import ActiveReceivment from "./components/receivment/ActiveReceivment";
 import CreateLocation from "./components/CreateLocation";
-import ChatDashboard from "./components/ChatDashboard";
+import ChatDashboard from "./components/chat/ChatDashboard";
 import {AuthProvider} from "./auth/Auth_provider";
+import Footer from "./components/footer/Footer";
 
 
 function App(){
@@ -77,6 +78,7 @@ function App(){
                         </Routes>
                     </ContentContainer>
                 </PageContainer>
+                <Footer/>
             </AuthProvider>
         </StrictMode>
     )

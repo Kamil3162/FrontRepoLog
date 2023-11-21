@@ -123,7 +123,7 @@ export const TruckViewContainerFun = ({items, selectedItem, onSelect}) =>{
         )
 }
 
-export const AlertComponent = ({title, information, buttonText, buttonClickFunction = () => {}, redirectUrl = "#"}) =>{
+export const AlertComponent = ({title, information, buttonText, buttonClickFunction = () => {}, redirectUrl = ""}) =>{
 
     const [visibleState, setVisibleState] = useState(true);
     const navigate = useNavigate();

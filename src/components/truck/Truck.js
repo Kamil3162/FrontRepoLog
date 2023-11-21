@@ -2,8 +2,8 @@ import React, {useState, useEffect} from "react";
 import axios from "axios";
 import {Link, useParams} from "react-router-dom";
 import {useNavigate} from "react-router-dom";
-import {access_token, countSessionTime} from "../utils/Sender";
-import client from "../utils/Sender";
+import {access_token, countSessionTime} from "../../utils/Sender";
+import client from "../../utils/Sender";
 
 import {
     MachineDetailContainer,
@@ -16,7 +16,7 @@ import {
     MachineDetailInformation,
     MachineDetailRow,
     MachinePhotoContainer
-} from "../assets/styles/machine_detail_styled";
+} from "../../assets/styles/machine_detail_styled";
 
 import {
     CreateButtonPostContainer,
@@ -26,11 +26,11 @@ import {
     MainTextTitle,
     PostStory, PostStoryButtonContainer, TextPostContainer,
     TextTitle
-} from "../assets/styles/home_guest_styled";
-import {AddressContainer, LabelFields, InputField, UpdateButton} from "../assets/styles/user_display";
-import icon6 from "../assets/icons/truck-img.jpg";
-import {MachinePhotoInput} from "../assets/styles/truck_list_styled";
-import {ButtonLink} from "../assets/styles/link_buttons";
+} from "../../assets/styles/home_guest_styled";
+import {AddressContainer, LabelFields, InputField, UpdateButton} from "../../assets/styles/user_display";
+import icon6 from "../../assets/icons/truck-img.jpg";
+import {MachinePhotoInput} from "../../assets/styles/truck_list_styled";
+import {ButtonLink} from "../../assets/styles/link_buttons";
 
 function TruckDisplay(){
 
@@ -182,14 +182,7 @@ function TruckDisplay(){
                     <UpdateButton onClick={handleSubmit}>Update</UpdateButton>
 
                 </MachineInformation>
-                <MachinePhotoContainer>
-                    <MachinePhoto src={photo} />
-                    <MachinePhotoInput
-                        type="file"
-                        accept="image/*"
-                        onChange={handlePhotoChange}
-                    />
-                </MachinePhotoContainer>
+
             </MachineDetail>
 
         </MachineDetailContainer>

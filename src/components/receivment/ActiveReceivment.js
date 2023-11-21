@@ -1,15 +1,15 @@
 import React, {useEffect, useState} from "react";
-import client, {access_token} from "../utils/Sender";
-import {user_data} from "../utils/Sender";
+import client, {access_token} from "../../utils/Sender";
+import {user_data} from "../../utils/Sender";
 import {
     InformPostContainer,
     InformPostContentContainer,
     MainTextTitle, PostStory,
     TextTitle
-} from "../assets/styles/home_guest_styled";
-import {DetailReceivmentContainer, DetailRowReceivment} from "../assets/styles/receivment_detail_styled";
-import MapGen from "./MapGen";
-import {SemiTrailerComponent, TruckComponent} from "../utils/FunctionComponents";
+} from "../../assets/styles/home_guest_styled";
+import {DetailReceivmentContainer, DetailRowReceivment} from "../../assets/styles/receivment_detail_styled";
+import MapGen from "../MapGen";
+import {SemiTrailerComponent, TruckComponent} from "../../utils/FunctionComponents";
 
 function ActiveReceivment(){
     const [currentLocation, setCurrentLocation] = useState('');
@@ -41,7 +41,6 @@ function ActiveReceivment(){
     }, []);
 
     // generowanie ostatniej lokalizacji
-
 
     return (
         <DetailReceivmentContainer>

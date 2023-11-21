@@ -1,8 +1,8 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import Navbar from "./Navbar";
-import client from "../utils/Sender";
-import {access_token} from "../utils/Sender";
+import Navbar from "../Navbar";
+import client from "../../utils/Sender";
+import {access_token} from "../../utils/Sender";
 import {
     AddressContainer,
     DeleteAccountText, InputField, LabelFields, PersonalDataContainer,
@@ -12,7 +12,7 @@ import {
     SettingsContainer,
     SettingsLeftPanel, SettingsNavTitle,
     SettingTitle, UpdateButton
-} from "../assets/styles/user_display";
+} from "../../assets/styles/user_display";
 import {
     CreateButtonPostContainer,
     InformPostContainer,
@@ -20,7 +20,7 @@ import {
     MainTextTitle,
     PostStory, PostStoryButtonContainer, TextPostContainer,
     TextTitle
-} from "../assets/styles/home_guest_styled";
+} from "../../assets/styles/home_guest_styled";
 function User() {
     // convert json stringify data to json format data
     const user_data = JSON.parse(localStorage.getItem('user'));

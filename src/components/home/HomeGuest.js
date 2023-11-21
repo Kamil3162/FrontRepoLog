@@ -15,9 +15,9 @@ import {
     PostStory,
     TextPostContainer,
     TextTitle,
-} from "../assets/styles/home_guest_styled.js";
-import icon6 from "../assets/icons/cargo-background.png";
-import {AlertComponent} from "../utils/FunctionComponents";
+} from "../../assets/styles/home_guest_styled.js";
+import icon6 from "../../assets/icons/cargo-background.png";
+import {AlertComponent} from "../../utils/FunctionComponents";
 
 function HomeGuest(){
     console.log(localStorage.getItem('user_permission_group'));

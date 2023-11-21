@@ -1,10 +1,10 @@
 
 import React, {useEffect, useState} from "react";
-import client from "../utils/Sender";
-import {ChatWindowComponent, Message} from "../assets/styles/chat_dashboard_styled";
-import user from "./User";
-import {InputField} from "../assets/styles/user_display";
-import {LoginButton} from "../assets/styles/login_styled";
+import client from "../../utils/Sender";
+import {ChatWindowComponent, Message} from "../../assets/styles/chat_dashboard_styled";
+import user from "../user/User";
+import {InputField} from "../../assets/styles/user_display";
+import {LoginButton} from "../../assets/styles/login_styled";
 
 
 /*

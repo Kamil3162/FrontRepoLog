@@ -1,16 +1,17 @@
 import React, {useRef} from "react";
-import client from "../utils/Sender";
+import client from "../../utils/Sender";
 import {useEffect, useState} from "react";
-import user from "./User";
-import {access_token} from "../utils/Sender";
+import user from "../user/User";
+import {access_token} from "../../utils/Sender";
 
 import {
     ActiveUserList,
     ChatDashboardComponent, ChatMessageContainer, ChatWindowComponent, ChatWindows,
     styledUser,
     StyledUserChat
-} from "../assets/styles/chat_dashboard_styled";
+} from "../../assets/styles/chat_dashboard_styled";
 import ChatWindow from "./ChatWindow";
+import Footer from "../footer/Footer";
 
 function ChatDashboard(){
 
