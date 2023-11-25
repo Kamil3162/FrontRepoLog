@@ -17,7 +17,7 @@ export const ContentContainer = styled.div`
   flex-shrink: 0;
   //background-color: rgb(7, 7, 7);
   margin-left: 250px;
-  margin-top: 100px;
+  margin-top: 50px;
 `;
 
 export const LeftPanel = styled.div`

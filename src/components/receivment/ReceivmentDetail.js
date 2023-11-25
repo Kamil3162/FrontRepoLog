@@ -40,6 +40,7 @@ function ReceivmentDetail(){
             }
         ).then(response => {
             setData(response.data);
+            console.log(response.data.semi_trailer);
             const destination = `${response.data.destination.city} ${response.data.destination.street} ${response.data.destination.apartment_number}`;
             const source_address = "Jarosław PWSTE";
 
@@ -62,6 +63,7 @@ function ReceivmentDetail(){
                     </PostStory>
                 </InformPostContentContainer>
             </InformPostContainer>
+
             { data &&
                 <>
                     <DetailRowReceivment style={{marginBottom: "0px"}}>
@@ -70,11 +72,19 @@ function ReceivmentDetail(){
                         />
                     </DetailRowReceivment>
                     <DetailRowReceivment>
+
                         <div style={{ width : '50%'}}>
                             <TruckComponent
                                 props={data.truck}
                             />
                         </div>
+                        <InformPostContentContainer>
+                            <MainTextTitle>Truck Detail</MainTextTitle>
+                            <PostStory>
+                                Welcome to the future of car management! Say goodbye to worries and inefficiencies with our cutting-edge car management app designed to make your driving experience a breeze.
+                                Discover the power of real-time control as our app offers seamless GPS tracking, allowing you to monitor your vehicle's location at all times, ensuring its safety and security.
+                            </PostStory>
+                        </InformPostContentContainer>
                     </DetailRowReceivment>
                     <DetailRowReceivment style={{marginBottom: "0px"}}>
                         <div style={{ width: '40%'}}>
@@ -82,6 +92,13 @@ function ReceivmentDetail(){
                                 props={data.semi_trailer}
                             />
                         </div>
+                        <InformPostContentContainer>
+                            <MainTextTitle>Semitailer Detail</MainTextTitle>
+                            <PostStory>
+                                Welcome to the future of car management! Say goodbye to worries and inefficiencies with our cutting-edge car management app designed to make your driving experience a breeze.
+                                Discover the power of real-time control as our app offers seamless GPS tracking, allowing you to monitor your vehicle's location at all times, ensuring its safety and security.
+                            </PostStory>
+                        </InformPostContentContainer>
                     </DetailRowReceivment>
                     {/*<DetailRowReceivment>*/}
                     {/*    <div style={{ width: '40%'}}>*/}

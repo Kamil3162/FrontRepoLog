@@ -20,7 +20,6 @@ export const TruckListTitle = styled.a`
 export const TruckList = styled.div`
     display: flex;
     flex-direction: column;
-  border-top: 1px solid rgba(0, 0, 0, 0.3);
   height: 400px;
   
 `;
@@ -31,14 +30,13 @@ export const RowListContainer = styled.div`
   width: 90%;
   height: 80px;
   text-decoration: none;
-  border-left: 1px solid rgba(0, 0, 0, 0.3);
-  border-bottom: 1px solid rgba(0, 0, 0, 0.3);
-  border-right: 1px solid rgba(0, 0, 0, 0.3);
-
+  border-radius: 15px;
+  border: 1px solid rgba(0, 0, 0, 0.3);
+  margin-top: 5px;
+  
   &:hover {
     background-color: rgb(152, 150, 150);
     transition: 0.3s linear background-color;
-    border-radius: 15px;
 
     .style-text {
       color: white;

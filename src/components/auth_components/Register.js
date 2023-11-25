@@ -8,10 +8,10 @@ import {
     LoginInput,
     LoginLabel, LoginPageContainer,
     LoginPart
-} from "../assets/styles/login_styled";
-import cargophoto from "../assets/icons/truck-login.jpg";
-import client from "../utils/Sender";
-import {AlertComponent} from "../utils/FunctionComponents";
+} from "../../assets/styles/login_styled";
+import cargophoto from "../../assets/icons/truck-login.jpg";
+import client from "../../utils/Sender";
+import {AlertComponent} from "../../utils/FunctionComponents";
 
 const Register = () => {
     const [firstName, setFirstName] = useState(null);
@@ -60,12 +60,6 @@ const Register = () => {
 
     return (
         <div>
-            <AlertComponent
-                title={infoRegisterTitle}
-                information={infoRegister}
-                buttonText="Zamknij"
-            />
-
             <LoginPageContainer>
                 <LoginPart>
                     <LoginEntry>Log In</LoginEntry>

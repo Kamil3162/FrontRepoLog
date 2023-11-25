@@ -16,6 +16,10 @@ export const user_data = JSON.parse(localStorage.getItem('user'));
 
 export const user_permission_group = localStorage.getItem('permission_group');
 
+export const headers = {
+    Authorization: `Bearer ${access_token}`
+};
+
 export const countSessionTime = () => {
     const current_time = new Date();
 

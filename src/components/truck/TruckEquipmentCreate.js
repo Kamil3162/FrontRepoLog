@@ -10,12 +10,13 @@ import {MachineContainer} from "../../assets/styles/mechine_create_styled";
 import {AddressContainer, InputField, LabelFields} from "../../assets/styles/user_display";
 import {LoginButton} from "../../assets/styles/login_styled";
 import {useState, useEffect} from "react";
-import client from "../../utils/Sender";
+import client, {headers} from "../../utils/Sender";
 import {access_token} from "../../utils/Sender";
 import {InfoCreateMachineContainer, SelectContainer, SelectOption} from "../../assets/styles/truck_styled";
 import {useLocation} from "react-router-dom";
+import truck from "./Truck";
 
-function TruckEquipmentCreate(){
+function TruckEquipmentCreate({truck_id}){
     const [chest, setChest] = useState(true);
     const [chains, setChains] = useState(true);
     const [jackHitch, setJackHitch] = useState(true);
@@ -25,7 +26,22 @@ function TruckEquipmentCreate(){
     const [photo, setPhoto] = useState(null); // For image upload, you might need additional logic
 
     let location = useLocation();
-    let id = location.state.id;
+    let id = truck_id;
+
+    useEffect(() => {
+        client.get(`/api/truck-equipment/${id}/`, {headers}
+        ).then(response => {
+            const data = response.data;
+            setChest(data.chest);
+            setChains(data.chains);
+            setJackHitch(data.jack_hitch);
+            setPlanetarKey(data.planetar_key);
+            setManometer(data.manometer);
+            setTirePumpingWire(data.tire_pumping_wire);
+        }).catch(error =>{
+            console.log(error);
+        })
+    }, []);
 
     const submitForm = (e) =>{
         e.preventDefault();
@@ -46,7 +62,8 @@ function TruckEquipmentCreate(){
                 },
             }
         ).then(response => {
-            console.log(response);
+            console.log("pomyslnie dodano truck equipment");
+            alert("Sukces");
         }).catch(error => {
             console.log(error);
         })
@@ -84,15 +101,11 @@ function TruckEquipmentCreate(){
             <InformPostContainer>
                 <InformPostContentContainer>
                     <TextPostContainer>
-                        <TextTitle>NAURA</TextTitle>
                         <MainTextTitle>Create Truck Equipment</MainTextTitle>
                         <PostStoryButtonContainer>
                             <PostStory>
                                 Welcome to the future of car management! Say goodbye to worries and inefficiencies with our cutting-edge car management app designed to make your driving experience a breeze.
                             </PostStory>
-                            <CreateButtonPostContainer>
-                                fdfdsfdsfds
-                            </CreateButtonPostContainer>
                         </PostStoryButtonContainer>
                     </TextPostContainer>
                 </InformPostContentContainer>
@@ -100,42 +113,60 @@ function TruckEquipmentCreate(){
             <MachineContainer onSubmit={submitForm} encType="multipart/form-data">
                 <InfoCreateMachineContainer>
                     <LabelFields>Chest: </LabelFields>
-                    <SelectContainer name="chest" id="chest" onChange={handleSelectOption}>
+                    <SelectContainer
+                        name="chest"
+                        value={chest}
+                        id="chest" onChange={handleSelectOption}>
                         <SelectOption value={true}>Obecne</SelectOption>
                         <SelectOption value={false}>Brak</SelectOption>
                     </SelectContainer>
                 </InfoCreateMachineContainer>
                 <InfoCreateMachineContainer>
                     <LabelFields>Chains: </LabelFields>
-                    <SelectContainer name="chains" id="chains" onChange={handleSelectOption}>
+                    <SelectContainer
+                        name="chains"
+                        value={chains}
+                        id="chains" onChange={handleSelectOption}>
                         <SelectOption value={true}>Obecne</SelectOption>
                         <SelectOption value={false}>Brak</SelectOption>
                     </SelectContainer>
                 </InfoCreateMachineContainer>
                 <InfoCreateMachineContainer>
                     <LabelFields>Jack Hitch: </LabelFields>
-                    <SelectContainer name="jack_hitch" id="jack_hitch" onChange={handleSelectOption}>
+                    <SelectContainer
+                        name="jack_hitch"
+                        value={jackHitch}
+                        id="jack_hitch" onChange={handleSelectOption}>
                         <SelectOption value={true}>Obecne</SelectOption>
                         <SelectOption value={false}>Brak</SelectOption>
                     </SelectContainer>
                 </InfoCreateMachineContainer>
                 <InfoCreateMachineContainer>
                     <LabelFields>Planetar key: </LabelFields>
-                    <SelectContainer name="planetar_key" id="planetar_key" onChange={handleSelectOption}>
+                    <SelectContainer
+                        name="planetar_key"
+                        value={planetarKey}
+                        id="planetar_key" onChange={handleSelectOption}>
                         <SelectOption value={true}>Obecne</SelectOption>
                         <SelectOption value={false}>Brak</SelectOption>
                     </SelectContainer>
                 </InfoCreateMachineContainer>
                 <InfoCreateMachineContainer>
                     <LabelFields>Manometer: </LabelFields>
-                    <SelectContainer name="manometer" id="manometer" onChange={handleSelectOption}>
+                    <SelectContainer
+                        name="manometer"
+                        value={manometer}
+                        id="manometer" onChange={handleSelectOption}>
                         <SelectOption value={true}>Obecne</SelectOption>
                         <SelectOption value={false}>Brak</SelectOption>
                     </SelectContainer>
                 </InfoCreateMachineContainer>
                 <InfoCreateMachineContainer>
                     <LabelFields>Tire Pumping Wire: </LabelFields>
-                    <SelectContainer name="tire_pumping_wire" id="tire_pumping_wire" onChange={handleSelectOption}>
+                    <SelectContainer
+                        name="tire_pumping_wire"
+                        value={tirePumpingWire}
+                        id="tire_pumping_wire" onChange={handleSelectOption}>
                         <SelectOption value={true}>Obecne</SelectOption>
                         <SelectOption value={false}>Brak</SelectOption>
                     </SelectContainer>

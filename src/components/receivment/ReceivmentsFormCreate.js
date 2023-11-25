@@ -94,6 +94,9 @@ function ReceivmentFromCreate(){
             setApprove(true);
             setStep1(false);
             setStep2(true);
+            console.log(approve);
+            console.log(step1);
+            console.log(step2);
         }).catch(error => {
             setError(true);
             setStep1(false);
@@ -101,13 +104,10 @@ function ReceivmentFromCreate(){
     };
 
     const handleTryAgain = () =>{
-        console.log('click');
         setError(false);
         setChoseTruck(null);
         setChoseSemiTrailer(null);
         setStep1(true);
-        console.log(step1);
-        console.log(error);
     }
 
     const fetchData = (url, setData) => {
@@ -174,8 +174,8 @@ function ReceivmentFromCreate(){
                     )}
 
                 </TruckChoice>
-
             </ChoiceContainer>
+
             <ChoiceContainer>
                 <UpdateButton
                     onClick={approveChoice}
@@ -209,8 +209,12 @@ function ReceivmentFromCreate(){
             }
             { step2 && (
                 <ChoiceContainer>
-                    <SemiTrailerEquipmentCreate/>
-                    <TruckEquipmentCreate/>
+                    <SemiTrailerEquipmentCreate
+                        semitrailer_id={semitrailerId}
+                    />
+                    <TruckEquipmentCreate
+                        truck_id={truckId}
+                    />
                 </ChoiceContainer>
             ) }
         </div>

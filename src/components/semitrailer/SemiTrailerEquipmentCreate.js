@@ -10,25 +10,45 @@ import {MachineContainer} from "../../assets/styles/mechine_create_styled";
 import {AddressContainer, InputField, LabelFields} from "../../assets/styles/user_display";
 import {LoginButton} from "../../assets/styles/login_styled";
 import {useState, useEffect} from "react";
-import client from "../../utils/Sender";
+import client, {headers} from "../../utils/Sender";
 import {access_token} from "../../utils/Sender";
 import {InfoCreateMachineContainer, SelectContainer, SelectOption} from "../../assets/styles/truck_styled";
 import {useLocation} from "react-router-dom";
 
-function SemiTrailerEquipmentCreate(){
+function SemiTrailerEquipmentCreate({semitrailer_id}){
 
     const [semiTrailer, setSemiTrailer] = useState('');
-    const [belts, setBelts] = useState('');
-    const [corners, setCorners] = useState('');
-    const [aluminiumStick, setAluminiumStick] = useState('');
-    const [wideStick, setWideStick] = useState('');
+    const [belts, setBelts] = useState(0);
+    const [corners, setCorners] = useState(0);
+    const [aluminiumStick, setAluminiumStick] = useState(0);
+    const [wideStick, setWideStick] = useState(0);
     const [ladder, setLadder] = useState(true);
     const [roofStick, setRoofStick] = useState(true);
     const [dimensionBoard, setDimensionBoard] = useState(true);
     const [status, setStatus] = useState('Wolny');
 
     let location = useLocation();
-    let id = location.state.id;
+    let id = semitrailer_id;
+
+    useEffect(() => {
+        client.get(`/api/semitrailereqipment/${id}/`, {headers}
+        ).then(response => {
+            const data = response.data
+
+            setBelts(data.belts);
+            setCorners(data.corners);
+            setAluminiumStick(data.aluminium_stick);
+            setWideStick(data.wide_stick);
+            setLadder(data.ladder);
+            setRoofStick(data.roof_stick);
+            setDimensionBoard(data.dimenstion_board);
+            setStatus(data.status);
+
+            console.log(belts);
+        }).catch(error =>{
+            console.log(error);
+        })
+    }, []);
 
     const submitForm = (e) =>{
         e.preventDefault();
@@ -49,8 +69,8 @@ function SemiTrailerEquipmentCreate(){
                 Authorization: `Bearer ${access_token}`
             },
         }).then(response => {
-            console.log("pomyslnie dodano equipment");
-            alert("SUckes");
+            console.log("pomyslnie dodano semitrailer equipment");
+            alert("Sukces");
         }).catch(error => {
             console.log(error);
         })
@@ -78,15 +98,11 @@ function SemiTrailerEquipmentCreate(){
             <InformPostContainer>
                 <InformPostContentContainer>
                     <TextPostContainer>
-                        <TextTitle>NAURA</TextTitle>
                         <MainTextTitle>Create Semitailer Equipment</MainTextTitle>
                         <PostStoryButtonContainer>
                             <PostStory>
                                 Welcome to the future of car management! Say goodbye to worries and inefficiencies with our cutting-edge car management app designed to make your driving experience a breeze.
                             </PostStory>
-                            <CreateButtonPostContainer>
-                                fdfdsfdsfds
-                            </CreateButtonPostContainer>
                         </PostStoryButtonContainer>
                     </TextPostContainer>
                 </InformPostContentContainer>
@@ -94,37 +110,61 @@ function SemiTrailerEquipmentCreate(){
             <MachineContainer onSubmit={submitForm} encType="multipart/form-data">
                 <InfoCreateMachineContainer>
                     <LabelFields>Belts: </LabelFields>
-                    <InputField name="betls" type="number" onChange={(e) => setBelts(Number(e.target.value))} />
+                    <InputField name="betls"
+                                type="number"
+                                value={belts}
+                                onChange={(e) => setBelts(Number(e.target.value))} />
                 </InfoCreateMachineContainer>
                 <InfoCreateMachineContainer>
                     <LabelFields>Corners: </LabelFields>
-                    <InputField name="betls" type="number" onChange={(e) => setCorners(Number(e.target.value))} />
+                    <InputField name="corners"
+                                type="number"
+                                value={corners}
+                                onChange={(e) => setCorners(Number(e.target.value))} />
                 </InfoCreateMachineContainer>
                 <InfoCreateMachineContainer>
                     <LabelFields>Aluminium Stick: </LabelFields>
-                    <InputField name="betls" type="number" onChange={(e) => setAluminiumStick(Number(e.target.value))} />
+                    <InputField name="aluminum_stick"
+                                type="number"
+                                value={aluminiumStick}
+                                onChange={(e) => setAluminiumStick(Number(e.target.value))} />
                 </InfoCreateMachineContainer>
                 <InfoCreateMachineContainer>
-                    <LabelFields>Wide Stcik: </LabelFields>
-                    <InputField name="betls" type="number" onChange={(e) => setWideStick(Number(e.target.value))} />
+                    <LabelFields>Wide Stick: </LabelFields>
+                    <InputField name="wide_stick"
+                                type="number"
+                                value={wideStick}
+                                onChange={(e) => setWideStick(Number(e.target.value))} />
                 </InfoCreateMachineContainer>
                 <InfoCreateMachineContainer>
                     <LabelFields>Ladder: </LabelFields>
-                    <SelectContainer name="ladder" id="ladder" onChange={handleSelectOption}>
+                    <SelectContainer
+                        name="ladder"
+                        id="ladder"
+                        value={ladder}
+                        onChange={handleSelectOption}>
                         <SelectOption value={true}>Obecne</SelectOption>
                         <SelectOption value={false}>Brak</SelectOption>
                     </SelectContainer>
                 </InfoCreateMachineContainer>
                 <InfoCreateMachineContainer>
                     <LabelFields>RoofStick: </LabelFields>
-                    <SelectContainer name="roof-stick" id="roof-stick" onChange={handleSelectOption}>
+                    <SelectContainer
+                        name="roof-stick"
+                        id="roof-stick"
+                        value={roofStick}
+                        onChange={handleSelectOption}>
                         <SelectOption value={true}>Obecne</SelectOption>
                         <SelectOption value={false}>Brak</SelectOption>
                     </SelectContainer>
                 </InfoCreateMachineContainer>
                 <InfoCreateMachineContainer>
                     <LabelFields>Dimension Board: </LabelFields>
-                    <SelectContainer name="dimension-board" id="dimension-board" onChange={handleSelectOption}>
+                    <SelectContainer
+                        name="dimension-board"
+                        id="dimension-board"
+                        value={dimensionBoard}
+                        onChange={handleSelectOption}>
                         <SelectOption value={true}>Obecne</SelectOption>
                         <SelectOption value={false}>Brak</SelectOption>
                     </SelectContainer>

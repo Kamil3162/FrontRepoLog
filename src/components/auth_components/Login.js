@@ -1,7 +1,7 @@
 import axios from "axios";
 import {useState} from "react";
 import {useHistory, useNavigate} from "react-router-dom";
-import cargophoto from '../assets/icons/truck-login.jpg';
+import cargophoto from '../../assets/icons/truck-login.jpg';
 import {
     LoginForm,
     LoginDisplay,
@@ -12,10 +12,10 @@ import {
     LoginDisplayPhoto,
     LoginPart,
     LoginEntry, HorizontalLine, LoginDisplayPhotoContainer
-} from '../assets/styles/login_styled.js';
-import client from "../utils/Sender";
+} from '../../assets/styles/login_styled.js';
+import client from "../../utils/Sender";
 import {useContext} from "react";
-import {AuthContext} from "../auth/Auth_provider";
+import {AuthContext} from "../../auth/Auth_provider";
 
 function Login(){
     const [email, setEmail] = useState('');

@@ -27,6 +27,7 @@ export const AlertTitle = styled.p`
 export const AlertInformation = styled.p`
   font-family:"Niramit";
 `;
+
 export const rotate = keyframes`
   to {
     transform: rotate(1turn);

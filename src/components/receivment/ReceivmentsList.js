@@ -17,8 +17,8 @@ import {
 } from "../../assets/styles/truck_list_styled";
 import {Link, useParams} from "react-router-dom";
 import {PaginationContainer} from "../../assets/styles/pagination_styled";
-import {ButtonLink} from "../../assets/styles/link_buttons";
-
+import {ButtonLink, FunctionalButtonLink} from "../../assets/styles/link_buttons";
+import {finishReceivment} from "../../hooks/receivment_hooks";
 
 function ReceivmentsList(){
     const [receivments, setReceivments] = useState([]);
@@ -35,6 +35,7 @@ function ReceivmentsList(){
         })
             .then(response =>{
                 let data = response.data.results;
+                console.log(response);
                 setReceivments(data);
                 const next = response.data.next ? response.data.next.split('?page=')[1] : "";
                 const previous = response.data.previous ? response.data.previous.split('?page=')[1] : "";
@@ -76,10 +77,12 @@ function ReceivmentsList(){
                 <HeaderName>SENDER</HeaderName>
                 <HeaderName>RECEIVER USER</HeaderName>
                 <HeaderName>STATUS</HeaderName>
+                <HeaderName>FINISH</HeaderName>
+                <HeaderName>EXPLORE</HeaderName>
             </HeaderTablesName>
             <TruckList>
                 {receivments.map((receivment, index) => (
-                    <RowListContainer as={Link} to={`/receivment-detail/${receivment.id}`}>
+                    <RowListContainer>
                         <RowListElements>
                             <StyleText className="style-text">{receivment.semi_trailer.registration_number}</StyleText>
                         </RowListElements>
@@ -91,9 +94,11 @@ function ReceivmentsList(){
                         </RowListElements>
                         <RowListElements>
                             <StyleText className="style-text">{receivment.destination_user.first_name} {receivment.destination_user.last_name}</StyleText>
+
                         </RowListElements>
+
                         {
-                            receivment.status === true ? (
+                            receivment.status === 'Finish' ? (
                                 <RowListElements>
                                     <StyleAvailable className="style-text">✔</StyleAvailable>
                                 </RowListElements>
@@ -103,6 +108,21 @@ function ReceivmentsList(){
                                 </RowListElements>
                             )
                         }
+                        <RowListElements>
+                            <RowListElements>
+                                <FunctionalButtonLink onClick={() => finishReceivment({receivment_pk : receivment.id})}
+                                                      color="black"
+                                                      hoverColor="red">
+                                    FINISH
+                                </FunctionalButtonLink>
+                            </RowListElements>
+                        </RowListElements>
+                        <RowListElements>
+                            <FunctionalButtonLink as={Link} to={`/receivment-detail/${receivment.id}`}
+                            color="#263c86" hoverColor="#387bb2">
+                                Explore
+                            </FunctionalButtonLink>
+                        </RowListElements>
                     </RowListContainer>
                 ))}
             </TruckList>

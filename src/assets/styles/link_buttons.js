@@ -26,3 +26,17 @@ export const ButtonLink = styled.button`
     color: whitesmoke;
   }
 `;
+
+export const FunctionalButtonLink = styled(ButtonLink)`
+  /* Copy the styles from ButtonLink */
+  width: 50px;
+  height: 25px;
+  background-color: ${props => props.color || 'purple'}; /* Use the color prop or default to purple */
+
+
+  &:hover {
+    /* You can override hover styles here if needed */
+    background-color: ${props => props.hoverColor || 'orange'}; /* Use the hoverColor prop or default to orange */
+
+  }
+`;

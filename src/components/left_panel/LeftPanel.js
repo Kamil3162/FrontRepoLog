@@ -15,7 +15,7 @@ import transfer from "../../assets/icons/transfers.png";
 import giving from "../../assets/icons/giving.png";
 import {Link} from "react-router-dom";
 import {user_permission_group} from "../../utils/Sender";
-import login from "../Login";
+import login from "../auth_components/Login";
 import {useState, useEffect} from "react";
 import {useNavigate} from "react-router-dom";
 import DriverPanel from "./driver_left_panel.js";
