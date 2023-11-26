@@ -53,6 +53,7 @@ import {SemiTrailerViewContainerFun, TruckViewContainerFun} from "../../utils/Fu
 import {AlertComponent} from "../../utils/FunctionComponents.js";
 import SemiTrailerEquipmentCreate from "../semitrailer/SemiTrailerEquipmentCreate";
 import TruckEquipmentCreate from "../truck/TruckEquipmentCreate";
+import {LoginButton} from "../../assets/styles/login_styled";
 
 function ReceivmentFromCreate(){
     const [truck, setTruck] = useState(true);
@@ -69,6 +70,12 @@ function ReceivmentFromCreate(){
     const [step1, setStep1] = useState(true);
     const [step2, setStep2] = useState(false);
 
+    const [truckData, setTruckData] = useState({});
+    const [semiTrailerData, setSemiTrailerData] = useState({});
+
+    const [truckEquipmentExists, setTruckEquipmentExists] = useState(false);
+    const [semiTrailerEquipmentExists, setSemiTruckEquipmentExists] = useState(false);
+
     const handlePickTruck = (event, key) =>{
         console.log(event, key);
         setTruckId(key);
@@ -80,6 +87,47 @@ function ReceivmentFromCreate(){
         setChoseSemiTrailer(key);
     };
 
+    const handleSendMachinesData = () => {
+
+        const endPointTruck = truckEquipmentExists
+                            ?`/api/truck-equipment/${truckId}/`
+                            : '/api/truck-equipment-create/';
+
+        const endPointSemitailer = semiTrailerEquipmentExists
+            ? `/api/semitrailereqipment/${semitrailerId}/`
+            : '/api/semitrailereqipment-create/';
+
+
+        console.log(endPointTruck);
+        console.log(endPointSemitailer);
+
+        client.
+            put(endPointSemitailer, semiTrailerData,
+            {
+                headers: {
+                    Authorization: `Bearer ${access_token}`
+                },
+            }
+        ).then(response => {
+            alert("pomyslnie dodano truck equipment");
+        }).catch(error => {
+            console.error('Error fetching data:', error);
+        })
+
+        client.
+            put(endPointTruck, truckData,
+                {
+                    headers: {
+                        Authorization: `Bearer ${access_token}`
+                    },
+                })
+            .then(response => {
+                alert("pomyslnie dodano semitrailer equipment");
+            }).catch(error => {
+                console.error('Error fetching data:', error);
+            })
+    }
+
     const approveChoice = () => {
         client.post('/api/receivment-create/',{
             truck : truckId,
@@ -90,13 +138,9 @@ function ReceivmentFromCreate(){
                 Authorization: `Bearer ${access_token}`
             }
         }).then(response => {
-            console.log(response);
             setApprove(true);
             setStep1(false);
             setStep2(true);
-            console.log(approve);
-            console.log(step1);
-            console.log(step2);
         }).catch(error => {
             setError(true);
             setStep1(false);
@@ -119,7 +163,7 @@ function ReceivmentFromCreate(){
             setData(response.data.results);
         })
         .catch(error => {
-            console.log(error);
+            console.error('Error fetching data:', error);
         });
     }
 
@@ -208,14 +252,21 @@ function ReceivmentFromCreate(){
                 )
             }
             { step2 && (
-                <ChoiceContainer>
-                    <SemiTrailerEquipmentCreate
-                        semitrailer_id={semitrailerId}
-                    />
-                    <TruckEquipmentCreate
-                        truck_id={truckId}
-                    />
-                </ChoiceContainer>
+                <>
+                    <ChoiceContainer>
+                        <SemiTrailerEquipmentCreate
+                            semitrailer_id={semitrailerId}
+                            setData={setSemiTrailerData}
+                            setSemiTruckEquipmentExists={setSemiTruckEquipmentExists}
+                        />
+                        <TruckEquipmentCreate
+                            truck_id={truckId}
+                            setData={setTruckData}
+                            setTruckEquipmentExists={setTruckEquipmentExists}
+                        />
+                    </ChoiceContainer>
+                    <LoginButton type="submit" onClick={handleSendMachinesData}>Update Equipment</LoginButton>
+                </>
             ) }
         </div>
     )

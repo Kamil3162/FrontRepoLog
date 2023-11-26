@@ -15,9 +15,8 @@ import {access_token} from "../../utils/Sender";
 import {InfoCreateMachineContainer, SelectContainer, SelectOption} from "../../assets/styles/truck_styled";
 import {useLocation} from "react-router-dom";
 
-function SemiTrailerEquipmentCreate({semitrailer_id}){
+function SemiTrailerEquipmentCreate({semitrailer_id, setData, setSemiTruckEquipmentExists}){
 
-    const [semiTrailer, setSemiTrailer] = useState('');
     const [belts, setBelts] = useState(0);
     const [corners, setCorners] = useState(0);
     const [aluminiumStick, setAluminiumStick] = useState(0);
@@ -27,7 +26,6 @@ function SemiTrailerEquipmentCreate({semitrailer_id}){
     const [dimensionBoard, setDimensionBoard] = useState(true);
     const [status, setStatus] = useState('Wolny');
 
-    let location = useLocation();
     let id = semitrailer_id;
 
     useEffect(() => {
@@ -44,36 +42,56 @@ function SemiTrailerEquipmentCreate({semitrailer_id}){
             setDimensionBoard(data.dimenstion_board);
             setStatus(data.status);
 
-            console.log(belts);
+            setSemiTruckEquipmentExists(true);
         }).catch(error =>{
-            console.log(error);
+            setSemiTruckEquipmentExists(false);
         })
     }, []);
 
+    useEffect(() => {
+        console.log("update danych odnosnie semitrailer");
+        updateDataToSend();
+    }, [belts, corners, aluminiumStick, wideStick, ladder, roofStick, dimensionBoard, status]);
+
+    const updateDataToSend = () => {
+        setData({
+            semi_trailer : id,
+            belts : belts,
+            corners: corners,
+            aluminium_stick : aluminiumStick,
+            wide_stick: wideStick,
+            ladder: ladder,
+            roof_stick: roofStick,
+            dimenstion_board: dimensionBoard,
+            status: status
+        });
+    }
+
     const submitForm = (e) =>{
         e.preventDefault();
-        client.
-            post('/api/semitrailereqipment-create/',{
-                semi_trailer : id,
-                belts : belts,
-                corners: corners,
-                aluminium_stick : aluminiumStick,
-                wide_stick: wideStick,
-                ladder: ladder,
-                roof_stick: roofStick,
-                dimenstion_board: dimensionBoard,
-                status: status
-        },
-            {
-            headers: {
-                Authorization: `Bearer ${access_token}`
-            },
-        }).then(response => {
-            console.log("pomyslnie dodano semitrailer equipment");
-            alert("Sukces");
-        }).catch(error => {
-            console.log(error);
-        })
+        updateDataToSend();
+        // client.
+        //     post('/api/semitrailereqipment-create/',{
+        //         semi_trailer : id,
+        //         belts : belts,
+        //         corners: corners,
+        //         aluminium_stick : aluminiumStick,
+        //         wide_stick: wideStick,
+        //         ladder: ladder,
+        //         roof_stick: roofStick,
+        //         dimenstion_board: dimensionBoard,
+        //         status: status
+        // },
+        //     {
+        //     headers: {
+        //         Authorization: `Bearer ${access_token}`
+        //     },
+        // }).then(response => {
+        //     console.log("pomyslnie dodano semitrailer equipment");
+        //     alert("Sukces");
+        // }).catch(error => {
+        //     console.log(error);
+        // })
     }
 
     const handleSelectOption = (event) => {

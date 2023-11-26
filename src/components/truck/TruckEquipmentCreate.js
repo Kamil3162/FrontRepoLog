@@ -16,7 +16,7 @@ import {InfoCreateMachineContainer, SelectContainer, SelectOption} from "../../a
 import {useLocation} from "react-router-dom";
 import truck from "./Truck";
 
-function TruckEquipmentCreate({truck_id}){
+function TruckEquipmentCreate({truck_id, setData, setTruckEquipmentExists}){
     const [chest, setChest] = useState(true);
     const [chains, setChains] = useState(true);
     const [jackHitch, setJackHitch] = useState(true);
@@ -25,6 +25,7 @@ function TruckEquipmentCreate({truck_id}){
     const [tirePumpingWire, setTirePumpingWire] = useState(true);
     const [photo, setPhoto] = useState(null); // For image upload, you might need additional logic
 
+
     let location = useLocation();
     let id = truck_id;
 
@@ -32,41 +33,64 @@ function TruckEquipmentCreate({truck_id}){
         client.get(`/api/truck-equipment/${id}/`, {headers}
         ).then(response => {
             const data = response.data;
+
             setChest(data.chest);
             setChains(data.chains);
             setJackHitch(data.jack_hitch);
             setPlanetarKey(data.planetar_key);
             setManometer(data.manometer);
             setTirePumpingWire(data.tire_pumping_wire);
+
+            setTruckEquipmentExists(true);
         }).catch(error =>{
-            console.log(error);
+            setTruckEquipmentExists(false);
         })
     }, []);
 
+    useEffect(() => {
+        console.log("update danych odnosnie truck");
+        updateDataToSend();
+    }, [chest, chains, jackHitch, planetarKey, manometer, tirePumpingWire, photo]);
+
+    const updateDataToSend = () => {
+        setData({
+            truck : id,
+            chest : chest,
+            chains: chains,
+            jack_hitch : jackHitch,
+            planetar_key : planetarKey,
+            manometer : manometer,
+            tire_pumping_wire : tirePumpingWire,
+            photo : photo
+        })
+    }
+
     const submitForm = (e) =>{
         e.preventDefault();
-        client.
-            post('/api/truck-equipment-create/',{
-                truck : id,
-                chest : chest,
-                chains: chains,
-                jack_hitch : jackHitch,
-                planetar_key : planetarKey,
-                manometer : manometer,
-                tire_pumping_wire : tirePumpingWire,
-                photo : photo
-            },
-            {
-                headers: {
-                    Authorization: `Bearer ${access_token}`
-                },
-            }
-        ).then(response => {
-            console.log("pomyslnie dodano truck equipment");
-            alert("Sukces");
-        }).catch(error => {
-            console.log(error);
-        })
+
+        // e.preventDefault();
+        // client.
+        //     post('/api/truck-equipment-create/',{
+        //         truck : id,
+        //         chest : chest,
+        //         chains: chains,
+        //         jack_hitch : jackHitch,
+        //         planetar_key : planetarKey,
+        //         manometer : manometer,
+        //         tire_pumping_wire : tirePumpingWire,
+        //         photo : photo
+        //     },
+        //     {
+        //         headers: {
+        //             Authorization: `Bearer ${access_token}`
+        //         },
+        //     }
+        // ).then(response => {
+        //     console.log("pomyslnie dodano truck equipment");
+        //     alert("Sukces");
+        // }).catch(error => {
+        //     console.log(error);
+        // })
     }
 
     const handleSelectOption = (event) => {

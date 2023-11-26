@@ -31,6 +31,10 @@ function ActiveReceivment(){
                 }
             }
         ).then(response => {
+            console.log("test active receivment");
+            console.log(response);
+            console.log("test active receivment");
+
             setData(response.data);
             const destination = `${response.data.destination.city} ${response.data.destination.street} ${response.data.destination.apartment_number}`;
             const source_address = "Jarosław PWSTE";
