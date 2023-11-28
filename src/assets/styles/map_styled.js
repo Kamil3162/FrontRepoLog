@@ -9,7 +9,7 @@ export const MapInfoContainer = styled.div`
   margin-top: 50px;
   background-color: rgba(7, 6, 6, 0.7);
   border-radius: 10px;
-  width: 500px;
+  width: 600px;
   height: 120px;
   padding: 5px;
   flex-direction: column;
@@ -29,6 +29,10 @@ export const MapInputField = styled.input`
   margin-right: 10px;
 `;
 
+export const MapFinalAddressField = styled(MapInputField)`
+    width: 300px;
+`;
+
 export const HeaderInfoContainer = styled.div`
     display: flex;
     flex-direction: row;
@@ -39,16 +43,17 @@ export const InfoHeader = styled.p`
     text-align: center;
     font-weight: 800;
     font-family: "Raleway",sans-serif;
-  color: whitesmoke;
-  margin-right: 10px;
-  padding: 6px;
-  
-  
+    color: whitesmoke;
+    margin-right: 10px;
+    padding: 6px;
+`;
+export const InfoHeaderFinalAddress = styled(InfoHeader)`
+    margin-left: 50px;
 `;
 
 export const MapContainer = styled.div`
     display: flex;
     justify-content: center;
     border-radius: 15px;
-  flex-grow: 1;
+    flex-grow: 1;
 `;

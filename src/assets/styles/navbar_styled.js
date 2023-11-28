@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import {devices} from "./global_responsive_styled";
 
 export const NavbarLoginContainer = styled.div`
     display: flex;
@@ -22,6 +23,9 @@ export const NavbarContainer = styled.div`
   // opacity - przejrzystosc
   // rgba 
   // 
+  @media ${devices.mobileL}{
+    margin-left: 100px;
+  }
 `;
 
 export const NavItem = styled.a`

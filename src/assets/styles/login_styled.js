@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import GlobalStyle from "../../fonts/fontStyles";
+import {devices} from "./global_responsive_styled";
 export const LoginPageContainer = styled.div`
     display: flex;
     flex-direction: row;
@@ -33,6 +34,11 @@ export const LoginLabel = styled.label`
   font-family: 'Quicksand',sans-serif;
   font-size: 12px;
   font-weight: 600;
+  
+  @media ${devices.mobileL}{
+    font-size: 16px;
+    
+  }
 `;
 
 export const LoginInput = styled.input`
@@ -41,6 +47,9 @@ export const LoginInput = styled.input`
   border: 1px solid #e7e1e1;
   padding: 10px;
   
+  @media ${devices.mobileL}{
+      width: 200px;
+  }
 `;
 
 export const LoginButton = styled.button`
@@ -57,6 +66,11 @@ export const LoginButton = styled.button`
   &:hover{
     background-color: blue;
     color: whitesmoke;
+  }
+  
+  @media ${devices.mobileL}{
+    width: 200px;
+    font-size: 18px;
   }
 `;
 

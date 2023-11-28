@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import {devices} from "./global_responsive_styled";
 
 export const DetailRowReceivment = styled.div`
     display: flex;
@@ -16,6 +17,16 @@ export const DetailReceivmentContainer = styled.div`
     display: flex;
     flex-direction: column;
     padding: 30px;
+  
+  @media ${devices.mobileL}{
+    padding: 0;
+  }
 `;
 
+export const ActiveReceivmentContainer = styled.div`
+  
+    @media ${devices.mobileL}{
+      width: calc(100% - 26%);    
+    }
+`;
 

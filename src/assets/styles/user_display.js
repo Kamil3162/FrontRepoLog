@@ -1,5 +1,6 @@
 
 import styled from "styled-components";
+import {devices} from "./global_responsive_styled";
 
 export const SettingsContainer = styled.div`
   display: flex;
@@ -7,6 +8,10 @@ export const SettingsContainer = styled.div`
   max-height: 950px;
   margin-left: 50px;
   border-radius: 15px;
+  
+  @media ${devices.mobileL}{
+    margin-left: 10px;
+  }
 `;
 
 export const SettingTitle = styled.a`
@@ -20,6 +25,11 @@ export const SettingElementsContainer = styled.div`
     height: 100%;
     border-radius: 15px;
   flex-direction: row;
+  
+  @media ${devices.mobileL}{
+    display: flex;
+    flex-direction: column;
+  }
 `;
 
 export const SettingsLeftPanel = styled.div`

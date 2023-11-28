@@ -1,23 +1,35 @@
 import styled,{keyframes} from "styled-components";
 import GlobalStyle from "../../fonts/fontStyles";
+import {devices} from "./global_responsive_styled";
 
 export const PageContainer = styled.div`
   display: flex;
   flex-direction: row;
-  min-height: 950px;
+  min-height: 100vh;
   max-width: 1920px;
   height: 100%;
   margin: 0;
   padding: 0;
+  
+  
+  @media ${devices.mobileL}{
+
+  }
 `;
 
 export const ContentContainer = styled.div`
+  display: flex;
   flex: 1;
   flex-grow: 100;
   flex-shrink: 0;
   //background-color: rgb(7, 7, 7);
   margin-left: 250px;
   margin-top: 50px;
+  
+  @media ${devices.mobileL}{
+    margin-left: 26%;
+    display: block;
+  }
 `;
 
 export const LeftPanel = styled.div`
@@ -32,6 +44,20 @@ export const LeftPanel = styled.div`
   width: 250px;
   height: 100%;
   padding-top: 15px;
+  
+  @media ${devices.mobileL}{
+    width: 100px;
+    position: fixed;
+  }
+`;
+
+export const MenuItems = styled.div`
+    display: ${props => props.isVisible ? 'block' : 'none'};
+    //flex-direction: row;
+  
+    @media ${devices.mobileL}{
+      //display: flex;
+    }
 `;
 
 export const LeftPanelLogo = styled.div`
@@ -68,20 +94,24 @@ export const LeftPanelItem = styled.div`
   color: #070707;
   font-family: "Raleway",sans-serif;
   font-weight: 800;
-
-
+  
+  
   &:hover {
     transition: background-color 0.3s ease, transition-delay 0.2s;
     border-radius: 15px;
     background-color: white;
     width: 80%;
   }
-
-
+  
+  
 `;
 export const PanelItemText = styled.div`
     margin-left: 15px;
     font-size: 20px;
+  
+  @media ${devices.mobileL}{
+    display: none;
+  }
 `
 export const LogoPanelItem = styled.img`
     width: 30px;

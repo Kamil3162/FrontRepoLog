@@ -69,6 +69,7 @@ function ReceivmentFromCreate(){
     // code responsible for steps - choose equipment to truck etc
     const [step1, setStep1] = useState(true);
     const [step2, setStep2] = useState(false);
+    const [finalAlertFlag, setFinalAlertFlag] = useState(false);
 
     const [truckData, setTruckData] = useState({});
     const [semiTrailerData, setSemiTrailerData] = useState({});
@@ -126,6 +127,7 @@ function ReceivmentFromCreate(){
             }).catch(error => {
                 console.error('Error fetching data:', error);
             })
+        setFinalAlertFlag(true);
     }
 
     const approveChoice = () => {
@@ -161,6 +163,7 @@ function ReceivmentFromCreate(){
             }
         }).then(response => {
             setData(response.data.results);
+            console.log("esa");
         })
         .catch(error => {
             console.error('Error fetching data:', error);
@@ -268,6 +271,17 @@ function ReceivmentFromCreate(){
                     <LoginButton type="submit" onClick={handleSendMachinesData}>Update Equipment</LoginButton>
                 </>
             ) }
+            {
+                finalAlertFlag && (
+                    <AlertComponent
+                        title="Suckes"
+                        information="Propely create a receivment"
+                        buttonText="Check Active Receivment"
+                        buttonClickFunction={handleTryAgain}
+                        redirectUrl="/active-receivment/"
+                    />
+                )
+            }
         </div>
     )
 }

@@ -1,5 +1,11 @@
 import React from "react";
-import {HeaderInfoContainer, InfoHeader, MapInfoContainer, MapInputField} from "../../assets/styles/map_styled";
+import {
+    HeaderInfoContainer,
+    InfoHeader, InfoHeaderFinalAddress,
+    MapFinalAddressField,
+    MapInfoContainer,
+    MapInputField
+} from "../../assets/styles/map_styled";
 
 
 function MapHeaderComponent({defaultCenter,destinationAddress,duration,distance}){
@@ -7,13 +13,13 @@ function MapHeaderComponent({defaultCenter,destinationAddress,duration,distance}
         <MapInfoContainer>
             <HeaderInfoContainer>
                 <InfoHeader>From</InfoHeader>
-                <InfoHeader>To</InfoHeader>
-                <InfoHeader>Time</InfoHeader>
+                <InfoHeaderFinalAddress>To</InfoHeaderFinalAddress>
+                <InfoHeaderFinalAddress>Time</InfoHeaderFinalAddress>
                 <InfoHeader>Distance</InfoHeader>
             </HeaderInfoContainer>
             <HeaderInfoContainer>
                 <MapInputField value={defaultCenter}/>
-                <MapInputField value={destinationAddress}/>
+                <MapFinalAddressField value={destinationAddress}/>
                 <MapInputField value={duration}/>
                 <MapInputField value={distance}/>
             </HeaderInfoContainer>

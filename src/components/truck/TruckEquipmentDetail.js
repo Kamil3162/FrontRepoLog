@@ -22,7 +22,6 @@ function TruckEquipmentDetail(){
     const [tirePumpingWire, setTirePumpingWire] = useState(true);
     const [photo, setPhoto] = useState(null); // For image upload, you might need additional logic
 
-
     const submitForm = (e) =>{
         e.preventDefault();
         client.
@@ -37,6 +36,7 @@ function TruckEquipmentDetail(){
             }
         )
     }
+
     const handleSelectOption = (event) => {
         let name = event.target.name;
         let value = event.target.value;

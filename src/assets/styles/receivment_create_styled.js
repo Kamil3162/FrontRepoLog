@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import GlobalStyle from "../../fonts/fontStyles";
+import {devices} from "./global_responsive_styled";
 
 export const ReceivmentContainer = styled.div`
     display: flex;
@@ -135,6 +136,10 @@ export const ChoiceContainer = styled.div`
   width: 100%;
   text-align: center;
   justify-content: center;
+  
+  @media ${devices.mobileL}{
+    display: block;  
+  }
   
 `;
 

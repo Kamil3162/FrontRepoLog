@@ -2,12 +2,17 @@ import React, {useEffect, useState} from "react";
 import client, {access_token} from "../../utils/Sender";
 import {user_data} from "../../utils/Sender";
 import {
+    HomeContainer,
     InformPostContainer,
     InformPostContentContainer,
-    MainTextTitle, PostStory,
+    MainTextTitle, PostStory, TextPostContainer,
     TextTitle
 } from "../../assets/styles/home_guest_styled";
-import {DetailReceivmentContainer, DetailRowReceivment} from "../../assets/styles/receivment_detail_styled";
+import {
+    ActiveReceivmentContainer,
+    DetailReceivmentContainer,
+    DetailRowReceivment
+} from "../../assets/styles/receivment_detail_styled";
 import MapGen from "../MapGen";
 import {SemiTrailerComponent, TruckComponent} from "../../utils/FunctionComponents";
 
@@ -31,57 +36,58 @@ function ActiveReceivment(){
                 }
             }
         ).then(response => {
-            console.log("test active receivment");
-            console.log(response);
-            console.log("test active receivment");
 
-            setData(response.data);
             const destination = `${response.data.destination.city} ${response.data.destination.street} ${response.data.destination.apartment_number}`;
             const source_address = "Jarosław PWSTE";
+            setData(response.data);
             setLocationData({destination, source_address: source_address });
+
         }).catch(error => {
-            console.log("blad");
+            console.log("error");
         })
     }, []);
 
     // generowanie ostatniej lokalizacji
 
     return (
-        <DetailReceivmentContainer>
-            <InformPostContainer>
-                <InformPostContentContainer>
-                    <TextTitle>Active User Panel</TextTitle>
-                    <MainTextTitle>Update your current location</MainTextTitle>
-                    <PostStory>
-                        Hi update your current location to help and boost flow of information
-                    </PostStory>
-                </InformPostContentContainer>
-            </InformPostContainer>
-            { data &&
-                <>
-                    <DetailRowReceivment style={{marginBottom: "0px"}}>
-                        <MapGen
-                            props={locationData}
-                        />
-                    </DetailRowReceivment>
-                    {/*<DetailRowReceivment>*/}
-                    {/*    <div style={{ width: '40%'}}>*/}
-                    {/*        Manager*/}
-                    {/*        <UserComponent*/}
-                    {/*            props={data.source_user}*/}
-                    {/*        />*/}
-                    {/*    </div>*/}
-                    {/*    <div style={{ width: '50%'}}>*/}
-                    {/*        Driver*/}
-                    {/*        <UserComponent*/}
-                    {/*            props={data.destination_user}*/}
-                    {/*        />*/}
-                    {/*    </div>*/}
-                    {/*</DetailRowReceivment>*/}
-                </>
-            }
-
-        </DetailReceivmentContainer>
+        <ActiveReceivmentContainer>
+            <DetailReceivmentContainer>
+                <InformPostContainer>
+                    <InformPostContentContainer>
+                        <TextPostContainer>
+                            <TextTitle>Active User Panel</TextTitle>
+                            <MainTextTitle>Update your current location</MainTextTitle>
+                            <PostStory>
+                                Hi update your current location to help and boost flow of information
+                            </PostStory>
+                        </TextPostContainer>
+                    </InformPostContentContainer>
+                </InformPostContainer>
+                { data &&
+                    <>
+                        <DetailRowReceivment style={{marginBottom: "0px"}}>
+                            <MapGen
+                                props={locationData}
+                            />
+                        </DetailRowReceivment>
+                        {/*<DetailRowReceivment>*/}
+                        {/*    <div style={{ width: '40%'}}>*/}
+                        {/*        Manager*/}
+                        {/*        <UserComponent*/}
+                        {/*            props={data.source_user}*/}
+                        {/*        />*/}
+                        {/*    </div>*/}
+                        {/*    <div style={{ width: '50%'}}>*/}
+                        {/*        Driver*/}
+                        {/*        <UserComponent*/}
+                        {/*            props={data.destination_user}*/}
+                        {/*        />*/}
+                        {/*    </div>*/}
+                        {/*</DetailRowReceivment>*/}
+                    </>
+                }
+            </DetailReceivmentContainer>
+        </ActiveReceivmentContainer>
     )
 }
 

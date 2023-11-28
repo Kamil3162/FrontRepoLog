@@ -65,20 +65,20 @@ function Navbar(){
         <>
             <NavbarContainer>
                 <div>
-                    <InputField type="text"
-                                placeholder="Wprowadz tekst"
-                                style={{
-                                    borderRadius: '20px',
-                                    width: '250px'
-                                }}
-                    />
-                    <LoginButton
-                        style={{
-                            width:'150px',
-                            backgroundColor: '#7878e8'
-                    }}
-                    >Search
-                    </LoginButton>
+                    {/*<InputField type="text"*/}
+                    {/*            placeholder="Wprowadz tekst"*/}
+                    {/*            style={{*/}
+                    {/*                borderRadius: '20px',*/}
+                    {/*                width: '250px'*/}
+                    {/*            }}*/}
+                    {/*/>*/}
+                    {/*<LoginButton*/}
+                    {/*    style={{*/}
+                    {/*        width:'150px',*/}
+                    {/*        backgroundColor: '#7878e8'*/}
+                    {/*}}*/}
+                    {/*>Search*/}
+                    {/*</LoginButton>*/}
                 </div>
                 <NavbarLoginContainer>
                     <NavItem style={{

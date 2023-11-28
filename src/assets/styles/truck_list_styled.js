@@ -1,5 +1,6 @@
 
 import styled from "styled-components";
+import {devices} from "./global_responsive_styled";
 
 
 export const TruckListContainer = styled.div`
@@ -7,6 +8,11 @@ export const TruckListContainer = styled.div`
     flex-direction: column;
     margin-left: 50px;
     margin-top: 50px;
+  
+  @media ${devices.mobileL}{
+    width: 50%;
+    margin-left: 5px;
+  }
 `;
 export const TruckListTitle = styled.a`
     font-size: 35px;
@@ -52,7 +58,11 @@ export const RowListElements = styled.div`
   text-align: center;
   align-items: center;
   padding: 0 10px;
-
+  
+  @media ${devices.mobileL}{
+    display: ${props => props.hideOnMobile ? 'none' : 'flex'};
+  }
+  
 `;
 export const MachineContainer = styled.div`
   display: flex;
@@ -147,6 +157,9 @@ export const HeaderName = styled.div`
     align-items: center;
     justify-content: center; /* Center horizontally */
 
+    @media ${devices.mobileL}{
+        display: ${props => props.hideOnMobile ? 'none' : 'flex'};
+    }
 `
 export const MachinePhotoBtn = styled.div`
     flex-grow: 3;

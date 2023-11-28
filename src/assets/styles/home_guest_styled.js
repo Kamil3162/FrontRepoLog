@@ -1,5 +1,7 @@
 import styled from "styled-components";
 import GlobalStyle from "../../fonts/fontStyles";
+import {devices} from "../styles/global_responsive_styled";
+
 
 export const HomeContainer = styled.div`
     position: absolute;
@@ -8,6 +10,12 @@ export const HomeContainer = styled.div`
     flex-direction: column;
     width: 80%;
     height: 80%;
+  
+    @media ${devices.mobileL}{ 
+        //width: 100%;
+        position: static;
+        //padding: 20px;
+    }
 `;
 
 export const HomeNavbar = styled.div`
@@ -22,17 +30,30 @@ export const ContentContainerHome = styled.div`
   margin-left: 100px;
   margin-right: 100px;
   margin-top: 50px;
+  
+  @media ${devices.mobileL}{
+    display: block;
+    margin-left: 10px;
+  }
 `;
 
 export const InformPostContainer = styled.div`
   display: flex;
   margin-bottom: 30px;
-    
+  
+  @media ${devices.mobileL}{
+    display: block;
+    text-align: center;
+    margin-bottom: 0;
+  }
 `;
 
 export const InformPostContentContainer = styled.div`
     justify-content: space-between;
     //max-width: 1200px;
+    @media ${devices.mobileL}{
+      text-align: center;
+    }
 `;
 
 export const InfoTestService = styled.div`
@@ -49,6 +70,12 @@ export const InfoTestService = styled.div`
   padding: 10px;
   justify-items: center;
   align-items: center;
+  
+  @media ${devices.mobileL}{
+    height: 15vh;
+    margin-bottom: 10px;
+    padding: 15px;
+  }
 `;
 
 export const InfoTestServiceTitle = styled.p`
@@ -60,6 +87,13 @@ export const InfoTestServiceTitle = styled.p`
   color: black;
   width: 300px;
   padding: 10px;
+  
+  @media ${devices.mobileL}{
+    width: 200px;
+    font-size: 15px;
+    padding: 5px;
+    margin-bottom: 0;
+  }
 `;
 
 export const InfoTestServiceMain = styled.p`
@@ -70,6 +104,12 @@ export const InfoTestServiceMain = styled.p`
   border-radius: 15px;
   width: 300px;
   padding: 10px;
+  
+  @media ${devices.mobileL}{
+    width: 200px;
+    font-size: 15px;
+    padding: 5px;
+  }
 `;
 
 export const InfoTestServiceContent = styled.p`
@@ -80,6 +120,13 @@ export const TextPostContainer = styled.div`
     display: flex;
     flex-direction: column;
     flex-grow: 2;
+  
+  @media ${devices.mobileL}{
+    justify-content: center;
+    justify-items: center;
+    align-items: center;
+    align-content: center;
+  }
 `;
 
 export const CreateButtonPostContainer = styled.div`
@@ -92,6 +139,11 @@ export const InformPostPhoto = styled.img`
   max-width: 800px;
   max-height: 500px;
   border-radius: 10px;
+  
+  @media ${devices.mobileL}{
+    max-width: 300px;
+    min-width: 200px;
+  }
 `;
 
 export const HomeLoginBtn = styled.button`
@@ -160,6 +212,10 @@ export const MainTextTitle = styled.p`
   font-weight: 600;
   font-family: "Raleway", sans-serif;
   margin-bottom: 5px;
+  
+  @media ${devices.mobileL}{
+    font-size: 25px;
+  }
 `;
 
 export const MainTextTitleFontChange = styled(MainTextTitle)`
@@ -172,7 +228,13 @@ export const PhotoBigTitle = styled.p`
 export const PostStory = styled.p`
   color: rgba(91, 88, 88, 0.5);
   width: 50%;
+  text-align: center;
+  
+  @media ${devices.mobileL}{
+    width: 100%;
+  }
 `;
+
 export const PostStoryButtonContainer = styled.div`
     display: flex;
 `;

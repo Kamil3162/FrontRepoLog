@@ -62,7 +62,7 @@ const Register = () => {
         <div>
             <LoginPageContainer>
                 <LoginPart>
-                    <LoginEntry>Log In</LoginEntry>
+                    <LoginEntry>Register</LoginEntry>
                     <LoginForm onSubmit={handleSubmit}>
                         <LoginInput
                             type="text"
