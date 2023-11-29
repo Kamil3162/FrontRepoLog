@@ -11,6 +11,7 @@ export const SettingsContainer = styled.div`
   
   @media ${devices.mobileL}{
     margin-left: 10px;
+    width: 70%;
   }
 `;
 

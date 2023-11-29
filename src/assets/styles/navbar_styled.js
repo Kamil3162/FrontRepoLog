@@ -4,6 +4,10 @@ import {devices} from "./global_responsive_styled";
 export const NavbarLoginContainer = styled.div`
     display: flex;
     margin-left: 35%;
+  
+  @media ${devices.mobileL}{
+    margin-right: 20vh;
+  }
 `;
 
 export const NavbarLinksContainer = styled.div`
@@ -25,6 +29,8 @@ export const NavbarContainer = styled.div`
   // 
   @media ${devices.mobileL}{
     margin-left: 100px;
+    width: 100%;
+    margin-bottom: 20px;
   }
 `;
 

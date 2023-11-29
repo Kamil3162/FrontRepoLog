@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import {devices} from "./global_responsive_styled";
 
 export const StyledUserChat = styled.div`
     display: flex;
@@ -23,6 +24,12 @@ export const ChatDashboardComponent = styled.div`
     display: flex;
     flex-direction: row;
     padding: 20px;
+  
+    @media ${devices.mobileL}{
+      flex-direction: column;
+      padding: 5px;
+    }
+    
 `;
 
 export const ActiveUserList = styled.div`
@@ -35,6 +42,10 @@ export const ActiveUserList = styled.div`
   color: whitesmoke;
   border-radius: 20px;
   height: auto;
+  
+  @media ${devices.mobileL}{
+    margin-bottom: 5px;
+  }
 `;
 
 export const ChatMessageContainer = styled.div`

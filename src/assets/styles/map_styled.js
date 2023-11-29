@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import {devices} from "./global_responsive_styled";
 
 export const MapInfoContainer = styled.div`
   display: flex;
@@ -14,6 +15,11 @@ export const MapInfoContainer = styled.div`
   padding: 5px;
   flex-direction: column;
   margin-bottom: 20px;
+  
+  @media ${devices.mobileL}{
+    width: 20%;
+    flex-direction:column;
+  }
 `;
 
 export const MapInputField = styled.input`
@@ -36,6 +42,11 @@ export const MapFinalAddressField = styled(MapInputField)`
 export const HeaderInfoContainer = styled.div`
     display: flex;
     flex-direction: row;
+  
+  @media ${devices.mobileL}{
+    flex-direction: column;
+    position: absolute;
+  }
     
 `;
 export const InfoHeader = styled.p`
@@ -56,4 +67,9 @@ export const MapContainer = styled.div`
     justify-content: center;
     border-radius: 15px;
     flex-grow: 1;
+  
+    @media ${devices.mobileL}{
+      display: flex;
+      flex-direction: column;
+    }
 `;

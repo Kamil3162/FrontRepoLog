@@ -7,20 +7,18 @@ export const PageContainer = styled.div`
   flex-direction: row;
   min-height: 100vh;
   max-width: 1920px;
-  height: 100%;
   margin: 0;
   padding: 0;
   
   
   @media ${devices.mobileL}{
-
+    height: 400px;
   }
 `;
 
 export const ContentContainer = styled.div`
   display: flex;
   flex: 1;
-  flex-grow: 100;
   flex-shrink: 0;
   //background-color: rgb(7, 7, 7);
   margin-left: 250px;
@@ -41,7 +39,6 @@ export const LeftPanel = styled.div`
   background-color: rgb(62, 196, 104);
   font-family: 'REM', sans-serif;
   justify-items: center;
-  width: 250px;
   height: 100%;
   padding-top: 15px;
   
@@ -53,6 +50,9 @@ export const LeftPanel = styled.div`
 
 export const MenuItems = styled.div`
     display: ${props => props.isVisible ? 'block' : 'none'};
+    width: ${props => props.isVisible ? '0px' : '250px'};
+    width: 250px;
+    
     //flex-direction: row;
   
     @media ${devices.mobileL}{
@@ -103,6 +103,14 @@ export const LeftPanelItem = styled.div`
     width: 80%;
   }
   
+  @media ${devices.mobileL}{
+    &:hover {
+      transition: none;
+      border-radius: 15px;
+      background-color: white;
+      width: 20%;
+    }
+  }
   
 `;
 export const PanelItemText = styled.div`

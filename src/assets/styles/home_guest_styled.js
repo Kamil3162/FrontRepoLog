@@ -72,7 +72,7 @@ export const InfoTestService = styled.div`
   align-items: center;
   
   @media ${devices.mobileL}{
-    height: 15vh;
+    height: 25vh;
     margin-bottom: 10px;
     padding: 15px;
   }

@@ -137,6 +137,7 @@ export const ChoiceContainer = styled.div`
   text-align: center;
   justify-content: center;
   
+  
   @media ${devices.mobileL}{
     display: block;  
   }
@@ -154,6 +155,7 @@ export const SemiTrailerChoice = styled.div`
   flex: 1; /* Equal distribution of available space */
   flex-basis: 50%; /* Initial width of 50% */
   text-align: center;
+
 `;
 
 export const TruckViewContainer = styled.div`

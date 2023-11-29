@@ -8,6 +8,7 @@ export const AuthContext = createContext(null);
 export const AuthProvider = ({ children }) => {
     const [isAuthenticated, setIsAuthenticated] = useState(true); // response status is 200
     const [userPermissionGroup, setUserPermissionGroup] = useState(localStorage.getItem('user_permission_group'));
+    const [leftPanelToogled, setLeftPanelToogled] = useState(false);
 
     const navigate = useNavigate();
     const login = (email, password) =>{
@@ -82,7 +83,7 @@ export const AuthProvider = ({ children }) => {
     }, []);
 
     return (
-        <AuthContext.Provider value={{login, logout, userPermissionGroup}}>
+        <AuthContext.Provider value={{login, logout, userPermissionGroup, leftPanelToogled}}>
             {children}
         </AuthContext.Provider>
     );

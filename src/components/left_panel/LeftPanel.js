@@ -29,7 +29,8 @@ function LeftPanelComponent(){
     const [userPermissionGroup, setUserPermissionGroup] = useState(localStorage.getItem('permission_group'));
 
     const {a1} = useContext(AuthContext);
-    console.log(userPermissionGroup);
+    const leftPanelToogled = useContext(AuthContext);
+
     const navigate = useNavigate();
 
     useEffect(() => {
