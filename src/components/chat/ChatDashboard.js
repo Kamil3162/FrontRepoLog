@@ -18,10 +18,13 @@ function ChatDashboard(){
     const [ws, setWs] = useState(null);
     const user_data = JSON.parse(localStorage.getItem('user')).id;
     const [active_users, setActiveUsers] = useState(null);
+    const [notActiveUsers, setNotActiveUsers] = useState(null);
     const websocketRef = useRef(null);
     const [message, setMessage] = useState('');
     const current_user_id = JSON.parse(localStorage.getItem('user')).id;
     const [conversationId, setConversationID] = useState('');
+    const [startConversationFlag, setStartConversationFlag] = useState('');
+    const [startConversationUser, setStartConversationUser] = useState('');
 
     useEffect(() =>{
         // const websocket = new WebSocket(`ws://127.0.0.1:8000/ws/users/?userId=${user_data}/`);
@@ -41,7 +44,7 @@ function ChatDashboard(){
 
             if (data.conversations && data.conversations[0]) {
                 setActiveUsers(data.conversations[0].participants);
-
+                setNotActiveUsers(data.users);
                 console.log(data.conversations[0].participants);
                 console.log('Active users updated');
             }
@@ -77,8 +80,10 @@ function ChatDashboard(){
         };
     }, []);
 
+
     const sendMessage = () => {
         if (websocketRef.current && websocketRef.current.readyState === WebSocket.OPEN) {
+            console.log("wysylanie");
             websocketRef.current.send(JSON.stringify({
                 message: message,
                 user: user_data,
@@ -94,6 +99,14 @@ function ChatDashboard(){
         console.log(user_id);
     }
 
+    const startConversation = (user_id) => {
+
+        console.log(user_id);
+        console.log(active_users);
+        setStartConversationUser(user_id);
+        setConversationID(false);
+
+    }
 
     return (
         <ChatDashboardComponent>
@@ -106,14 +119,31 @@ function ChatDashboard(){
                         </StyledUserChat>
                     ))}
                 </ActiveUserList>
+                <ActiveUserList>
+                    <h2>Not Active Users</h2>
+                    {notActiveUsers && notActiveUsers.map((user, index) => (
+                        <StyledUserChat key={user.id} onClick={() => startConversation(user.id)}>
+                            {user.first_name} {user.last_name}
+                        </StyledUserChat>
+                    ))}
+                </ActiveUserList>
             </div>
             <ChatMessageContainer>
-                { conversationId && (
+                { conversationId ? (
                     <ChatWindow
                         conversation_id={conversationId}
                         websocketRef={websocketRef}
                         user_id={user_data}
                     />
+                ): (
+                    <div>
+                        <ChatWindow
+                            conversation_id={conversationId}
+                            websocketRef={websocketRef}
+                            user_id={user_data}
+                            start_conversation={true}
+                        />
+                    </div>
                 )}
             </ChatMessageContainer>
         </ChatDashboardComponent>

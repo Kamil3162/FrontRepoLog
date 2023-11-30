@@ -17,13 +17,14 @@ export const PageContainer = styled.div`
 `;
 
 export const ContentContainer = styled.div`
-  display: flex;
   flex: 1;
   flex-shrink: 0;
   //background-color: rgb(7, 7, 7);
   margin-left: 250px;
   margin-top: 50px;
-  
+  min-height: 100vh;
+
+
   @media ${devices.mobileL}{
     margin-left: 26%;
     display: block;

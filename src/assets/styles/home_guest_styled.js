@@ -8,8 +8,6 @@ export const HomeContainer = styled.div`
     display: flex;
     background-color: white;
     flex-direction: column;
-    width: 80%;
-    height: 80%;
   
     @media ${devices.mobileL}{ 
         //width: 100%;

@@ -11,7 +11,7 @@ import {LoginButton} from "../../assets/styles/login_styled";
     I have to get all active conversations all users when we can start conversation
  */
 
-function ChatWindow({conversation_id, websocketRef, user_id}){
+function ChatWindow({conversation_id, websocketRef, user_id, start_conversation=false}){
 
     const [message_send, setMessageSend] = useState('');
     const [messages, setMessages] = useState([]);
@@ -64,16 +64,32 @@ function ChatWindow({conversation_id, websocketRef, user_id}){
 
     }, [conversation_id, websocketRef, user_id]);
 
-    const sendMessage = () => {
+    const sendWebSocket = (data) => {
+        websocketRef.current.send(data);
+    }
+
+    const sendMessage = (create_conversation=false) => {
 
         endOfMessagesRef.current?.scrollIntoView({ behavior: 'smooth' });
 
         if (websocketRef.current && websocketRef.current.readyState === WebSocket.OPEN) {
-            websocketRef.current.send(JSON.stringify({
+            if (create_conversation === true){
+                const data = JSON.stringify({
+                    message: message_send,
+                    user: user_id,
+                    // target_user: user
+
+                });
+                sendWebSocket(data);
+            }
+            const data = JSON.stringify({
                 message: message_send,
                 user: user_id,
                 room_id: conversation_id
-            }));
+            });
+
+            sendWebSocket(data);
+
             setMessageSend('');
         } else {
             console.log("WebSocket is not open.");
@@ -90,46 +106,62 @@ function ChatWindow({conversation_id, websocketRef, user_id}){
 
     return (
         <div>
-            <ChatWindowComponent>
-                {
-                    messages.map((rec_message, index) => (
-                        rec_message.sender == user_id ? (
-                            <Message
-                                key={index}
-                                style={{
-                                    marginLeft: 'auto',
-                                    marginRight: '0',
-                                    backgroundColor: '#175bb4' // Example color for user's messages
-                                }}>
-                                {rec_message.content}
-                            </Message>
-                        ) : (
-                            <Message
-                                key={index}
-                                style={{
-                                    marginRight: 'auto',
-                                    marginLeft: '0',
-                                    backgroundColor: '#178fb4' // Example color for others' messages
-                                }}>
-                                {rec_message.content}
-                            </Message>
-                        )
-                    ))
-                }
-                <div ref={endOfMessagesRef} />
-            </ChatWindowComponent>
-            <div>
-                <InputField type="text"
-                       placeholder="Wprowadz tekst"
-                       value={message_send}
-                       onChange={(e) => setMessageSend(e.target.value)}
-                />
-                <LoginButton
-                    onClick={sendMessage}
-                    style={{width:'150px'}}
-                >Send
-                </LoginButton>
-            </div>
+            {
+                start_conversation === false ? (
+                    <>
+                        <ChatWindowComponent>
+                            {
+                                messages.map((rec_message, index) => (
+                                    rec_message.sender == user_id ? (
+                                        <Message
+                                            key={index}
+                                            style={{
+                                                marginLeft: 'auto',
+                                                marginRight: '0',
+                                                backgroundColor: '#175bb4' // Example color for user's messages
+                                            }}>
+                                            {rec_message.content}
+                                        </Message>
+                                    ) : (
+                                        <Message
+                                            key={index}
+                                            style={{
+                                                marginRight: 'auto',
+                                                marginLeft: '0',
+                                                backgroundColor: '#178fb4' // Example color for others' messages
+                                            }}>
+                                            {rec_message.content}
+                                        </Message>
+                                    )
+                                ))
+                            }
+                            <div ref={endOfMessagesRef} />
+                        </ChatWindowComponent>
+                        <div>
+                            <InputField type="text"
+                                        placeholder="Wprowadz tekst"
+                                        value={message_send}
+                                        onChange={(e) => setMessageSend(e.target.value)}
+                            />
+                            <LoginButton
+                                onClick={sendMessage}
+                                style={{width:'150px'}}
+                            >Send
+                            </LoginButton>
+                        </div>
+                    </>
+                ) : (
+                    <div>
+                        <LoginButton
+                            onClick={sendMessage}
+                            style={{width:'150px'}}
+                        >S321end
+                        </LoginButton>
+
+                    </div>
+                )
+            }
+
         </div>
     );
 }

@@ -42,7 +42,9 @@ export const ActiveUserList = styled.div`
   color: whitesmoke;
   border-radius: 20px;
   height: auto;
-  
+  margin-bottom: 10px;
+  overflow-y: scroll;
+  max-height: 300px;
   @media ${devices.mobileL}{
     margin-bottom: 5px;
   }
