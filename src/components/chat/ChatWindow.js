@@ -11,27 +11,41 @@ import {LoginButton} from "../../assets/styles/login_styled";
     I have to get all active conversations all users when we can start conversation
  */
 
-function ChatWindow({conversation_id, websocketRef, user_id, start_conversation=false}){
+function ChatWindow({
+    conversation_id,
+    websocketRef,
+    user_id,
+    start_conversation=false,
+    user_conversation_start=null
+}){
+
+    console.log("wysylanie naura");
 
     const [message_send, setMessageSend] = useState('');
     const [messages, setMessages] = useState([]);
-    const endOfMessagesRef = React.createRef()
-    console.log('esa');
-    console.log(user_id);
-    console.log(endOfMessagesRef);
+    const endOfMessagesRef = React.createRef();
+
+    console.log("Conversation id", conversation_id);
+    console.log("websocketRef id", websocketRef);
+    console.log("user id", user_id);
+    console.log("start_conversation", start_conversation);
+    console.log("user_convesation_start", user_conversation_start);
 
     useEffect(() =>{
-        websocketRef.current.send(JSON.stringify({
-            type: 'get_messages',
-            message: 'Get messeges',
-            user: user_id,
-            room_id: conversation_id
-        }));
+        console.log("rendering");
+
+        if (conversation_id){
+            websocketRef.current.send(JSON.stringify({
+                type: 'get_messages',
+                message: 'Get messeges',
+                user: user_id,
+                room_id: conversation_id
+            }));
+        }
 
         websocketRef.current.onmessage = function(event){
             const data = JSON.parse(event.data);
             console.log(data);
-
             if (data.type === 'all_messages'){
                 setMessages(data.messages);
             }
@@ -41,11 +55,6 @@ function ChatWindow({conversation_id, websocketRef, user_id, start_conversation=
             }
 
             if (data.type === 'group_message' && data.user_id !== null){
-                console.log(data);
-                console.log("esa esa esa");
-
-                console.log(data.user_id);
-
                 const message_obj = {
                     'content': data.message,
                     'sender': data.user_id
@@ -62,33 +71,38 @@ function ChatWindow({conversation_id, websocketRef, user_id, start_conversation=
 
         }
 
-    }, [conversation_id, websocketRef, user_id]);
+    }, [conversation_id]);
 
     const sendWebSocket = (data) => {
         websocketRef.current.send(data);
     }
 
-    const sendMessage = (create_conversation=false) => {
+    const sendMessage = () => {
+        console.log("wysylanie wiadomosci");
 
         endOfMessagesRef.current?.scrollIntoView({ behavior: 'smooth' });
 
         if (websocketRef.current && websocketRef.current.readyState === WebSocket.OPEN) {
-            if (create_conversation === true){
+            if (start_conversation === true){
                 const data = JSON.stringify({
                     message: message_send,
                     user: user_id,
+                    user_to_conversation: user_conversation_start,
+                    flaga: 'esa to jest flaga tests'
                     // target_user: user
 
                 });
                 sendWebSocket(data);
             }
-            const data = JSON.stringify({
-                message: message_send,
-                user: user_id,
-                room_id: conversation_id
-            });
+            else {
+                const data = JSON.stringify({
+                    message: message_send,
+                    user: user_id,
+                    room_id: conversation_id
+                });
 
-            sendWebSocket(data);
+                sendWebSocket(data);
+            }
 
             setMessageSend('');
         } else {
@@ -104,10 +118,11 @@ function ChatWindow({conversation_id, websocketRef, user_id, start_conversation=
     }, [messages]);
 
 
+
     return (
         <div>
             {
-                start_conversation === false ? (
+                conversation_id ? (
                     <>
                         <ChatWindowComponent>
                             {
@@ -155,7 +170,7 @@ function ChatWindow({conversation_id, websocketRef, user_id, start_conversation=
                         <LoginButton
                             onClick={sendMessage}
                             style={{width:'150px'}}
-                        >S321end
+                        >Start Conversation
                         </LoginButton>
 
                     </div>

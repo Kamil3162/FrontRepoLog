@@ -15,19 +15,30 @@ import Footer from "../footer/Footer";
 
 function ChatDashboard(){
 
-    const [ws, setWs] = useState(null);
     const user_data = JSON.parse(localStorage.getItem('user')).id;
+    const websocketRef = useRef(null);
     const [active_users, setActiveUsers] = useState(null);
     const [notActiveUsers, setNotActiveUsers] = useState(null);
-    const websocketRef = useRef(null);
-    const [message, setMessage] = useState('');
-    const current_user_id = JSON.parse(localStorage.getItem('user')).id;
     const [conversationId, setConversationID] = useState('');
-    const [startConversationFlag, setStartConversationFlag] = useState('');
     const [startConversationUser, setStartConversationUser] = useState('');
+
+    const [message, setMessage] = useState('');
+    const [startConversationFlag, setStartConversationFlag] = useState('');
+
+    const [finalconversations, setfinalconversations] = useState([]);
+
+    const shouldStartConversation = !conversationId && startConversationUser;
+    const chatWindowProps = {
+        conversation_id: conversationId,
+        websocketRef: websocketRef,
+        user_id: user_data,
+        start_conversation: shouldStartConversation
+    };
 
     useEffect(() =>{
         // const websocket = new WebSocket(`ws://127.0.0.1:8000/ws/users/?userId=${user_data}/`);
+        console.log("wywolanie");
+        console.log("######################################################");
         websocketRef.current = new WebSocket(`ws://127.0.0.1:8000/ws/users/${user_data}/`);
         websocketRef.current.onerror = (event) => {
             // Handle WebSocket errors
@@ -40,12 +51,51 @@ function ChatDashboard(){
 
         websocketRef.current.onmessage = function(event) {
             const data = JSON.parse(event.data);
+            const conversations = data.conversations;
+            console.log(conversations);
+            console.log("esadsadsadsa")
             console.log('Message from server:', data);
 
+
+
             if (data.conversations && data.conversations[0]) {
+
+
+
                 setActiveUsers(data.conversations[0].participants);
-                setNotActiveUsers(data.users);
-                console.log(data.conversations[0].participants);
+
+
+                const allParticipants = data.conversations.reduce((acc, conversation) => {
+                    return acc.concat(conversation.participants);
+                }, []);
+
+                // Set the aggregated participants to active users
+                setActiveUsers(allParticipants);
+
+                const checkConversationUserData = (conversation ,row) => {
+                    return {
+                        first_name: conversation.participants[row].user.first_name,
+                        last_name: conversation.participants[row].user.last_name
+                    }
+                }
+
+                const users = data.conversations.map(conversation => {
+                    console.log('testowo');
+                    console.log(conversation);
+                    console.log('testowo');
+
+                    const user_data1 = checkConversationUserData(conversation, 0);
+                    const user_data2 = checkConversationUserData(conversation, 1);
+                    const user_final = user_data1.first_name === user_data.first_name && user_data1 === user_data.last_name ? user_data1 : user_data2;
+
+                    return {
+                        id: conversation.id,
+                        user: user_final,
+                    };
+                });
+
+                setActiveUsers(users);
+
                 console.log('Active users updated');
             }
 
@@ -80,32 +130,13 @@ function ChatDashboard(){
         };
     }, []);
 
-
-    const sendMessage = () => {
-        if (websocketRef.current && websocketRef.current.readyState === WebSocket.OPEN) {
-            console.log("wysylanie");
-            websocketRef.current.send(JSON.stringify({
-                message: message,
-                user: user_data,
-                room_id: 1
-            }));
-        } else {
-            console.log("WebSocket is not open.");
-        }
-    };
-
     const pickConversation = (user_id) =>{
         setConversationID(user_id);
-        console.log(user_id);
     }
 
     const startConversation = (user_id) => {
-
-        console.log(user_id);
-        console.log(active_users);
         setStartConversationUser(user_id);
-        setConversationID(false);
-
+        setConversationID(null);
     }
 
     return (
@@ -114,7 +145,7 @@ function ChatDashboard(){
                 <ActiveUserList>
                     <h2>Active Users</h2>
                     {active_users && active_users.map((data, index) => (
-                        <StyledUserChat key={data.user.id} onClick={() => pickConversation(data.user.id)}>
+                        <StyledUserChat key={data.id} onClick={() => pickConversation(data.id)}>
                             {data.user.first_name} {data.user.last_name} {data.active}
                         </StyledUserChat>
                     ))}
@@ -136,14 +167,15 @@ function ChatDashboard(){
                         user_id={user_data}
                     />
                 ): (
-                    <div>
-                        <ChatWindow
-                            conversation_id={conversationId}
-                            websocketRef={websocketRef}
-                            user_id={user_data}
-                            start_conversation={true}
-                        />
-                    </div>
+                        startConversationUser && (
+                            <ChatWindow
+                                conversation_id={conversationId}
+                                websocketRef={websocketRef}
+                                user_id={user_data}
+                                start_conversation={true}
+                                user_conversation_start={startConversationUser}
+                            />
+                    )
                 )}
             </ChatMessageContainer>
         </ChatDashboardComponent>
