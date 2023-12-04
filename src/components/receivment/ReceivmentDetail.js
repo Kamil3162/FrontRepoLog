@@ -2,7 +2,7 @@ import React from "react";
 import {useState, useEffect} from "react";
 import client from "../../utils/Sender";
 import {access_token} from "../../utils/Sender";
-import {useParams, UseParams} from 'react-router-dom';
+import {useNavigate, useParams, UseParams} from 'react-router-dom';
 import {AlertTitle, AlertContainer, AlertInformation, AlertRotationContainer, AlertButton} from "../../assets/styles/alert_styled";
 import {AlertComponent} from "../../utils/FunctionComponents";
 import {SemiTrailerComponent} from "../../utils/FunctionComponents";
@@ -18,11 +18,12 @@ import {
     PostStory,
     TextTitle
 } from "../../assets/styles/home_guest_styled";
-
+import {logOutHook} from "../../hooks/receivment_hooks";
 function ReceivmentDetail(){
     // get all this kind of data
 
     const [data, setData] = useState(null);
+    const navigate = useNavigate();
 
     let [locationData, setLocationData] = useState({
         source_address: null,
@@ -47,6 +48,7 @@ function ReceivmentDetail(){
             setLocationData({destination, source_address: source_address });
         }).catch(error => {
             console.log("blad");
+            logOutHook(error, navigate);
         })
     }, []);
 

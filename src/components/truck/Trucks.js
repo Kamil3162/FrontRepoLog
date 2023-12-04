@@ -19,7 +19,7 @@ import {
     StyleAvailable,
     StyleAvailableFalse
 } from "../../assets/styles/truck_list_styled";
-import {Link, useParams} from "react-router-dom";
+import {Link, useNavigate, useParams} from "react-router-dom";
 import {
     CreateButtonPostContainer,
     InformPostContainer,
@@ -39,6 +39,7 @@ from "../../assets/styles/receivment_create_styled";
 import {ButtonLink} from "../../assets/styles/link_buttons";
 import {AlertComponent} from "../../utils/FunctionComponents";
 import {PaginationContainer} from "../../assets/styles/pagination_styled";
+import {logOutHook} from "../../hooks/receivment_hooks";
 
 function Trucks(){
 
@@ -48,6 +49,7 @@ function Trucks(){
     const [previusPage, setPreviousPage] = useState(null);
     const { pk } = useParams()
     const actualPageNumber = pk && !isNaN(pk) ? Number(pk) : 1;
+    const navigate = useNavigate();
 
     const actual_page = pk ? pk : 1;
     useEffect(() =>{
@@ -66,6 +68,8 @@ function Trucks(){
         }).catch(error =>{
             console.log("Blad");
             setIsUnauthorizedError(false);
+            logOutHook(error, navigate);
+            console.log(error);
         })
     }, [actualPageNumber]);
 

@@ -15,12 +15,13 @@ import {
     PostStory, PostStoryButtonContainer, TextPostContainer,
     TextTitle
 } from "../../assets/styles/home_guest_styled";
-
+import {logOutHook} from "../../hooks/receivment_hooks";
 import {access_token} from "../../utils/Sender";
 import client from "../../utils/Sender";
 import {ButtonLink} from "../../assets/styles/link_buttons";
 import {PaginationContainer} from "../../assets/styles/pagination_styled";
 import {useNavigate} from "react-router-dom";
+
 function SemiTrailers(){
     const [semitrailers, setSemiTrailers] = useState([]);
     const { pk } = useParams();
@@ -41,14 +42,8 @@ function SemiTrailers(){
             setNextPage(next);
             setPreviousPage(previous);
         }).catch((error) =>{
+            logOutHook(error, navigate);
             console.log(error);
-            if (error.response.status === 401){
-                alert("Autowylogowywanie - koniec sesji");
-                localStorage.clear();   // clear cache with aout data
-                window.dispatchEvent(new Event('storageUpdate')); // Dispatch custom event
-                navigate('/login');
-
-            }
         })
     }, [actualPageNumber]);
 

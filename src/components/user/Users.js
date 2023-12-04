@@ -30,9 +30,12 @@ import {
 } from "../../assets/styles/user_display";
 import {handleUpdateUser} from "../../utils/Sender";
 import user from "./User";
+import {logOutHook} from "../../hooks/receivment_hooks";
+import {useNavigate} from "react-router-dom";
+import ListUsers from "./ListUsers";
 
 function Users(){
-    const [users, setUsers] = useState([]);
+    // const [users, setUsers] = useState([]);
     const [pickedUser, setPickedUser] = useState(false);
     const [firstName, setFirstName] = useState('');
     const [lastName, setLastName] = useState('');
@@ -45,10 +48,11 @@ function Users(){
     const [zipCode, setZipCode] = useState('');
     const [phoneNumber, setPhoneNumber] = useState('');
     const [pickedUserId, setPickedUserId] = useState(null);
+    // const [displayUsers, setDisplayUsers] = useState([]);
+    const [users, setUsers] = useState([]);
     const [displayUsers, setDisplayUsers] = useState([]);
+    const navigate = useNavigate();
 
-
-    console.log(users);
 
     const handleUpdate = (e) => {
         e.preventDefault();
@@ -78,23 +82,6 @@ function Users(){
         setPhoneNumber(event.phone_number);
         setPickedUserId(event.pk);
     };
-
-    const selectUser = () => {
-
-    };
-
-    useEffect(() =>{
-        client.get('api/all-users/',{
-            headers:{
-                Authorization: `Bearer ${access_token}`
-            }
-        }).then(response =>{
-            console.log(response.data);
-            setUsers(response.data);
-        }).catch(error =>{
-            console.log(error);
-        })
-    }, []);
 
     const filterUsers = (e) =>{
         const searchText = e.target.value.toLowerCase();
@@ -127,33 +114,10 @@ function Users(){
                 />
             </UserSearchContainer>
             <MainUsersContentContainer>
-                <UsersListContainer>
-                    {
-                        displayUsers && displayUsers.length > 0 ? (
-                            displayUsers.map((user, index) => (
-                                <UserListElement key={index} onClick={() => pickUser(user)}>
-                                    <UserPhotoContainer>
-                                        <UserPhoto src={user_icon}/>
-                                    </UserPhotoContainer>
-                                    <UserNameUsername>
-                                        {user.first_name} {user.last_name}
-                                    </UserNameUsername>
-                                </UserListElement>
-                            ))
-                        ) : (
-                            users.map((user, index) => (
-                                <UserListElement key={index} onClick={() => pickUser(user)}>
-                                    <UserPhotoContainer>
-                                        <UserPhoto src={user_icon}/>
-                                    </UserPhotoContainer>
-                                    <UserNameUsername>
-                                        {user.first_name} {user.last_name}
-                                    </UserNameUsername>
-                                </UserListElement>
-                            ))
-                        )
-                    }
-                </UsersListContainer>
+                <ListUsers
+                    pickUser={pickUser}
+                    navigate={navigate}
+                />
                 <UserContainer>
                     {/*<MainTextTitleFontChange>Personal Information</MainTextTitleFontChange>*/}
                     <SettingDetails>

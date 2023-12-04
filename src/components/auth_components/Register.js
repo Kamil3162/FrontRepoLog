@@ -47,12 +47,15 @@ const Register = () => {
             setInfoRegister("Pomyslnie zalozono konto");
             setInfoRegisterTitle("Sukces");
             setIsAlertVisible(true);
+            alert("Pomyslnie stworzono kontro usera");
 
         })
         .catch(error =>{
             setInfoRegister("Cos poszlo nie tak sprobuj jeszcze raz");
             setInfoRegisterTitle("Blad");
             setIsAlertVisible(true);
+            alert("Cos poszlo nie tak, problem z utworzeniem konta");
+
 
         })
     }

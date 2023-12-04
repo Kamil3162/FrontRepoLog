@@ -38,8 +38,6 @@ function User() {
     const [zipCode, setZipCode] = useState(user_data.zip_code || '');
     const [phoneNumber, setPhoneNumber] = useState(user_data.phone_number || '');
 
-
-
     const handleUpdate = (e) => {
         e.preventDefault();
         console.log("Handle update user");
@@ -69,18 +67,6 @@ function User() {
             .catch(error =>{
                 console.log(error)
             });
-        /*
-            "first_name":"firstName",
-            "last_name":"firstName",
-            "email":"firstName@firs.pl",
-            "password":"firstName",
-            "house_number":123,
-            "apartment_number":0,
-            "city":"firstName",
-            "street": "Jana Pawla",
-            "phone_number":765432098,
-            "zip_code" : "37-200"
-         */
     }
 
 

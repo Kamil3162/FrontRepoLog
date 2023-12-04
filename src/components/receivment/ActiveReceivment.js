@@ -15,11 +15,14 @@ import {
 } from "../../assets/styles/receivment_detail_styled";
 import MapGen from "../MapGen";
 import {SemiTrailerComponent, TruckComponent} from "../../utils/FunctionComponents";
+import {useNavigate} from "react-router-dom";
+import {logOutHook} from "../../hooks/receivment_hooks";
 
 function ActiveReceivment(){
     const [currentLocation, setCurrentLocation] = useState('');
     const [destinationLocation, setDestinationLocation] = useState('');
     const [data, setData] = useState(null);
+    const navigate = useNavigate();
 
     let [locationData, setLocationData] = useState({
         source_address: null,
@@ -44,6 +47,7 @@ function ActiveReceivment(){
 
         }).catch(error => {
             console.log("error");
+            logOutHook(error, navigate);
         })
     }, []);
 

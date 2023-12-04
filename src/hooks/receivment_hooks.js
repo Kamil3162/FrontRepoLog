@@ -2,11 +2,11 @@ import React from "react";
 import client from "../utils/Sender";
 import {access_token} from "../utils/Sender";
 import {AlertComponent} from "../utils/FunctionComponents";
-
 // inside () we have to pass our data those we want to send
+
 const headers =  {
-        Authorization: `Bearer ${access_token}`
-    }
+    Authorization: `Bearer ${access_token}`
+}
 
 export const finishReceivment = ({receivment_pk}) => {
 
@@ -35,3 +35,14 @@ export const finishReceivment = ({receivment_pk}) => {
     })
 }
 
+
+export const logOutHook = ({error, navigate}) => {
+    if (error.response.status === 401){
+        alert("Autowylogowywanie - koniec sesji");
+        localStorage.clear();   // clear cache with aout data
+        window.dispatchEvent(new Event('storageUpdate')); // Dispatch custom event
+
+        // Use navigate passed from the component
+        navigate('/login');
+    }
+}

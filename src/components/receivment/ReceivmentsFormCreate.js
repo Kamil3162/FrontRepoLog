@@ -54,6 +54,8 @@ import {AlertComponent} from "../../utils/FunctionComponents.js";
 import SemiTrailerEquipmentCreate from "../semitrailer/SemiTrailerEquipmentCreate";
 import TruckEquipmentCreate from "../truck/TruckEquipmentCreate";
 import {LoginButton} from "../../assets/styles/login_styled";
+import {useNavigate} from "react-router-dom";
+import {logOutHook} from "../../hooks/receivment_hooks";
 
 function ReceivmentFromCreate(){
     const [truck, setTruck] = useState(true);
@@ -76,6 +78,8 @@ function ReceivmentFromCreate(){
 
     const [truckEquipmentExists, setTruckEquipmentExists] = useState(false);
     const [semiTrailerEquipmentExists, setSemiTruckEquipmentExists] = useState(false);
+
+    const navigate = useNavigate();
 
     const handlePickTruck = (event, key) =>{
         console.log(event, key);
@@ -167,6 +171,7 @@ function ReceivmentFromCreate(){
         })
         .catch(error => {
             console.error('Error fetching data:', error);
+            logOutHook(error, navigate);
         });
     }
 

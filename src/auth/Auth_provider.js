@@ -21,7 +21,6 @@ export const AuthProvider = ({ children }) => {
                 let today = new Date();
                 let hour_later = new Date(today);
                 hour_later.setHours(hour_later.getHours() + 1);
-
                 localStorage.setItem('access', response.data.access);
                 localStorage.setItem('refresh', response.data.refresh);
                 localStorage.setItem('user_permissions', JSON.stringify(response.data.permissions));
@@ -33,6 +32,7 @@ export const AuthProvider = ({ children }) => {
                 window.dispatchEvent(new Event('storageUpdate'));
 
                 console.log('esa test logowania');
+
                 navigate('/home-guest');
                 window.location.reload(false);
 
@@ -44,31 +44,9 @@ export const AuthProvider = ({ children }) => {
     const logout = () => {
         localStorage.clear();
         setUserPermissionGroup(null);
+        window.dispatchEvent(new Event('storageUpdate')); // Dispatch custom event
         navigate('/login');
     };
-
-    // const logout = () => {
-    //     setIsAuthenticated(false);
-    //     localStorage.clear();   // clear cache with aout data
-    //     window.dispatchEvent(new Event('storageUpdate')); // Dispatch custom event
-    //     navigate('/login');
-    // };
-
-    // useEffect(() =>{
-    //     // client.get('/api/validate-token/',{
-    //     //     headers: {
-    //     //         Authorization: `Bearer ${access_token}`
-    //     //     },
-    //     // });
-    //
-    //     const current_time = new Date();
-    //     const final_time = new Date(localStorage.getItem('final_session_time')); // Convert stored time to Date object
-    //     if ((final_time - current_time)/1000 <= 0){
-    //         logout();
-    //     }
-    //
-    //     console.log(current_time);
-    // }, []);
 
     useEffect(() => {
         const handleStorageUpdate = () => {

@@ -20,6 +20,7 @@ import {InputField, LabelFields, UpdateButton} from "../../assets/styles/user_di
 import {MachinePhotoInput} from "../../assets/styles/truck_list_styled";
 import {ButtonLink} from "../../assets/styles/link_buttons";
 import {useNavigate} from "react-router-dom";
+import {logOutHook} from "../../hooks/receivment_hooks";
 
 function SemiTrailer(){
     const [brand, setBrand] = useState("");
@@ -50,6 +51,8 @@ function SemiTrailer(){
             setPhoto(received_data.photo);
         }).catch(error => {
             console.log(error);
+            logOutHook(error, navigate);
+
         })
     }, []);
 

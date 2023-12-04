@@ -34,7 +34,9 @@ export const UserListElement = styled.div`
     background-color: rgba(34, 121, 43, 0.47);
     border-radius: 15px;
   }
+  
 `;
+
 export const UserPhotoContainer = styled.div`
     display: flex;
     flex-grow: 2;

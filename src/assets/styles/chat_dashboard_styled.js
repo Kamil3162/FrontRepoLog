@@ -5,7 +5,7 @@ export const StyledUserChat = styled.div`
     display: flex;
     background-color: greenyellow;
     width: 200px;
-    height: 50px;
+    height: 70px;
     justify-content: center;
     align-items: center;
     border: 1px solid black;
@@ -14,10 +14,12 @@ export const StyledUserChat = styled.div`
     color: black;
     font-family: "Raleway", sans-serif;
     font-weight: 1000;
-
-  &:hover{
-    background-color: whitesmoke;
-  }
+    overflow: hidden;
+    
+    &:hover {
+      background-color: whitesmoke;
+    }
+  
 `;
 
 export const ChatDashboardComponent = styled.div`
@@ -33,8 +35,6 @@ export const ChatDashboardComponent = styled.div`
 `;
 
 export const ActiveUserList = styled.div`
-
-  display: flex;
   flex-direction: column;
   margin-right: 50px;
   background-color: rgb(70, 69, 69);
@@ -43,8 +43,9 @@ export const ActiveUserList = styled.div`
   border-radius: 20px;
   height: auto;
   margin-bottom: 10px;
-  overflow-y: scroll;
+  overflow-y: auto;
   max-height: 300px;
+  
   @media ${devices.mobileL}{
     margin-bottom: 5px;
   }

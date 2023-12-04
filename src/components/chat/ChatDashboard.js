@@ -16,18 +16,16 @@ import Footer from "../footer/Footer";
 function ChatDashboard(){
 
     const user_data = JSON.parse(localStorage.getItem('user')).id;
+    const official_user_data = JSON.parse(localStorage.getItem('user'));
+
     const websocketRef = useRef(null);
-    const [active_users, setActiveUsers] = useState(null);
-    const [notActiveUsers, setNotActiveUsers] = useState(null);
+    const [active_users, setActiveUsers] = useState([]);
+    const [notActiveUsers, setNotActiveUsers] = useState([]);
     const [conversationId, setConversationID] = useState('');
     const [startConversationUser, setStartConversationUser] = useState('');
 
-    const [message, setMessage] = useState('');
-    const [startConversationFlag, setStartConversationFlag] = useState('');
-
-    const [finalconversations, setfinalconversations] = useState([]);
-
     const shouldStartConversation = !conversationId && startConversationUser;
+
     const chatWindowProps = {
         conversation_id: conversationId,
         websocketRef: websocketRef,
@@ -35,10 +33,16 @@ function ChatDashboard(){
         start_conversation: shouldStartConversation
     };
 
+    const [missingUser, setMissingUser] = useState(null);
+
+    const addActiveUser = (newUser) => {
+        console.log('utworzono - wywolano naura');
+        setActiveUsers([...active_users, newUser]);
+    }
+
     useEffect(() =>{
         // const websocket = new WebSocket(`ws://127.0.0.1:8000/ws/users/?userId=${user_data}/`);
-        console.log("wywolanie");
-        console.log("######################################################");
+        console.log("Chat Dashboard");
         websocketRef.current = new WebSocket(`ws://127.0.0.1:8000/ws/users/${user_data}/`);
         websocketRef.current.onerror = (event) => {
             // Handle WebSocket errors
@@ -53,18 +57,11 @@ function ChatDashboard(){
             const data = JSON.parse(event.data);
             const conversations = data.conversations;
             console.log(conversations);
-            console.log("esadsadsadsa")
-            console.log('Message from server:', data);
-
-
+            console.log(data.users);
 
             if (data.conversations && data.conversations[0]) {
 
-
-
                 setActiveUsers(data.conversations[0].participants);
-
-
                 const allParticipants = data.conversations.reduce((acc, conversation) => {
                     return acc.concat(conversation.participants);
                 }, []);
@@ -72,21 +69,18 @@ function ChatDashboard(){
                 // Set the aggregated participants to active users
                 setActiveUsers(allParticipants);
 
-                const checkConversationUserData = (conversation ,row) => {
+                const checkConversationUserData = (conversation, row) => {
                     return {
                         first_name: conversation.participants[row].user.first_name,
                         last_name: conversation.participants[row].user.last_name
                     }
                 }
-
                 const users = data.conversations.map(conversation => {
-                    console.log('testowo');
-                    console.log(conversation);
-                    console.log('testowo');
 
                     const user_data1 = checkConversationUserData(conversation, 0);
                     const user_data2 = checkConversationUserData(conversation, 1);
-                    const user_final = user_data1.first_name === user_data.first_name && user_data1 === user_data.last_name ? user_data1 : user_data2;
+
+                    const user_final = user_data1.first_name === official_user_data.first_name && user_data1.last_name === official_user_data.last_name ? user_data2 : user_data1;
 
                     return {
                         id: conversation.id,
@@ -95,9 +89,13 @@ function ChatDashboard(){
                 });
 
                 setActiveUsers(users);
+                setNotActiveUsers(data.users);
 
-                console.log('Active users updated');
+                console.log("to jest w if statement");
+                console.log(data.users);
+                setNotActiveUsers(data.users);
             }
+
 
             if (data.type === 'connection_established') {
                 console.log(data.message);
@@ -106,16 +104,14 @@ function ChatDashboard(){
 
             if (data.type === 'chat_message') {
                 console.log(event);
-                console.log(data.message);
                 // Perform actions related to connection establishment
             }
 
             // Handle group messages
             if (data.type === 'group_message') {
                 console.log(`Message in ${data.room_id} from ${data.username}: ${data.message}`);
-                // Update your chat UI with this message
-                // You might want to add this message to your chat state
             }
+
         };
 
         websocketRef.onclose = function(event) {
@@ -130,14 +126,28 @@ function ChatDashboard(){
         };
     }, []);
 
+    useEffect(() => {
+        console.log("Updated notActiveUsers:", notActiveUsers);
+    }, [notActiveUsers]);
+
     const pickConversation = (user_id) =>{
         setConversationID(user_id);
     }
 
-    const startConversation = (user_id) => {
-        setStartConversationUser(user_id);
+    const startConversation = (user) => {
+        setStartConversationUser(user.id);
         setConversationID(null);
+        setMissingUser(user);
     }
+
+    const updateMissingUsers = (user_id) => {
+        const newAbsentUsers = notActiveUsers.filter((user) => {
+            // Assuming 'user' and 'user_object' have an 'id' property to compare
+            // Keep the user if their id is not equal to the id of user_objec
+            return (user.id !== user_id);
+        })
+        setNotActiveUsers(newAbsentUsers);
+    };
 
     return (
         <ChatDashboardComponent>
@@ -153,7 +163,7 @@ function ChatDashboard(){
                 <ActiveUserList>
                     <h2>Not Active Users</h2>
                     {notActiveUsers && notActiveUsers.map((user, index) => (
-                        <StyledUserChat key={user.id} onClick={() => startConversation(user.id)}>
+                        <StyledUserChat key={user.id} onClick={() => startConversation(user)}>
                             {user.first_name} {user.last_name}
                         </StyledUserChat>
                     ))}
@@ -172,8 +182,11 @@ function ChatDashboard(){
                                 conversation_id={conversationId}
                                 websocketRef={websocketRef}
                                 user_id={user_data}
+                                user_object={missingUser}
                                 start_conversation={true}
                                 user_conversation_start={startConversationUser}
+                                updateActiveUsers={addActiveUser}
+                                updateMissingUsers={updateMissingUsers}
                             />
                     )
                 )}

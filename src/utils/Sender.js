@@ -1,5 +1,6 @@
 import axios, {create} from "axios";
 import {type} from "@testing-library/user-event/dist/type";
+import {logOutHook} from "../hooks/receivment_hooks";
 const client = axios.create({
     baseURL: 'http://127.0.0.1:8000'
 })
@@ -47,6 +48,7 @@ export const handleUpdateUser = (userData, access_token, user_id) => {
         })
         .catch(error => {
             console.log(error);
+
         });
 };
 
